@@ -10,7 +10,7 @@
 |------------------------|------------------------------|----------------------|:------------:|
 | Microcontroller        | ARM Cortex M3                | STM32F103C8T6        |       1      |
 | Flash Memory           | NOR 128 Mbit                 | W25Q128JVSIM TR      |       1      |
-| Switch                 | Load switch                  | TPS22919-Q1          |       1      |
+| Switch                 | Load switch                  | TPS2010AD            |       1      |
 | CAN Transceiver        | CAN transceiver              | TCAN330GD            |       1      |
 | SPI/3V3 Connector      | PicoBlade 6 pin              | 532610671            |       1      |
 | UART Connector         | PicoBlade 3 pin              | 532610371            |       1      |
