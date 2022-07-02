@@ -1,5 +1,6 @@
 SRC=main
-TARGET=presentation
+DOC_VERSION=v0.1
+TARGET=slb-cam-pdr-$(DOC_VERSION)
 
 ifndef BUILD_DIR
 	BUILD_DIR=build
