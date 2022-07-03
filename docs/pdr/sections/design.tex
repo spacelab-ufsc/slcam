@@ -292,12 +292,12 @@
 
 \end{frame}
 
-\begin{frame}{Firmware: Commands}
+\begin{frame}{Firmware: Parameters}
 
 \begin{table}[!htb]
     \centering
     \label{tab:parameters}
-    \begin{tabular}{clll}
+    \begin{tabular}{cllc}
         \toprule[1.5pt]
         \textbf{ID} & \textbf{Name} & \textbf{Type} & \textbf{Access} \\
         \midrule
@@ -308,5 +308,35 @@
         \bottomrule[1.5pt]
     \end{tabular}
 \end{table}
+
+\end{frame}
+
+% #########################################################################
+% #########################################################################
+
+\begin{frame}{Software}
+
+    \begin{columns}[t]
+        \begin{column}[t]{0.55\textwidth}
+            \begin{itemize}
+                \item Software for test/validade the camera module
+                \item Purpose:
+                    \begin{itemize}
+                        \item Send commands to the camera
+                        \item Read the images from the camera
+                    \end{itemize}
+                \item Language: Python
+                \item Communication between PC and camera: USB/SPI or USB/CAN converter
+            \end{itemize}
+        \end{column}
+        \begin{column}[t]{0.45\textwidth}
+            \vspace{0.5cm}
+            \begin{figure}[!ht]
+                \begin{center}
+                    \includegraphics[width=4.5cm]{figures/software-diagram}
+                \end{center}
+            \end{figure}
+        \end{column}
+    \end{columns}
 
 \end{frame}
