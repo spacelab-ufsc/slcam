@@ -118,7 +118,7 @@ U 1 1 62CA9042
 P 8850 1950
 F 0 "H2" H 8950 1996 50  0000 L CNN
 F 1 "MountingHole" H 8950 1905 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3mm" H 8850 1950 50  0001 C CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 8850 1950 50  0001 C CNN
 F 3 "~" H 8850 1950 50  0001 C CNN
 	1    8850 1950
 	1    0    0    -1  
@@ -129,9 +129,31 @@ U 1 1 62CAB474
 P 8550 2800
 F 0 "H1" H 8650 2846 50  0000 L CNN
 F 1 "MountingHole" H 8650 2755 50  0000 L CNN
-F 2 "MountingHole:MountingHole_3mm" H 8550 2800 50  0001 C CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 8550 2800 50  0001 C CNN
 F 3 "~" H 8550 2800 50  0001 C CNN
 	1    8550 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H3
+U 1 1 62D0801C
+P 8800 2200
+F 0 "H3" H 8900 2246 50  0000 L CNN
+F 1 "MountingHole" H 8900 2155 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 8800 2200 50  0001 C CNN
+F 3 "~" H 8800 2200 50  0001 C CNN
+	1    8800 2200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H4
+U 1 1 62D08FB2
+P 8800 2400
+F 0 "H4" H 8900 2446 50  0000 L CNN
+F 1 "MountingHole" H 8900 2355 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3_Pad" H 8800 2400 50  0001 C CNN
+F 3 "~" H 8800 2400 50  0001 C CNN
+	1    8800 2400
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
