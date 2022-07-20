@@ -29,9 +29,9 @@
         \item \textbf{Sensor type}: RGB
         \item \textbf{Pixel size}: 2,2 $\times$ 2,2 $\mu$m
         \item \textbf{Max. Resolution}: 1600 $\times$ 1200 px
-        \item \textbf{Field of View (FoV)}: \textcolor{red}{TBD}
-        \item \textbf{Storage}: 16 MB (Flash NAND)
-        \item \textbf{Power supply}: 3V3 @ \textcolor{red}{TBD} mA
+        \item \textbf{Field of View (FoV)}: 68$^{\circ}$ (6 mm) \textcolor{red}{TBC}
+        \item \textbf{Storage}: 16 MB (Flash NOR)
+        \item \textbf{Power supply}: 3V3 @ 140 mA \textcolor{red}{TBC}
         \item \textbf{Interfaces}:
             \begin{itemize}
                 \item \textbf{Control/Data}: SPI and/or CAN
@@ -63,7 +63,7 @@
     \begin{table}[!htb]\tiny
         \centering
         \label{tab:bom}
-        \begin{tabular}{lL{2cm}cc}
+        \begin{tabular}{lL{2.5cm}cc}
             \toprule[1.5pt]
             \textbf{Component} & \textbf{Description} & \textbf{Partnumber} & \textbf{Quantity} \\
             \midrule
@@ -89,7 +89,7 @@
 % #########################################################################
 % #########################################################################
 
-\begin{frame}{Camera Sensor Module}
+\begin{frame}{Image Sensor Module}
 
     \begin{columns}[t]
         \begin{column}[t]{0.6\textwidth}
@@ -109,12 +109,27 @@
             \end{itemize}
         \end{column}
         \begin{column}[t]{0.4\textwidth}
-            \vspace{1cm}
             \begin{figure}[!ht]
                 \begin{center}
-                    \includegraphics[width=4cm]{figures/arducam-2mp}
+                    \includegraphics[width=3cm]{figures/arducam-2mp}
                 \end{center}
             \end{figure}
+            \begin{columns}[t]
+                \begin{column}[t]{0.5\textwidth}
+                    \begin{figure}[!ht]
+                        \begin{center}
+                            \includegraphics[width=2cm]{figures/arducam-top}
+                        \end{center}
+                    \end{figure}
+                \end{column}
+                \begin{column}[t]{0.5\textwidth}
+                    \begin{figure}[!ht]
+                        \begin{center}
+                            \includegraphics[width=2cm]{figures/arducam-bottom}
+                        \end{center}
+                    \end{figure}
+                \end{column}
+            \end{columns}
         \end{column}
     \end{columns}
 
@@ -123,7 +138,7 @@
 % #########################################################################
 % #########################################################################
 
-\begin{frame}{Camera Sensor Module: Architecture}
+\begin{frame}{Image Sensor Module: Architecture}
 
     \begin{figure}[!ht]
         \begin{center}
@@ -142,7 +157,7 @@
 % #########################################################################
 % #########################################################################
 
-\begin{frame}{Camera Sensor Module: Dimensions}
+\begin{frame}{Image Sensor Module: Dimensions}
 
     \begin{figure}[!ht]
         \begin{center}
@@ -157,37 +172,47 @@
 
 \begin{frame}{Controller}
 
-\textcolor{blue}{Colocar imagem do 3D da placa + resumo das specs. da placa}
-
-\end{frame}
-
-% #########################################################################
-% #########################################################################
-
-\begin{frame}{Optic System}
-
-    \begin{itemize}
-        \item Mount: M12
-        \item FoV: XX$^{\circ}$ \textcolor{red}{TBD}
-        \item With IR-filter
-        \item Focus: Fixed, infinity
-    \end{itemize}
-
-\end{frame}
-
-% #########################################################################
-% #########################################################################
-
-\begin{frame}{Mechanical Structure}
-
-\textcolor{blue}{Colocar info e imagens do case de alumínio!!}
-
-\end{frame}
-
-% #########################################################################
-% #########################################################################
-
-\begin{frame}{Interface Requirements (ICD)}
+    \begin{columns}[t]
+        \begin{column}[t]{0.5\textwidth}
+            \vspace{0.2cm}
+            \begin{itemize}
+                \item Dimensions: 42,2 $\times$ 25,4 mm
+                \vspace{0.15cm}
+                \item Mounting: 4 $\times$ 3,2 mm screw holes
+                \vspace{0.15cm}
+                \item Connectors: Pin header and PicoBlade
+                \vspace{0.15cm}
+                \item Layers: 2
+                \vspace{0.15cm}
+                \item EDA tool: KiCad v5
+                \vspace{0.15cm}
+                \item Status: In progress
+            \end{itemize}
+        \end{column}
+        \begin{column}[t]{0.6\textwidth}
+            \begin{columns}[t]
+                \begin{column}[t]{0.3\textwidth}
+                    \begin{figure}[!ht]
+                        \begin{center}
+                            \includegraphics[height=3cm]{figures/slcam-bottom}
+                        \end{center}
+                    \end{figure}        
+                \end{column}
+                \begin{column}[t]{0.3\textwidth}
+                    \begin{figure}[!ht]
+                        \begin{center}
+                            \includegraphics[height=3.07cm]{figures/slcam-top}
+                        \end{center}
+                    \end{figure}        
+                \end{column}
+            \end{columns}
+            \begin{figure}[!ht]
+                \begin{center}
+                    \includegraphics[width=4cm]{figures/slcam}
+                \end{center}
+            \end{figure}
+        \end{column}
+    \end{columns}
 
 \end{frame}
 
@@ -197,7 +222,16 @@
 \begin{frame}{Power Consumption}
 
     \begin{itemize}
-        \item ...
+        \item Image module\footnote{Can be turned off independently of the controller}:
+            \begin{itemize}
+                \item Normal mode: 350 mW
+                \vspace{0.2cm}
+                \item Low power mode: 100 mW
+            \end{itemize}
+        \vspace{0.3cm}
+        \item Controller: 100 mW (estimated)
+        \vspace{0.3cm}
+        \item Total: 100 to 450 mW (estimated)
     \end{itemize}
 
 \end{frame}
@@ -205,18 +239,181 @@
 % #########################################################################
 % #########################################################################
 
-\begin{frame}{Dimensions}
+\begin{frame}{Electric Interfaces (ICD)}
 
-    \textcolor{blue}{COLOCAR DESENHO COM DIMENSÕES!!!!}
+    \begin{columns}[t]
+        \begin{column}[t]{0.5\textwidth}
+            \begin{itemize}
+                \item Four interfaces:
+                    \begin{itemize}
+                        \item \textbf{SPI/Power}: Data/control and power source
+                        \vspace{0.2cm}
+                        \item \textbf{CAN}: Data/control
+                        \vspace{0.2cm}
+                        \item \textbf{UART}: Debug/log messages
+                        \vspace{0.2cm}
+                        \item \textbf{JTAG}: Firmware programming
+                    \end{itemize}
+            \end{itemize}
+        \end{column}
+        \begin{column}[t]{0.6\textwidth}
+            \begin{table}[!htb]\tiny
+                \centering
+                \label{tab:icd}
+                \begin{tabular}{lcl}
+                    \toprule[1.5pt]
+                    \textbf{Interface} & \textbf{Connector} & \textbf{Pins}\\
+                    \midrule
+                    \multirow{6}{*}{SPI/Power}    & \multirow{6}{*}{J1 - PicoBlade} & 3V3 \\
+                                                  &                     & GND \\
+                                                  &                     & MOSI \\
+                                                  &                     & MISO \\
+                                                  &                     & CLK \\
+                                                  &                     & CS \\
+                    \midrule
+                    \multirow{4}{*}{JTAG}         & \multirow{4}{*}{J3 - Pin Header} & GND \\
+                                                  &                     & 3V3 \\
+                                                  &                     & CLK \\
+                                                  &                     & DIO \\
+                    \midrule
+                    \multirow{3}{*}{CAN}          & \multirow{3}{*}{J4 - PicoBlade} & GND \\
+                                                  &                     & CAN High \\
+                                                  &                     & CAN Low \\
+                    \midrule
+                    \multirow{3}{*}{UART}         & \multirow{3}{*}{J5 - Pin Header} & GND \\
+                                                  &                     & TX \\
+                                                  &                     & RX \\
+                    \bottomrule[1.5pt]
+                \end{tabular}
+            \end{table}
+        \end{column}
+    \end{columns}
 
 \end{frame}
 
 % #########################################################################
 % #########################################################################
 
-\begin{frame}{Satellite Integration: GOLDS-UFSC}
+\begin{frame}{Optic System}
 
-\textcolor{blue}{Colocar imagens da câmera instalada no GOLDS-UFSC (3D)}
+    \begin{columns}[t]
+        \begin{column}[t]{0.5\textwidth}
+            \vspace{1.2cm}
+            \begin{itemize}
+                \item Mount: S-Mount (M12)
+                \vspace{0.2cm}
+                \item FoV: 68$^{\circ}$ \textcolor{red}{TBC}
+                \vspace{0.2cm}
+                \item Focal length: 6 mm \textcolor{red}{TBC}
+                \vspace{0.2cm}
+                \item With IR-filter
+                \vspace{0.2cm}
+                \item Focus: Fixed, infinity
+            \end{itemize}
+        \end{column}
+        \begin{column}[t]{0.5\textwidth}
+            \begin{figure}[!ht]
+                \begin{center}
+                    \includegraphics[width=6cm]{figures/m12-mounting.png}
+                \end{center}
+            \end{figure}
+            \begin{figure}[!ht]
+                \begin{center}
+                    \includegraphics[width=3cm]{figures/m12-lens.jpg}
+                \end{center}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+% #########################################################################
+% #########################################################################
+
+\begin{frame}{Mechanical Structure}
+
+    \begin{columns}[t]
+        \begin{column}[t]{0.5\textwidth}
+            \begin{itemize}
+                \item Material: Aluminum 6061
+                \vspace{0.3cm}
+                \item Mass:
+                    \begin{itemize}
+                        \item Image module: 20 g
+                        \vspace{0.2cm}
+                        \item Controller: $\cong$ 10 g
+                        \vspace{0.2cm}
+                        \item Case: $\cong$ 22,4 g
+                        \vspace{0.2cm}
+                        \item Total: \textbf{52,4 g}
+                    \end{itemize}
+                \vspace{0.3cm}
+                \item Fabrication: CNC miling
+            \end{itemize}
+        \end{column}
+        \begin{column}[t]{0.5\textwidth}
+        \vspace{0.5cm}
+            \begin{figure}[!ht]
+                \begin{center}
+                    \includegraphics[width=4cm]{figures/slcam-overview.png}
+                \end{center}
+            \end{figure}
+        \end{column}
+    \end{columns}
+
+\end{frame}
+
+\begin{frame}{Dimensions}
+
+    \begin{figure}[!ht]
+        \begin{center}
+            \includegraphics[width=7.5cm]{figures/slcam-drawing.png}
+        \end{center}
+    \end{figure}
+
+\end{frame}
+
+% #########################################################################
+% #########################################################################
+
+\begin{frame}{Overview}
+
+    \begin{figure}[!ht]
+        \begin{center}
+            \includegraphics[width=8.5cm]{figures/slcam-exp.png}
+        \end{center}
+    \end{figure}
+
+\end{frame}
+
+% #########################################################################
+% #########################################################################
+
+\begin{frame}{Satellite Integration: 2U Structure}
+
+    \begin{columns}[t]
+        \begin{column}[t]{0.3\textwidth}
+            \begin{figure}[!ht]
+                \begin{center}
+                    \includegraphics[width=3cm]{figures/slcam-ex1.png}
+                \end{center}
+            \end{figure}
+        \end{column}
+        \begin{column}[t]{0.3\textwidth}
+            \begin{figure}[!ht]
+                \begin{center}
+                    \includegraphics[width=2.7cm]{figures/slcam-ex2.png}
+                \end{center}
+            \end{figure}
+        \end{column}
+        \begin{column}[t]{0.3\textwidth}
+            \begin{figure}[!ht]
+                \begin{center}
+                    \includegraphics[width=2.7cm]{figures/slcam-ex3.png}
+                \end{center}
+            \end{figure}
+        \end{column}
+    \end{columns}
 
 \end{frame}
 
@@ -226,8 +423,24 @@
 \begin{frame}{Firmware}
 
     \begin{itemize}
+        \item Language: C
+        \vspace{0.3cm}
         \item OS: FreeRTOS
-        \item ...
+        \vspace{0.3cm}
+        \item Layers:
+            \begin{itemize}
+                \item HAL
+                \vspace{0.2cm}
+                \item Drivers
+                \vspace{0.2cm}
+                \item Devices
+                \vspace{0.2cm}
+                \item Tasks
+                \vspace{0.2cm}
+                \item Libraries
+                \vspace{0.2cm}
+                \item System
+            \end{itemize}
     \end{itemize}
 
 \end{frame}
@@ -263,6 +476,21 @@
             \end{figure}
         \end{column}
     \end{columns}
+\end{frame}
+
+% #########################################################################
+% #########################################################################
+
+\begin{frame}{Firmware: Verification \& Validation}
+
+    \begin{itemize}
+        \item Unit tests: \href{https://cmocka.org/}{\textcolor{blue}{\underline{CMocka}}}
+        \vspace{0.5cm}
+        \item Static analysis: \href{https://cppcheck.sourceforge.io/}{\textcolor{blue}{\underline{CppCheck}}}
+        \vspace{0.5cm}
+        \item Code style: \href{https://www.misra.org.uk/}{\textcolor{blue}{\underline{MISRA-C 2012}}}
+    \end{itemize}
+
 \end{frame}
 
 % #########################################################################
@@ -304,7 +532,7 @@
         0 & Module ID                   & uint16 & R\\
         1 & Sensor status               & uint8  & R  \\
         2 & Capture period (in seconds) & uint8  & R/W \\
-        4 & Pictures in memory          & uint8  & R/W \\
+        4 & Pictures in memory          & uint8  & R \\
         \bottomrule[1.5pt]
     \end{tabular}
 \end{table}
