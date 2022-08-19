@@ -1,0 +1,9 @@
+# Vi/Vim files
+*.swp
+
+# ctags files
+tags
+
+# CppCheck files
+*.ctu-info
+cppcheck-addon-ctu-file-list
