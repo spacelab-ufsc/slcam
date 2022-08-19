@@ -1,5 +1,5 @@
 /*
- * version.h
+ * ov2640.h
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,29 +21,53 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief OV2640 driver definition.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2022/07/10
+ * \date 2022/08/19
  * 
- * \defgroup version Version control
+ * \defgroup ov2640 OV2640
+ * \ingroup drivers
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#ifndef OV2640_H_
+#define OV2640_H_
 
-#define FIRMWARE_VERSION            "0.1.1"
+#include <stdint.h>
 
-#define FIRMWARE_STATUS             "Development"
+/**
+ * \brief OV2640 initialization routine.
+ *
+ * \return The status/error code.
+ */
+int ov2640_init(void);
 
-#define FIRMWARE_AUTHOR             "SpaceLab-UFSC"
+/**
+ * \brief Reads the value of a register.
+ *
+ * \param[in] adr is the register address to read.
+ *
+ * \param[in,out] val is a pointer to store the read value.
+ *
+ * \return The status/error code.
+ */
+int ov2640_read_reg(uint8_t adr, uint8_t *val);
 
-#define FIRMWARE_AUTHOR_EMAIL       "contact@spacelab.ufsc.br"
+/**
+ * \brief Writes a value to a given register.
+ *
+ * \param[in] adr is the register address to write.
+ *
+ * \param[in] val is the register value to write.
+ *
+ * \return The status/error code.
+ */
+int ov2640_write_reg(uint8_t adr, uint8_t val);
 
-#endif /* VERSION_H_ */
+#endif /* OV2640_H_ */
 
-/** \} End of version group */
+/** \} End of ov2640 group */

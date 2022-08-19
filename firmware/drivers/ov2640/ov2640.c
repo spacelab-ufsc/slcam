@@ -1,5 +1,5 @@
 /*
- * version.h
+ * ov2640.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -16,34 +16,38 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with SLCam. If not, see <http://www.gnu.org/licenses/>.
+ * along with SLCam. If not, see <http:/\/www.gnu.org/licenses/>.
  * 
  */
 
 /**
- * \brief Version control file.
+ * \brief OV2640 driver implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.1.1
  * 
- * \date 2022/07/10
+ * \date 2022/08/19
  * 
- * \defgroup version Version control
+ * \addtogroup ov2640
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include "ov2640.h"
 
-#define FIRMWARE_VERSION            "0.1.1"
+int ov2640_init(void)
+{
+    return -1;
+}
 
-#define FIRMWARE_STATUS             "Development"
+int ov2640_read_reg(uint8_t adr, uint8_t *val)
+{
+    return -1;
+}
 
-#define FIRMWARE_AUTHOR             "SpaceLab-UFSC"
+int ov2640_write_reg(uint8_t adr, uint8_t val)
+{
+    return -1;
+}
 
-#define FIRMWARE_AUTHOR_EMAIL       "contact@spacelab.ufsc.br"
-
-#endif /* VERSION_H_ */
-
-/** \} End of version group */
+/** \} End of ov2640 group */
