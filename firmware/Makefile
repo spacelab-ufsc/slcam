@@ -6,7 +6,7 @@ endif
 
 PARTNUMBER=stm32f103c8t6
 
-CC=arm-none-eabi-gcc
+CC=arm-none-eabi-g++
 AS=arm-none-eabi-as
 LD=arm-none-eabi-ld
 OBJCOPY=arm-none-eabi-objcopy
