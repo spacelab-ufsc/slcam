@@ -7,3 +7,8 @@ tags
 # CppCheck files
 *.ctu-info
 cppcheck-addon-ctu-file-list
+
+# Compilation Files
+*.o
+*.bin
+*.elf
