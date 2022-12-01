@@ -6,7 +6,8 @@ endif
 
 PARTNUMBER=stm32f103c8t6
 
-CC=arm-none-eabi-g++
+CPP=arm-none-eabi-g++
+CC=arm-none-eabi-gcc
 AS=arm-none-eabi-as
 LD=arm-none-eabi-ld
 OBJCOPY=arm-none-eabi-objcopy
@@ -22,20 +23,24 @@ INC=.
 CFLAGS=-mcpu=cortex-m3 -mthumb -O0
 
 .PHONY: all
-all: main.o devices drivers hal libs os system tasks
+all: crt.o main.o devices drivers hal libs os system tasks
 	$(LD) -T$(PARTNUMBER).ld $(BUILD_DIR)/*.o -o $(BUILD_DIR)/$(TARGET).elf
-	$(OBJCOPY) -O binary $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).bin
+	$(OBJCOPY) -O binary $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).bin 
+	$(SIZE) $(BUILD_DIR)/$(TARGET).elf
 
 .PHONY: flash
 flash:
-	$(FLASH)
+	$(FLASH) --reset write $(BUILD_DIR)/$(TARGET).bin 0x08000000
 
 .PHONY: clean
 clean:
 	rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin
 
-main.o: main.c
-	$(CC) -c $(CFLAGS) $< -o $(BUILD_DIR)/$@
+main.o: main.cpp
+	$(CPP) -c $(CFLAGS) $< -o $(BUILD_DIR)/$@
+
+crt.o: crt.s
+	$(AS) -o crt.o crt.s
 
 devices:
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C devices
