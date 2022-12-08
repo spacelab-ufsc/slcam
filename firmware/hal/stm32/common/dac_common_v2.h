@@ -36,7 +36,7 @@ specific memorymap.h header before including this header file.*/
 #ifndef LIBOPENCM3_DAC_COMMON_V2_H
 #define LIBOPENCM3_DAC_COMMON_V2_H
 
-#include <libopencm3/stm32/common/dac_common_all.h>
+#include <hal/stm32/common/dac_common_all.h>
 
 /**@addtogroup dac_registers
  @{*/

@@ -21,9 +21,9 @@
 #ifndef LIBOPENCM3_STM32_COMMON_USART_COMMON_FIFOS_H_
 #define LIBOPENCM3_STM32_COMMON_USART_COMMON_FIFOS_H_
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/common/usart_common_all.h>
-#include <libopencm3/stm32/common/usart_common_v2.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/common/usart_common_all.h>
+#include <hal/stm32/common/usart_common_v2.h>
 
 /** @addtogroup usart_registers
 @{*/

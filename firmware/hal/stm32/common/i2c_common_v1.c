@@ -36,8 +36,8 @@ register access, Error conditions
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/i2c.h>
-#include <libopencm3/stm32/rcc.h>
+#include <hal/stm32/i2c.h>
+#include <hal/stm32/rcc.h>
 
 /**@{*/
 

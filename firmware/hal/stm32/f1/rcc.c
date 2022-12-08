@@ -49,9 +49,9 @@ LGPL License Terms @ref lgpl_license
 
 /**@{*/
 
-#include <libopencm3/cm3/assert.h>
-#include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/flash.h>
+#include <hal/cm3/assert.h>
+#include <hal/stm32/rcc.h>
+#include <hal/stm32/flash.h>
 
 /** Set the default clock frequencies */
 uint32_t rcc_apb1_frequency = 8000000;

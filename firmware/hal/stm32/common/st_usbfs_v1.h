@@ -34,7 +34,7 @@
 #ifndef LIBOPENCM3_ST_USBFS_V1_H
 #define LIBOPENCM3_ST_USBFS_V1_H
 
-#include <libopencm3/stm32/common/st_usbfs_common.h>
+#include <hal/stm32/common/st_usbfs_common.h>
 
 /* --- USB BTABLE Registers ------------------------------------------------ */
 

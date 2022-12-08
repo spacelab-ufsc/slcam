@@ -32,7 +32,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/crypto.h>
+#include <hal/stm32/crypto.h>
 
 #define CRYP_CR_ALGOMODE_MASK	((1 << 19) | CRYP_CR_ALGOMODE)
 

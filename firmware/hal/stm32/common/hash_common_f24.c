@@ -32,7 +32,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/hash.h>
+#include <hal/stm32/hash.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief HASH Set Mode

@@ -27,7 +27,7 @@ STM32F7xx series of ARM Cortex Microcontrollers by ST Microelectronics.
 /* Utility functions for the SDRAM component of the FMC */
 
 #include <stdint.h>
-#include <libopencm3/stm32/fsmc.h>
+#include <hal/stm32/fsmc.h>
 
 /**@{*/
 

@@ -17,31 +17,31 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if defined(STM32F0)
-#       include <libopencm3/stm32/f0/dac.h>
+#       include <hal/stm32/f0/dac.h>
 #elif defined(STM32F1)
-#       include <libopencm3/stm32/f1/dac.h>
+#       include <hal/stm32/f1/dac.h>
 #elif defined(STM32F2)
-#       include <libopencm3/stm32/f2/dac.h>
+#       include <hal/stm32/f2/dac.h>
 #elif defined(STM32F3)
-#       include <libopencm3/stm32/f3/dac.h>
+#       include <hal/stm32/f3/dac.h>
 #elif defined(STM32F4)
-#       include <libopencm3/stm32/f4/dac.h>
+#       include <hal/stm32/f4/dac.h>
 #elif defined(STM32F7)
-#       include <libopencm3/stm32/f7/dac.h>
+#       include <hal/stm32/f7/dac.h>
 #elif defined(STM32L1)
-#       include <libopencm3/stm32/l1/dac.h>
+#       include <hal/stm32/l1/dac.h>
 #elif defined(STM32L4)
-#       include <libopencm3/stm32/l4/dac.h>
+#       include <hal/stm32/l4/dac.h>
 #elif defined(STM32G0)
-#       include <libopencm3/stm32/g0/dac.h>
+#       include <hal/stm32/g0/dac.h>
 #elif defined(STM32G4)
-#	include <libopencm3/stm32/g4/dac.h>
+#	include <hal/stm32/g4/dac.h>
 #elif defined(STM32H7)
-#       include <libopencm3/stm32/h7/dac.h>
+#       include <hal/stm32/h7/dac.h>
 #else
 #       error "stm32 family not defined."
 #endif

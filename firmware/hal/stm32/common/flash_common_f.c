@@ -21,8 +21,8 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/flash.h>
-#include <libopencm3/stm32/common/flash_common_f.h>
+#include <hal/stm32/flash.h>
+#include <hal/stm32/common/flash_common_f.h>
 
 
 void flash_unlock(void)

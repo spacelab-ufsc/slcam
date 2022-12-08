@@ -21,7 +21,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/flash.h>
+#include <hal/stm32/flash.h>
 
 void flash_prefetch_enable(void)
 {

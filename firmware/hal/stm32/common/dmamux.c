@@ -24,7 +24,7 @@ LGPL License Terms @ref lgpl_license
 
 /**@{*/
 
-#include <libopencm3/stm32/dmamux.h>
+#include <hal/stm32/dmamux.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief DMAMUX Reset DMA Channel

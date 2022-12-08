@@ -24,7 +24,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/flash.h>
+#include <hal/stm32/flash.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief Set the Program Parallelism Size

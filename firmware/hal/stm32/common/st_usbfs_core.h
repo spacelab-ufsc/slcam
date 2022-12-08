@@ -27,8 +27,8 @@
 #ifndef ST_USBFS_CORE
 #define ST_USBFS_CORE
 
-#include <libopencm3/stm32/st_usbfs.h>
-#include <libopencm3/usb/usbd.h>
+#include <hal/stm32/st_usbfs.h>
+#include <hal/usb/usbd.h>
 
 #define USBD_PM_TOP 0x40
 

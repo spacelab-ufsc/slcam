@@ -68,9 +68,9 @@
 /**@{*/
 
 
-#include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/rtc.h>
-#include <libopencm3/stm32/pwr.h>
+#include <hal/stm32/rcc.h>
+#include <hal/stm32/rtc.h>
+#include <hal/stm32/pwr.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief RTC Set Operational from the Off state.

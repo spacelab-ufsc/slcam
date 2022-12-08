@@ -27,7 +27,7 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/common/dsi_common_f47.h>
+#include <hal/stm32/common/dsi_common_f47.h>
 
 /**@{*/
 

@@ -31,7 +31,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/common/crc_common_all.h>
+#include <hal/stm32/common/crc_common_all.h>
 
 /*****************************************************************************/
 /* Module definitions                                                        */

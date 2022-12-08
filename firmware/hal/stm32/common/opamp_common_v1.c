@@ -21,7 +21,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/opamp.h>
+#include <hal/stm32/opamp.h>
 
 bool opamp_read_outcal(uint32_t base)
 {

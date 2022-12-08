@@ -31,7 +31,7 @@
 #ifndef LIBOPENCM3_ST_USBFS_V2_H
 #define LIBOPENCM3_ST_USBFS_V2_H
 
-#include <libopencm3/stm32/common/st_usbfs_common.h>
+#include <hal/stm32/common/st_usbfs_common.h>
 
 /*****************************************************************************/
 /* Module definitions                                                        */

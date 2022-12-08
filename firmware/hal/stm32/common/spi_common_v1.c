@@ -52,8 +52,8 @@ LSB first.
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/spi.h>
-#include <libopencm3/stm32/rcc.h>
+#include <hal/stm32/spi.h>
+#include <hal/stm32/rcc.h>
 
 
 /**@{*/

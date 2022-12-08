@@ -40,8 +40,8 @@
 #define LIBOPENCM3_RTC_H
 /**@{*/
 
-#include <libopencm3/stm32/pwr.h>
-#include <libopencm3/stm32/rcc.h>
+#include <hal/stm32/pwr.h>
+#include <hal/stm32/rcc.h>
 
 /* --- RTC registers ------------------------------------------------------- */
 

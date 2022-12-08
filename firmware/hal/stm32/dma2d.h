@@ -17,13 +17,13 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if defined(STM32F4)
-#       include <libopencm3/stm32/f4/dma2d.h>
+#       include <hal/stm32/f4/dma2d.h>
 #elif defined(STM32F7)
-#       include <libopencm3/stm32/f7/dma2d.h>
+#       include <hal/stm32/f7/dma2d.h>
 #else
 #       error "dma2d.h not available for this family."
 #endif

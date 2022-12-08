@@ -40,7 +40,7 @@
 #define LIBOPENCM3_FLASH_COMMON_F24_H
 /**@{*/
 
-#include <libopencm3/stm32/common/flash_common_idcache.h>
+#include <hal/stm32/common/flash_common_idcache.h>
 
 /** @defgroup flash_registers Flash Registers
  * @ingroup flash_defines

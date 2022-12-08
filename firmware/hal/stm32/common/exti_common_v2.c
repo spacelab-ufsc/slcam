@@ -26,7 +26,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/exti.h>
+#include <hal/stm32/exti.h>
 
 /* @brief Get the rising edge interrupt requestf flag of a given EXTI interrupt.
  *

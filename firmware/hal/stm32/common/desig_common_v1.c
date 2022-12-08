@@ -17,7 +17,7 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/desig.h>
+#include <hal/stm32/desig.h>
 
 uint16_t desig_get_flash_size(void)
 {

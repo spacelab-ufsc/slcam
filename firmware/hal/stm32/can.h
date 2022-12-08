@@ -34,8 +34,8 @@ LGPL License Terms @ref lgpl_license
 #ifndef LIBOPENCM3_CAN_H
 #define LIBOPENCM3_CAN_H
 
-#include <libopencm3/stm32/memorymap.h>
-#include <libopencm3/cm3/common.h>
+#include <hal/stm32/memorymap.h>
+#include <hal/cm3/common.h>
 
 /**@{*/
 

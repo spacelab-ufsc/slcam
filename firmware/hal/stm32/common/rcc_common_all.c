@@ -22,7 +22,7 @@
  */
 /**@{*/
 
-#include <libopencm3/stm32/rcc.h>
+#include <hal/stm32/rcc.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief RCC Enable Peripheral Clocks.

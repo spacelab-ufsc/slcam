@@ -36,7 +36,7 @@ LGPL License Terms @ref lgpl_license
 
 /**@{*/
 
-#include <libopencm3/stm32/cordic.h>
+#include <hal/stm32/cordic.h>
 
 
 /** @brief Read CORDIC result ready flag

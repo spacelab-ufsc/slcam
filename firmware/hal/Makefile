@@ -1,4 +1,5 @@
 TARGET=hal
+STM32F1=1
 
 ifndef BUILD_DIR
 	BUILD_DIR=$(CURDIR)
@@ -17,13 +18,16 @@ NM=arm-none-eabi-nm
 SIZE=arm-none-eabi-size
 GDB=arm-none-eabi-gdb
 
-INC=../../
+INCDIRS=-I.
 
-CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0
+CFLAGS=-mcpu=cortex-m3 -mthumb -O0
 
 .PHONY: all
-all:
-		$(CC) $(CFLAGS) -Icm3/*.c stm32/*.c stm32/f1/*.c stm32/common/*.c -o $(BUILD_DIR)/$(TARGET).o
+all: $(TARGET)
+		
+$(TARGET):
+		$(CC) $(CFLAGS) -Icm3/ -Istm32/ -Istm32/common/ -Istm32/f1/ stm32/*.c stm32/f1/*.c stm32/common/*.c -o $(BUILD_DIR)/$(TARGET).o
+
 
 .PHONY: clean
 clean:

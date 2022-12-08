@@ -15,7 +15,7 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/usart.h>
+#include <hal/stm32/usart.h>
 
 void usart_enable_fifos(uint32_t usart) {
 	USART_CR1(usart) |= USART_CR1_FIFOEN;

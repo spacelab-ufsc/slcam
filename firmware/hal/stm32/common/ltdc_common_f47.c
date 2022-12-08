@@ -36,7 +36,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/common/ltdc_common_f47.h>
+#include <hal/stm32/common/ltdc_common_f47.h>
 
 void ltdc_set_tft_sync_timings(uint16_t sync_width,    uint16_t sync_height,
 			       uint16_t h_back_porch,  uint16_t v_back_porch,

@@ -38,7 +38,7 @@ LGPL License Terms @ref lgpl_license
 #ifndef LIBOPENCM3_ADC_H
 #define LIBOPENCM3_ADC_H
 
-#include <libopencm3/stm32/common/adc_common_v1.h>
+#include <hal/stm32/common/adc_common_v1.h>
 
 /* --- Convenience macros -------------------------------------------------- */
 

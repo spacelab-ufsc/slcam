@@ -17,11 +17,11 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if defined(STM32F3)
-#       include <libopencm3/stm32/f3/hrtim.h>
+#       include <hal/stm32/f3/hrtim.h>
 #else
 #       error "HRTIM only defined for STM32F3"
 #endif

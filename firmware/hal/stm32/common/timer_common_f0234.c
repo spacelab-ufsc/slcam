@@ -24,7 +24,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/timer.h>
+#include <hal/stm32/timer.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief Set Input Polarity

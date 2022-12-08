@@ -17,11 +17,11 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if defined(STM32F0)
-#       include <libopencm3/stm32/f0/tsc.h>
+#       include <hal/stm32/f0/tsc.h>
 #else
 #       error "stm32 family not defined."
 #endif

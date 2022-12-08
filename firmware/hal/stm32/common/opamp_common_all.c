@@ -21,7 +21,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/opamp.h>
+#include <hal/stm32/opamp.h>
 
 void opamp_enable(uint32_t base)
 {

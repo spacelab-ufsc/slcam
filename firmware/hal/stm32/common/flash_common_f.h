@@ -20,7 +20,7 @@
 
 #pragma once
 
-#include <libopencm3/cm3/common.h>
+#include <hal/cm3/common.h>
 
 BEGIN_DECLS
 

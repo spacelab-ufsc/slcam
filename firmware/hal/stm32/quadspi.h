@@ -17,19 +17,19 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if defined(STM32F4)
-#       include <libopencm3/stm32/f4/quadspi.h>
+#       include <hal/stm32/f4/quadspi.h>
 #elif defined(STM32F7)
-#       include <libopencm3/stm32/f7/quadspi.h>
+#       include <hal/stm32/f7/quadspi.h>
 #elif defined(STM32G4)
-#       include <libopencm3/stm32/g4/quadspi.h>
+#       include <hal/stm32/g4/quadspi.h>
 #elif defined(STM32H7)
-#       include <libopencm3/stm32/h7/quadspi.h>
+#       include <hal/stm32/h7/quadspi.h>
 #elif defined(STM32L4)
-#       include <libopencm3/stm32/l4/quadspi.h>
+#       include <hal/stm32/l4/quadspi.h>
 #else
 #       error "quadspi.h not available for this family."
 #endif

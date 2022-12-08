@@ -19,19 +19,19 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if defined(STM32F4)
-#       include <libopencm3/stm32/f4/lptimer.h>
+#       include <hal/stm32/f4/lptimer.h>
 #elif defined(STM32F7)
-#       include <libopencm3/stm32/f7/lptimer.h>
+#       include <hal/stm32/f7/lptimer.h>
 #elif defined(STM32L0)
-#       include <libopencm3/stm32/l0/lptimer.h>
+#       include <hal/stm32/l0/lptimer.h>
 #elif defined(STM32L4)
-#       include <libopencm3/stm32/l4/lptimer.h>
+#       include <hal/stm32/l4/lptimer.h>
 #elif defined(STM32G0)
-#       include <libopencm3/stm32/g0/lptimer.h>
+#       include <hal/stm32/g0/lptimer.h>
 #else
 #       error "stm32 family not defined."
 #endif

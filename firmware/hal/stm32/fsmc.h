@@ -20,15 +20,15 @@
 #ifndef LIBOPENCM3_FSMC_H
 #define LIBOPENCM3_FSMC_H
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if   defined(STM32F4)
-#       include <libopencm3/stm32/f4/fmc.h>
+#       include <hal/stm32/f4/fmc.h>
 #elif defined(STM32F7)
-#       include <libopencm3/stm32/f7/fmc.h>
+#       include <hal/stm32/f7/fmc.h>
 #elif defined(STM32H7)
-#       include <libopencm3/stm32/h7/fmc.h>
+#       include <hal/stm32/h7/fmc.h>
 #endif
 
 /* --- Convenience macros -------------------------------------------------- */

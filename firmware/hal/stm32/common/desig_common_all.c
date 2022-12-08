@@ -17,7 +17,7 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/desig.h>
+#include <hal/stm32/desig.h>
 
 void desig_get_unique_id_as_string(char *string, unsigned int string_len)
 {

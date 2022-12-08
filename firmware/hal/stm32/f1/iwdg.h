@@ -33,7 +33,7 @@ LGPL License Terms @ref lgpl_license
 #ifndef LIBOPENCM3_IWDG_H
 #define LIBOPENCM3_IWDG_H
 
-#include <libopencm3/stm32/common/iwdg_common_all.h>
+#include <hal/stm32/common/iwdg_common_all.h>
 
 #endif
 

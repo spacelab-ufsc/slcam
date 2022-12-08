@@ -116,8 +116,8 @@ knob.
 
 /**@{*/
 
-#include <libopencm3/stm32/timer.h>
-#include <libopencm3/stm32/rcc.h>
+#include <hal/stm32/timer.h>
+#include <hal/stm32/rcc.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief Enable Interrupts for a Timer

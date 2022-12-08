@@ -1,5 +1,5 @@
 
-#include <libopencm3/stm32/quadspi.h>
+#include <hal/stm32/quadspi.h>
 
 void quadspi_enable(void)
 {

@@ -13,6 +13,6 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/dcmi.h>
+#include <hal/stm32/dcmi.h>
 
 /**@}*/

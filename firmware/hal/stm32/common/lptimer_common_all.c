@@ -56,7 +56,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/lptimer.h>
+#include <hal/stm32/lptimer.h>
 
 /** @brief Set lptimer Counter
  *

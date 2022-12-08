@@ -37,7 +37,7 @@ relevant bit is not set, the IWDG timer must be enabled by software.
 
 /**@{*/
 
-#include <libopencm3/stm32/iwdg.h>
+#include <hal/stm32/iwdg.h>
 
 #define LSI_FREQUENCY 32000
 #define COUNT_LENGTH 12

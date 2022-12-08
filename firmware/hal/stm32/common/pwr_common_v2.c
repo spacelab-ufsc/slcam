@@ -23,8 +23,8 @@
  */
 /**@{*/
 
-#include <libopencm3/stm32/pwr.h>
-#include <libopencm3/stm32/rcc.h>
+#include <hal/stm32/pwr.h>
+#include <hal/stm32/rcc.h>
 
 void pwr_set_vos_scale(enum pwr_vos_scale scale)
 {

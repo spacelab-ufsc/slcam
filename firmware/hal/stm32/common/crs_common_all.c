@@ -29,8 +29,8 @@
 /**@{*/
 
 
-#include <libopencm3/stm32/crs.h>
-#include <libopencm3/stm32/rcc.h>
+#include <hal/stm32/crs.h>
+#include <hal/stm32/rcc.h>
 
 /**
  * This function enables automatic trimming of internal RC oscillator by USB SOF

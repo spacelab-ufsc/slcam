@@ -48,7 +48,7 @@ LGPL License Terms @ref lgpl_license
 
 /**@{*/
 
-#include <libopencm3/stm32/dma.h>
+#include <hal/stm32/dma.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief DMA Stream Reset

@@ -59,8 +59,8 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/desig.h>
-#include <libopencm3/stm32/flash.h>
+#include <hal/stm32/desig.h>
+#include <hal/stm32/flash.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief Enable the FLASH Half Cycle Mode

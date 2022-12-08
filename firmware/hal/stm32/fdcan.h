@@ -19,13 +19,13 @@
 
 #pragma once
 
-#include <libopencm3/stm32/memorymap.h>
-#include <libopencm3/cm3/common.h>
+#include <hal/stm32/memorymap.h>
+#include <hal/cm3/common.h>
 
 #if defined(STM32G4)
-#	include <libopencm3/stm32/g4/fdcan.h>
+#	include <hal/stm32/g4/fdcan.h>
 #elif defined(STM32H7)
-#	include <libopencm3/stm32/h7/fdcan.h>
+#	include <hal/stm32/h7/fdcan.h>
 #endif
 
 /** @addtogroup fdcan_defines

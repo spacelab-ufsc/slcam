@@ -28,7 +28,7 @@
 #define LIBOPENCM3_OPAMP_COMMON_V1_H
 /**@{*/
 
-#include <libopencm3/stm32/common/opamp_common_all.h>
+#include <hal/stm32/common/opamp_common_all.h>
 
 /* OPAMPx_CSR values */
 

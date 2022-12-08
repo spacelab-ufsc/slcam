@@ -31,8 +31,8 @@ Devices can have up to 3 USARTs and 2 UARTs.
 
 /**@{*/
 
-#include <libopencm3/stm32/usart.h>
-#include <libopencm3/stm32/rcc.h>
+#include <hal/stm32/usart.h>
+#include <hal/stm32/rcc.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief USART Set Baudrate.

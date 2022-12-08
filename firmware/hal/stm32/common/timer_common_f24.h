@@ -28,7 +28,7 @@ The order of header inclusion is important. timer.h includes the device
 specific memorymap.h header before including this header file.*/
 
 #pragma once
-#include <libopencm3/stm32/common/timer_common_all.h>
+#include <hal/stm32/common/timer_common_all.h>
 
 /*
  * TIM2 and TIM5 are now 32bit and the following registers are now 32-bit wide:

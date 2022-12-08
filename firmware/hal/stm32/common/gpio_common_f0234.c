@@ -70,7 +70,7 @@ Example 2: Digital input on port C12 with pullup
 
 /**@{*/
 
-#include <libopencm3/stm32/gpio.h>
+#include <hal/stm32/gpio.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief Set GPIO Pin Mode

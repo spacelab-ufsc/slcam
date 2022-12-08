@@ -33,7 +33,7 @@ specific memorymap.h header before including this header file.*/
 
 /**@{*/
 
-#include <libopencm3/stm32/common/spi_common_v1.h>
+#include <hal/stm32/common/spi_common_v1.h>
 
 /* --- SPI_CR2 values ------------------------------------------------------ */
 

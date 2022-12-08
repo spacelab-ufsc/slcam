@@ -123,7 +123,7 @@ LGPL License Terms @ref lgpl_license
 
 /**@{*/
 
-#include <libopencm3/stm32/dac.h>
+#include <hal/stm32/dac.h>
 
 /** @brief DAC Channel Enable.
 

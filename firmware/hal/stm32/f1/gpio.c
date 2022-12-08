@@ -72,7 +72,7 @@ LGPL License Terms @ref lgpl_license
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/gpio.h>
+#include <hal/stm32/gpio.h>
 
 /**@{*/
 

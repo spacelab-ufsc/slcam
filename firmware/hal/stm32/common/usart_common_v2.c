@@ -26,7 +26,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/usart.h>
+#include <hal/stm32/usart.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief USART enable data inversion

@@ -44,7 +44,7 @@ LGPL License Terms @ref lgpl_license
 #ifndef LIBOPENCM3_ST_USBFS_COMMON_H
 #define LIBOPENCM3_ST_USBFS_COMMON_H
 
-#include <libopencm3/stm32/tools.h>
+#include <hal/stm32/tools.h>
 
 /*****************************************************************************/
 /* Module definitions                                                        */

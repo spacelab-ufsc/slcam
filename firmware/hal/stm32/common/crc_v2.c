@@ -27,7 +27,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/crc.h>
+#include <hal/stm32/crc.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief Enable reverse output data.

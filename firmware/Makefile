@@ -49,7 +49,7 @@ drivers:
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C drivers
 
 hal:
-	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C hal
+	$(MAKE) -Icm3/ -Istm32/ BUILD_DIR=$(BUILD_DIR) -C hal
 
 libs:
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C libs

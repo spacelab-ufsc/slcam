@@ -26,7 +26,7 @@
  * along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/rng.h>
+#include <hal/stm32/rng.h>
 
 /**@{*/
 

@@ -36,7 +36,7 @@ LGPL License Terms @ref lgpl_license
 #ifndef LIBOPENCM3_GPIO_H
 #define LIBOPENCM3_GPIO_H
 
-#include <libopencm3/stm32/common/gpio_common_all.h>
+#include <hal/stm32/common/gpio_common_all.h>
 
 /* --- Convenience macros -------------------------------------------------- */
 

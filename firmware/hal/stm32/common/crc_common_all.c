@@ -24,7 +24,7 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/stm32/crc.h>
+#include <hal/stm32/crc.h>
 
 /**@{*/
 

@@ -17,13 +17,13 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if defined(STM32G0)
-#       include <libopencm3/stm32/g0/dmamux.h>
+#       include <hal/stm32/g0/dmamux.h>
 #elif defined(STM32G4)
-#       include <libopencm3/stm32/g4/dmamux.h>
+#       include <hal/stm32/g4/dmamux.h>
 #else
 #       error "stm32 family not defined."
 #endif

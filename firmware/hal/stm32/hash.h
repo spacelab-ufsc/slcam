@@ -17,13 +17,13 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/stm32/memorymap.h>
 
 #if defined(STM32F2)
-#       include <libopencm3/stm32/f2/hash.h>
+#       include <hal/stm32/f2/hash.h>
 #elif defined(STM32F4)
-#       include <libopencm3/stm32/f4/hash.h>
+#       include <hal/stm32/f4/hash.h>
 #else
 #       error "hash processor is supported only" \
 	"in stm32f21, stm32f41 and stm32f43 families."

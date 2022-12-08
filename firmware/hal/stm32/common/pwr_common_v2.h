@@ -26,7 +26,7 @@
 #ifndef LIBOPENCM3_PWR_COMMON_V2_H
 #define LIBOPENCM3_PWR_COMMON_V2_H
 
-#include <libopencm3/stm32/common/pwr_common_v1.h>
+#include <hal/stm32/common/pwr_common_v1.h>
 
 /* --- PWR_CR values ------------------------------------------------------- */
 

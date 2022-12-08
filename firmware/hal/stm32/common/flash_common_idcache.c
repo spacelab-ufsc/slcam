@@ -21,8 +21,8 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/flash.h>
-#include <libopencm3/stm32/common/flash_common_idcache.h>
+#include <hal/stm32/flash.h>
+#include <hal/stm32/common/flash_common_idcache.h>
 
 void flash_dcache_enable(void)
 {

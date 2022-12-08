@@ -94,7 +94,7 @@ LGPL License Terms @ref lgpl_license
 
 /**@{*/
 
-#include <libopencm3/stm32/adc.h>
+#include <hal/stm32/adc.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief ADC Off

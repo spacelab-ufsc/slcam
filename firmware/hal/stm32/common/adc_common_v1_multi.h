@@ -36,7 +36,7 @@ specific memorymap.h header before including this header file.*/
 #ifndef LIBOPENCM3_ADC_COMMON_V1_MULTI_H
 #define LIBOPENCM3_ADC_COMMON_V1_MULTI_H
 
-#include <libopencm3/stm32/common/adc_common_v1.h>
+#include <hal/stm32/common/adc_common_v1.h>
 
 /* --- Convenience macros -------------------------------------------------- */
 

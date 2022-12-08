@@ -26,7 +26,7 @@
 
 /**@{*/
 
-#include <libopencm3/stm32/rtc.h>
+#include <hal/stm32/rtc.h>
 
 static uint8_t _rtc_dec_to_bcd(uint8_t dec)
 {

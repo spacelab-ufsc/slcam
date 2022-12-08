@@ -26,8 +26,8 @@
 /**@{*/
 
 
-#include <libopencm3/stm32/exti.h>
-#include <libopencm3/stm32/gpio.h>
+#include <hal/stm32/exti.h>
+#include <hal/stm32/gpio.h>
 
 #if defined(EXTI_EXTICR)
 	#define EXTICR_SELECTION_FIELDSIZE	EXTI_EXTICR_FIELDSIZE

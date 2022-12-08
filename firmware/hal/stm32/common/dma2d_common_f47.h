@@ -32,7 +32,7 @@
  *
  */
 
-#include <libopencm3/stm32/memorymap.h>
+#include <hal/stm32/memorymap.h>
 #include <stdint.h>
 
 #ifndef DMA2D_H
