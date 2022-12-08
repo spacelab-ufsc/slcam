@@ -43,8 +43,8 @@
 */
 /**@{*/
 
-#include <libopencm3/cm3/nvic.h>
-#include <libopencm3/cm3/scb.h>
+#include <hal/cm3/nvic.h>
+#include <hal/cm3/scb.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief NVIC Enable Interrupt

@@ -18,8 +18,8 @@
  * along with this library. If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/scb.h>
-#include <libopencm3/cm3/vector.h>
+#include <hal/cm3/scb.h>
+#include <hal/cm3/vector.h>
 
 /* load optional platform dependent initialization routines */
 #include "../dispatch/vector_chipset.c"

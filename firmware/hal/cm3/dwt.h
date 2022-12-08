@@ -20,8 +20,8 @@
 #ifndef LIBOPENCM3_CM3_DWT_H
 #define LIBOPENCM3_CM3_DWT_H
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/cm3/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/cm3/memorymap.h>
 
 /**
  * @defgroup cm_dwt Cortex-M Data Watch and Trace unit.

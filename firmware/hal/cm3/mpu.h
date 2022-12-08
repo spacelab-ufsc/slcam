@@ -37,8 +37,8 @@
 #ifndef LIBOPENCM3_MPU_H
 #define LIBOPENCM3_MPU_H
 
-#include <libopencm3/cm3/memorymap.h>
-#include <libopencm3/cm3/common.h>
+#include <hal/cm3/memorymap.h>
+#include <hal/cm3/common.h>
 
 /* --- SCB: Registers ------------------------------------------------------ */
 /** @defgroup CM3_mpu_registers MPU Registers

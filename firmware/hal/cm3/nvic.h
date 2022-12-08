@@ -37,8 +37,8 @@
 #ifndef LIBOPENCM3_NVIC_H
 #define LIBOPENCM3_NVIC_H
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/cm3/memorymap.h>
+#include <hal/cm3/common.h>
+#include <hal/cm3/memorymap.h>
 
 /** @defgroup nvic_registers NVIC Registers
  * @{

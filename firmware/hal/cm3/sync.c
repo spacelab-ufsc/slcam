@@ -17,7 +17,7 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/sync.h>
+#include <hal/cm3/sync.h>
 
 /* DMB is supported on CM0 */
 void __dmb()

@@ -37,8 +37,8 @@
 #ifndef LIBOPENCM3_VECTOR_H
 #define LIBOPENCM3_VECTOR_H
 
-#include <libopencm3/cm3/common.h>
-#include <libopencm3/cm3/nvic.h>
+#include <hal/cm3/common.h>
+#include <hal/cm3/nvic.h>
 
 /** Type of an interrupt function. Only used to avoid hard-to-read function
  * pointers in the efm32_vector_table_t struct. */

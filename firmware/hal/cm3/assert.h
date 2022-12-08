@@ -48,7 +48,7 @@ LGPL License Terms @ref lgpl_license
 #ifndef LIBOPENCM3_CM3_ASSERT_H
 #define LIBOPENCM3_CM3_ASSERT_H
 
-#include <libopencm3/cm3/common.h>
+#include <hal/cm3/common.h>
 
 #define CM3_LIKELY(expr) (__builtin_expect(!!(expr), 1))
 

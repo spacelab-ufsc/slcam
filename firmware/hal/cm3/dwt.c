@@ -43,8 +43,8 @@
  * along with this library.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <libopencm3/cm3/scs.h>
-#include <libopencm3/cm3/dwt.h>
+#include <hal/cm3/scs.h>
+#include <hal/cm3/dwt.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief DebugTrace Enable the CPU cycle counter

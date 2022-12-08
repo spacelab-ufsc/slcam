@@ -55,8 +55,8 @@
 #ifndef LIBOPENCM3_SYSTICK_H
 #define LIBOPENCM3_SYSTICK_H
 
-#include <libopencm3/cm3/memorymap.h>
-#include <libopencm3/cm3/common.h>
+#include <hal/cm3/memorymap.h>
+#include <hal/cm3/common.h>
 
 /** SysTick Control and Status Register (CSR).
  * Controls the system timer and provides status data.

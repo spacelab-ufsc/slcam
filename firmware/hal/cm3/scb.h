@@ -31,8 +31,8 @@
  * Manual" for either ARMv7-M or ARMV6-m.
  * @{
  */
-#include <libopencm3/cm3/memorymap.h>
-#include <libopencm3/cm3/common.h>
+#include <hal/cm3/memorymap.h>
+#include <hal/cm3/common.h>
 
 /** @defgroup cm_scb_registers SCB Registers
  * @ingroup cm_scb

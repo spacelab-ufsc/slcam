@@ -38,7 +38,7 @@
  */
 
 /**@{*/
-#include <libopencm3/cm3/systick.h>
+#include <hal/cm3/systick.h>
 
 /*---------------------------------------------------------------------------*/
 /** @brief SysTick Set the Automatic Reload Value.
