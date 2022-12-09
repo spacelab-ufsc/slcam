@@ -1,5 +1,5 @@
 /*
- * main.c
+ * main.cpp
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -24,7 +24,7 @@
  * \brief Main file.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * \author Miguel Boig <miguelboing13@gmail.com>
+ * \author Miguel Boing <miguelboing13@gmail.com>
  * 
  * \version 0.0.0
  * 
@@ -33,16 +33,15 @@
  * \defgroup main Main file
  * \{
  */
-#include <hal/stm32/rcc.h>
-#include <hal/stm32/gpio.h>
+
+#include <hal/include/libopencm3/stm32/rcc.h>
+#include <hal/include/libopencm3/stm32/gpio.h>
 
 int main(void)
 {
     rcc_periph_clock_enable(RCC_GPIOC);
 
-    gpio_set_mode(GPIOC, 
-        GPIO_MODE_OUTPUT_2_MHZ,
-        GPIO13)
+    gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
 
     while(1)
     {
@@ -53,6 +52,7 @@ int main(void)
 
         gpio_toggle(GPIOC, GPIO13);
     }
+
     return 0;
 }
 
