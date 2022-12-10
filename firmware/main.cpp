@@ -1,5 +1,5 @@
 /*
- * main.c
+ * main.cpp
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -24,7 +24,7 @@
  * \brief Main file.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * \author Miguel Boig <miguelboing13@gmail.com>
+ * \author Miguel Boing <miguelboing13@gmail.com>
  * 
  * \version 0.0.0
  * 
@@ -33,33 +33,26 @@
  * \defgroup main Main file
  * \{
  */
-#if !defined(__SOFT_FP__) && defined(__ARM_FP)
-  #warning "FPU is not initialized, but the project is compiling for an FPU. Please initialize the FPU before use."
-#endif
 
-#include <stdint.h>
-// register address
-#define RCC_BASE      0x40021000
-#define GPIOC_BASE    0x40011000
-#define RCC_APB2ENR   *(volatile uint32_t *)(RCC_BASE   + 0x18)
-#define GPIOC_CRH     *(volatile uint32_t *)(GPIOC_BASE + 0x04)
-#define GPIOC_ODR     *(volatile uint32_t *)(GPIOC_BASE + 0x0C)
-// bit fields
-#define RCC_IOPCEN   (1<<4)
-#define GPIOC13      (1UL<<13)
+#include <hal/include/libopencm3/stm32/rcc.h>
+#include <hal/include/libopencm3/stm32/gpio.h>
 
 int main(void)
 {
-    RCC_APB2ENR |= RCC_IOPCEN;
-    GPIOC_CRH   &= 0xFF0FFFFF;
-    GPIOC_CRH   |= 0x00200000;
+    rcc_periph_clock_enable(RCC_GPIOC);
+
+    gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
+
     while(1)
     {
-        GPIOC_ODR |=  GPIOC13;
-        for (int i = 0; i < 500000; i++); // arbitrary delay
-        GPIOC_ODR &= ~GPIOC13;
-        for (int i = 0; i < 500000; i++); // arbitrary delay
+        for (int i = 0; i < 1000000; i++)
+        {
+            __asm__("nop");
+        }
+
+        gpio_toggle(GPIOC, GPIO13);
     }
+
     return 0;
 }
 
