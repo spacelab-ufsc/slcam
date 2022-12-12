@@ -24,8 +24,9 @@
  * \brief Main file.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Miguel Boing <miguelboing13@gmail.com>
  * 
- * \version 0.0.0
+ * \version 0.1.3
  * 
  * \date 2022/07/10
  * 
@@ -33,8 +34,26 @@
  * \{
  */
 
-void main(void)
+#include <hal/include/libopencm3/stm32/rcc.h>
+#include <hal/include/libopencm3/stm32/gpio.h>
+
+int main(void)
 {
+    rcc_periph_clock_enable(RCC_GPIOC);
+
+    gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
+
+    while(1)
+    {
+        for (int i = 0; i < 1000000; i++)
+        {
+            __asm__("nop");
+        }
+
+        gpio_toggle(GPIOC, GPIO13);
+    }
+
+    return 0;
 }
 
 /** \} End of main group */

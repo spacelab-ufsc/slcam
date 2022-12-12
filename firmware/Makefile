@@ -7,6 +7,7 @@ endif
 PARTNUMBER=stm32f103c8t6
 
 CC=arm-none-eabi-gcc
+CPP=arm-none-eabi-g++
 AS=arm-none-eabi-as
 LD=arm-none-eabi-ld
 OBJCOPY=arm-none-eabi-objcopy
@@ -19,41 +20,46 @@ GDB=arm-none-eabi-gdb
 FLASH=st-flash
 
 INC=.
-CFLAGS=-mcpu=cortex-m3 -mthumb -O0
+CFLAGS=--static -nostartfiles -g3 -Os -fno-common -ffunction-sections -fdata-sections -I. -mcpu=cortex-m3 -mthumb -msoft-float
 
 .PHONY: all
-all: main.o devices drivers hal libs os system tasks
-	$(LD) -T$(PARTNUMBER).ld $(BUILD_DIR)/*.o -o $(BUILD_DIR)/$(TARGET).elf
+all: libopencm3_stm32f1.a crt.o main.o
+	$(LD) -T$(PARTNUMBER).ld $(BUILD_DIR)/*.o -o $(BUILD_DIR)/$(TARGET).elf -L$(BUILD_DIR)/ -lopencm3_stm32f1
 	$(OBJCOPY) -O binary $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).bin
+	$(SIZE) $(BUILD_DIR)/$(TARGET).elf
 
 .PHONY: flash
 flash:
-	$(FLASH)
+	$(FLASH) --reset write $(BUILD_DIR)/$(TARGET).bin 0x08000000
 
 .PHONY: clean
 clean:
-	rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin
+	rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.a $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin
 
 main.o: main.c
-	$(CC) -c $(CFLAGS) $< -o $(BUILD_DIR)/$@
+	$(CC) -c $(CFLAGS) -Ihal/include/ -DSTM32F1 $< -o $(BUILD_DIR)/$@
 
-devices:
+crt.o: crt.s
+	$(AS) -o $@ $<
+
+libopencm3_stm32f1.a: hal/Makefile
+	$(MAKE) BUILD_DIR=$(BUILD_DIR) TARGETS='stm32/f1' -C hal
+	mv hal/lib/libopencm3_stm32f1.a $(BUILD_DIR)/
+
+devices: devices/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C devices
 
-drivers:
+drivers: drivers/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C drivers
 
-hal:
-	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C hal
-
-libs:
+libs: libs/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C libs
 
-os:
+os: os/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C os
 
-system:
+system: system/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C system
 
-tasks:
+tasks: tasks/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C tasks
