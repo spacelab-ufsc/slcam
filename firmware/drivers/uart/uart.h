@@ -1,4 +1,3 @@
-
 #ifndef UART_H
 #define UART_H
 
@@ -41,7 +40,7 @@ typedef enum
 {
 	UART_SB_0_5=0,
 	UART_SB_1,
-	UART_SB_1.5,
+	UART_SB_1_5,
 	UART_SB_2	
 } uart_sb_e;
 
@@ -77,7 +76,7 @@ typedef struct
 	uart_modes_e mode;
 	uart_parity_e parity;
 	uart_sb_e stop_bits;
-	uart_wl word_length;
+	uart_wl_e word_length;
 	uart_fc_e flow_control;
 	uart_br_t baud_rate;
 } uart_config_t;
