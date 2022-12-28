@@ -6,6 +6,7 @@ endif
 all:
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C ov2640
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C w25qxxx
+	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C uart
 
 .PHONY: clean
 clean:
