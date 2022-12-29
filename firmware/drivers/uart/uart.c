@@ -71,7 +71,7 @@ int uart_init(uart_config_t config)
 	default:
 	  //TODO Add error log system.
 	  break;
-
+	}
 
 	switch(config.mode)
 	{
@@ -81,7 +81,6 @@ int uart_init(uart_config_t config)
 	default:
 	  //TODO Add error log system.
 	  break;
-
 	}
 
 	switch(config.word_length)
@@ -91,7 +90,6 @@ int uart_init(uart_config_t config)
 	default:
 	  //TODO Add error log system.
 	  break;
-
 	}
 
 	switch(config.flow_control)
@@ -103,7 +101,6 @@ int uart_init(uart_config_t config)
 	default:
 	  //TODO Add error log system.
 	  break;
-
 	}
 
 	/* Setup UART parameters. */
@@ -116,5 +113,6 @@ int uart_init(uart_config_t config)
 
 	/* Enable UART. */
 	usart_enable(usart);
-	
+
+	return 0;
 }
