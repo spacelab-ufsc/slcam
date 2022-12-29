@@ -83,4 +83,5 @@ typedef struct
 
 int uart_init(uart_config_t config);
 
+
 #endif /* UART_H */
