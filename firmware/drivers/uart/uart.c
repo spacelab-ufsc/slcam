@@ -2,7 +2,15 @@
 #include <hal/include/libopencm3/stm32/gpio.h>
 #include <hal/include/libopencm3/stm32/usart.h>
 
+#include <libs/containers/queue/queue.h>
+
 #include "uart.h"
+
+static queue_t uart_port_1_rx_buffer;
+static queue_t uart_port_2_rx_buffer;
+static queue_t uart_port_3_rx_buffer;
+static queue_t uart_port_4_rx_buffer;
+static queue_t uart_port_5_rx_buffer;
 
 static inline int uart_send_byte(uart_config_t uart_config, char c);
 
@@ -159,3 +167,33 @@ static inline int uart_read_byte(uart_config_t uart_config, uint16_t* c)
   return 0;
 }
 
+int uart_write(uart_config_t uart_config, uint8_t* data, uint16_t len)
+{
+  return -1;
+}
+
+int uart_read(uart_config_t uart_config, uint8_t* data, uint16_t len)
+{
+  return -1;
+}
+
+int uart_rx_enable(uart_config_t uart_config)
+{
+  return -1;
+}
+
+
+int uart_rx_disable(uart_config_t uart_config)
+{
+  return -1;
+}
+
+int uart_read_available(uart_config_t uart_config, uint16_t n_recv_bytes)
+{
+  return -1;
+}
+
+int uart_flush(uart_config_t uart_config)
+{
+  return -1;
+}
