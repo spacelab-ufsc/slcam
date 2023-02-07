@@ -1,4 +1,0 @@
-(sym_lib_table
-  (lib (name 2022-07-08_17-15-54)(type Legacy)(uri ${KIPRJMOD}/lib/2022-07-08_17-15-54.lib)(options "")(descr ""))
-  (lib (name 2022-06-30_18-50-24)(type Legacy)(uri ${KIPRJMOD}/lib/2022-06-30_18-50-24.lib)(options "")(descr ""))
-)
