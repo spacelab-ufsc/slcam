@@ -7,10 +7,11 @@
   (paper "A4")
   (title_block
     (title "SLCam")
-    (date "2023-01-23")
+    (date "2023-02-07")
     (rev "v0.2")
-    (company "SpaceLab")
-    (comment 1 "Author: Vitória Beatriz Bianchin - Email: vitoriabbianchin@gmail.com")
+    (company "Space Technology Research Laboratory - SpaceLab")
+    (comment 1 "Support: Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>")
+    (comment 2 "Author: Vitória Beatriz Bianchin <vitoriabbianchin@gmail.com>")
   )
 
   (layers
@@ -186,10 +187,6 @@
     (fp_line (start -1.33 1.27) (end 1.33 1.27) (layer "F.SilkS") (width 0.12) (tstamp 8de2d84c-ff45-4d4f-bc49-c166f6ae6b91))
     (fp_line (start 1.33 1.27) (end 1.33 19.11) (layer "F.SilkS") (width 0.12) (tstamp 935057d5-6882-4c15-9a35-54677912ba12))
     (fp_line (start -1.33 1.27) (end -1.33 19.11) (layer "F.SilkS") (width 0.12) (tstamp e091e263-c616-48ef-a460-465c70218987))
-    (fp_line (start -1.8 -1.8) (end -1.8 19.55) (layer "F.CrtYd") (width 0.05) (tstamp 3326423d-8df7-4a7e-a354-349430b8fbd7))
-    (fp_line (start -1.8 19.55) (end 1.8 19.55) (layer "F.CrtYd") (width 0.05) (tstamp 4ec618ae-096f-4256-9328-005ee04f13d6))
-    (fp_line (start 1.8 19.55) (end 1.8 -1.8) (layer "F.CrtYd") (width 0.05) (tstamp 92035a88-6c95-4a61-bd8a-cb8dd9e5018a))
-    (fp_line (start 1.8 -1.8) (end -1.8 -1.8) (layer "F.CrtYd") (width 0.05) (tstamp c8b6b273-3d20-4a46-8069-f6d608563604))
     (fp_line (start -0.635 -1.27) (end 1.27 -1.27) (layer "F.Fab") (width 0.1) (tstamp 0fd35a3e-b394-4aae-875a-fac843f9cbb7))
     (fp_line (start 1.27 19.05) (end -1.27 19.05) (layer "F.Fab") (width 0.1) (tstamp 4185c36c-c66e-4dbd-be5d-841e551f4885))
     (fp_line (start 1.27 -1.27) (end 1.27 19.05) (layer "F.Fab") (width 0.1) (tstamp a8b4bc7e-da32-4fb8-b71a-d7b47c6f741f))
