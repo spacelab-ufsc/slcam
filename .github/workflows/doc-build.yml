@@ -1,0 +1,32 @@
+name: Build LaTeX documentation
+
+on:
+  push:
+    branches: [dev_doc]
+  pull_request:
+    branches: [main, dev, dov_doc]
+
+jobs:
+  build_user_manual:
+    name: Build User Manual
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: docs/user_manual
+          root_file: main.tex
+
+  build_pdr:
+    name: Build PDR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v2
+      - name: Compile LaTeX document
+        uses: xu-cheng/latex-action@v2
+        with:
+          working_directory: docs/pdr
+          root_file: main.tex
