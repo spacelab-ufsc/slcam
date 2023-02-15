@@ -2,7 +2,7 @@
 #include <hal/include/libopencm3/stm32/gpio.h>
 #include <hal/include/libopencm3/stm32/usart.h>
 
-#include <libs/containers/queue/queue.h>
+#include <libs/containers/queue.h>
 
 #include "uart.h"
 
@@ -12,9 +12,9 @@ static queue_t uart_port_3_rx_buffer;
 static queue_t uart_port_4_rx_buffer;
 static queue_t uart_port_5_rx_buffer;
 
-static inline int uart_send_byte(uart_config_t uart_config, char c);
+static inline int uart_send_byte(uart_config_t config, uint16_t c);
 
-static inline int uart_read_byte(uart_config_t uart_config, char c);
+static inline int uart_read_byte(uart_config_t config, uint16_t *c);
 
 int uart_init(uart_config_t config)
 {
@@ -34,7 +34,7 @@ int uart_init(uart_config_t config)
       rcc_periph_clock_enable(RCC_USART1);
       gpio_set_mode(
 		    GPIOA,
-		    GPIO_MODE_OUTPUT_50MHZ,
+		    GPIO_MODE_OUTPUT_50_MHZ,
 		    GPIO_CNF_OUTPUT_ALTFN_PUSHPULL,
 		    GPIO_USART1_TX);
       break;
@@ -60,7 +60,6 @@ int uart_init(uart_config_t config)
 
     }
 
-	
   baud = (uint32_t) config.baud_rate;
 
   switch(config.stop_bits)
@@ -68,7 +67,7 @@ int uart_init(uart_config_t config)
     case UART_SB_0_5:        stopbits = USART_STOPBITS_0_5;   break;
     case UART_SB_1:          stopbits = USART_STOPBITS_1;     break;
     case UART_SB_1_5:        stopbits = USART_STOPBITS_1_5;   break;
-    case USART_STOPBITS_2:   stopbits = USART_STOPBITS_2;     break;
+    case UART_SB_2:          stopbits = USART_STOPBITS_2;     break;
     default:
       //TODO Add error log system.
       break;
@@ -129,44 +128,6 @@ int uart_init(uart_config_t config)
   return 0;
 }
 
-static inline int uart_send_byte(uart_config_t uart_config, uint16_t c)
-{
-  uint32_t usart;
-  switch(config.port)
-    {
-    case UART_PORT_1:   usart = USART1_BASE;   break;
-    case UART_PORT_2:   usart = USART2_BASE;   break;
-    case UART_PORT_3:   usart = USART3_BASE;   break;
-    case UART_PORT_4:   usart = UART4_BASE;    break;
-    case UART_PORT_5:   usart = UART5_BASE;    break;
-    default:
-      //TODO
-      break;
-    }
-  usart_send_blocking(usart, c);
-
-  return 0;
-}
-
-static inline int uart_read_byte(uart_config_t uart_config, uint16_t* c)
-{
-  uint32_t usart;
-  switch(config.port)
-    {
-    case UART_PORT_1:   usart = USART1_BASE;   break;
-    case UART_PORT_2:   usart = USART2_BASE;   break;
-    case UART_PORT_3:   usart = USART3_BASE;   break;
-    case UART_PORT_4:   usart = UART4_BASE;    break;
-    case UART_PORT_5:   usart = UART5_BASE;    break;
-    default:
-      //TODO
-      break;
-    }
-  *c = usart_recv_blocking(usart);
-
-  return 0;
-}
-
 int uart_write(uart_config_t uart_config, uint8_t* data, uint16_t len)
 {
   return -1;
@@ -197,3 +158,43 @@ int uart_flush(uart_config_t uart_config)
 {
   return -1;
 }
+
+
+static inline int uart_send_byte(uart_config_t config, uint16_t c)
+{
+  uint32_t usart;
+  switch(config.port)
+    {
+    case UART_PORT_1:   usart = USART1_BASE;   break;
+    case UART_PORT_2:   usart = USART2_BASE;   break;
+    case UART_PORT_3:   usart = USART3_BASE;   break;
+    case UART_PORT_4:   usart = UART4_BASE;    break;
+    case UART_PORT_5:   usart = UART5_BASE;    break;
+    default:
+      //TODO
+      break;
+    }
+  usart_send_blocking(usart, c);
+
+  return 0;
+}
+
+static inline int uart_read_byte(uart_config_t config, uint16_t *c)
+{
+  uint32_t usart;
+  switch(config.port)
+    {
+    case UART_PORT_1:   usart = USART1_BASE;   break;
+    case UART_PORT_2:   usart = USART2_BASE;   break;
+    case UART_PORT_3:   usart = USART3_BASE;   break;
+    case UART_PORT_4:   usart = UART4_BASE;    break;
+    case UART_PORT_5:   usart = UART5_BASE;    break;
+    default:
+      //TODO
+      break;
+    }
+  *c = usart_recv_blocking(usart);
+
+  return 0;
+}
+
