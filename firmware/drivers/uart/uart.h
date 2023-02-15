@@ -83,15 +83,16 @@ typedef struct
 
 int uart_init(uart_config_t config);
 
-int uart_write(uart_config_t uart_config, uint8_t* data, uint16_t len);
+int uart_write(uart_config_t config, uint8_t *data, uint16_t len);
 
-int uart_read(uart_config_t uart_config, uint8_t* data, uint16_t len);
+int uart_read(uart_config_t config, uint8_t *data, uint16_t len);
 
-int uart_rx_enable(uart_config_t uart_config);
+int uart_rx_enable(uart_config_t config);
 
-int uart_rx_disable(uart_config_t uart_config);
+int uart_rx_disable(uart_config_t config);
 
-int uart_read_available(uart_config_t uart_config, uint16_t n_recv_bytes);
+uint16_t uart_read_available(uart_config_t config);
 
-int uart_flush(uart_config_t uart_config);
+int uart_flush(uart_config_t config);
+
 #endif /* UART_H */

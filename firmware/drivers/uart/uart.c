@@ -16,6 +16,12 @@ static inline int uart_send_byte(uart_config_t config, uint16_t c);
 
 static inline int uart_read_byte(uart_config_t config, uint16_t *c);
 
+static inline uint16_t uart_read_mtu(queue_t *uart_rx_buffer);
+
+static inline int uart_select_port_buffer(uart_config_t config, queue_t *uart_rx_buffer);
+
+static inline int uart_select_port_address(uart_config_t config, uint32_t *uart_address);
+
 int uart_init(uart_config_t config)
 {
   uint32_t usart;
@@ -48,7 +54,7 @@ int uart_init(uart_config_t config)
       break;
     case UART_PORT_4:
       usart = UART4_BASE;
-      //TODO 
+jk      //TODO 
       break;
     case UART_PORT_5:
       usart = UART5_BASE;
@@ -128,73 +134,159 @@ int uart_init(uart_config_t config)
   return 0;
 }
 
-int uart_write(uart_config_t uart_config, uint8_t* data, uint16_t len)
+int uart_write(uart_config_t config, uint8_t *data, uint16_t len)
 {
   return -1;
 }
 
-int uart_read(uart_config_t uart_config, uint8_t* data, uint16_t len)
+int uart_read(uart_config_t config, uint8_t *data, uint16_t len)
+{
+  int err = 0;
+  
+  uint16_t num_bytes = len;
+  uint16_t i = 0U;
+  queue_t *uart_rx_buffer;
+
+  err = uart_select_port_buffer(config, uart_rx_buffer);
+
+  /* Check if read size isn't bigger than mtu */
+  if (num_bytes > uart_read_mtu(uart_rx_buffer))
+  {
+    num_bytes = uart_read_mtu(uart_rx_buffer);
+  }
+  else
+  {
+  }
+
+  for (i = 0U; i < num_bytes; i++)
+  {
+    data[i] = queue_pop_front(uart_rx_buffer);
+  }
+
+  return err;
+}
+
+int uart_rx_enable(uart_config_t config)
 {
   return -1;
 }
 
-int uart_rx_enable(uart_config_t uart_config)
+
+int uart_rx_disable(uart_config_t config)
 {
   return -1;
 }
 
-
-int uart_rx_disable(uart_config_t uart_config)
+uint16_t uart_read_available(uart_config_t config)
 {
-  return -1;
+  uint16_t available_bytes = 0U;
+  queue_t *uart_rx_buffer;
+
+  if (uart_select_port_buffer(config, uart_rx_buffer) == 0)
+  {
+    available_bytes = queue_size(uart_rx_buffer);
+  }
+  else
+  {
+  }
+
+  return available_bytes;
 }
 
-int uart_read_available(uart_config_t uart_config, uint16_t n_recv_bytes)
+int uart_flush(uart_config_t config)
 {
-  return -1;
-}
+  int err = 0;
 
-int uart_flush(uart_config_t uart_config)
-{
-  return -1;
-}
+  queue_t *uart_rx_buffer;
 
+  if (uart_select_port_buffer(config, uart_rx_buffer) == 0)
+  {
+    queue_clear(uart_rx_buffer);
+  }
+  else
+  {
+    err = -1;
+  }
+
+  return err;
+}
 
 static inline int uart_send_byte(uart_config_t config, uint16_t c)
 {
-  uint32_t usart;
-  switch(config.port)
-    {
-    case UART_PORT_1:   usart = USART1_BASE;   break;
-    case UART_PORT_2:   usart = USART2_BASE;   break;
-    case UART_PORT_3:   usart = USART3_BASE;   break;
-    case UART_PORT_4:   usart = UART4_BASE;    break;
-    case UART_PORT_5:   usart = UART5_BASE;    break;
-    default:
-      //TODO
-      break;
-    }
-  usart_send_blocking(usart, c);
+  int err = 0;
 
-  return 0;
+  uint32_t usart;
+
+  if (uart_select_port_address(config, &usart) == 0)
+  {
+    usart_send_blocking(usart, c);
+  }
+  else
+  {
+    err = -1;
+  }
+
+  return err;
 }
 
 static inline int uart_read_byte(uart_config_t config, uint16_t *c)
 {
+  int err = 0;
+  
   uint32_t usart;
-  switch(config.port)
-    {
-    case UART_PORT_1:   usart = USART1_BASE;   break;
-    case UART_PORT_2:   usart = USART2_BASE;   break;
-    case UART_PORT_3:   usart = USART3_BASE;   break;
-    case UART_PORT_4:   usart = UART4_BASE;    break;
-    case UART_PORT_5:   usart = UART5_BASE;    break;
-    default:
-      //TODO
-      break;
-    }
-  *c = usart_recv_blocking(usart);
 
-  return 0;
+  if (uart_select_port_address(config, &usart) == 0)
+  {
+    *c = usart_recv_blocking(usart);
+  }
+  else
+  {
+    err = -1;
+  }
+
+  return err;
 }
 
+static inline uint16_t uart_read_mtu(queue_t *uart_rx_buffer)
+{
+  return queue_length(uart_rx_buffer);
+}
+
+static inline int uart_select_port_buffer(uart_config_t config, queue_t *uart_rx_buffer)
+{
+  int err = 0;
+  
+  switch(config.port)
+  {
+  case UART_PORT_1:   uart_rx_buffer = &uart_port_1_rx_buffer;   break;
+  case UART_PORT_2:   uart_rx_buffer = &uart_port_2_rx_buffer;   break;
+  case UART_PORT_3:   uart_rx_buffer = &uart_port_3_rx_buffer;   break;
+  case UART_PORT_4:   uart_rx_buffer = &uart_port_4_rx_buffer;   break;
+  case UART_PORT_5:   uart_rx_buffer = &uart_port_5_rx_buffer;   break;
+  default:
+    err = -1;
+    //Add error log system
+    break;
+  }
+
+  return err;
+}
+
+static inline int uart_select_port_address(uart_config_t config, uint32_t *usart)
+{
+  int err = 0;
+
+  switch(config.port)
+  {
+  case UART_PORT_1:   *usart = USART1_BASE;   break;
+  case UART_PORT_2:   *usart = USART2_BASE;   break;
+  case UART_PORT_3:   *usart = USART3_BASE;   break;
+  case UART_PORT_4:   *usart = UART4_BASE;    break;
+  case UART_PORT_5:   *usart = UART5_BASE;    break;
+  default:
+    err = -1;
+    //Add error log system
+    break;
+    }
+  
+}
