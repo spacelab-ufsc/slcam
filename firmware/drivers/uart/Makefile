@@ -17,7 +17,8 @@ NM=arm-none-eabi-nm
 SIZE=arm-none-eabi-size
 GDB=arm-none-eabi-gdb
 
-CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0
+LIBS= -I../../ -I../../hal/include/
+CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0 $(LIBS) -D$(OPENCM3_FAMILY)
 
 .PHONY: all
 all:
