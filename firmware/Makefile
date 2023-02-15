@@ -24,7 +24,7 @@ INC=.
 CFLAGS=--static -nostartfiles -g3 -Os -fno-common -ffunction-sections -fdata-sections -I. -mcpu=cortex-m3 -mthumb -msoft-float
 
 .PHONY: all
-all: libopencm3_stm32f1.a drivers_rule crt.o main.o
+all: libopencm3_stm32f1.a libs_rule drivers_rule crt.o main.o
 	$(LD) -T$(PARTNUMBER).ld $(BUILD_DIR)/*.o -o $(BUILD_DIR)/$(TARGET).elf -L$(BUILD_DIR)/ -lopencm3_stm32f1
 	$(OBJCOPY) -O binary $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).bin
 	$(SIZE) $(BUILD_DIR)/$(TARGET).elf
@@ -52,7 +52,7 @@ devices: devices/Makefile
 
 drivers_rule : drivers/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) OPENCM3_FAMILY=$(OPENCM3_FAMILY) -C drivers 
-libs: libs/Makefile
+libs_rule: libs/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C libs
 
 os: os/Makefile
