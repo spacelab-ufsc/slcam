@@ -171,7 +171,17 @@ int uart_init(uart_config_t config)
 
 int uart_write(uart_config_t config, uint16_t *data, uint16_t len)
 {
-  return -1;
+  int err = -1;
+  uint32_t usart;
+
+  if (uart_select_port_address(config, &usart) == 0)
+  {
+    for (uint16_t i = 0; i<len; i++)
+    {
+      usart_send(usart, *(data+i));
+    }
+  }
+  return err;
 }
 
 int uart_read(uart_config_t config, uint16_t *data, uint16_t len)
