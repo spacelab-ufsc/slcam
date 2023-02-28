@@ -83,9 +83,9 @@ typedef struct
 
 int uart_init(uart_config_t config);
 
-int uart_write(uart_config_t config, uint8_t *data, uint16_t len);
+int uart_write(uart_config_t config, uint16_t *data, uint16_t len);
 
-int uart_read(uart_config_t config, uint8_t *data, uint16_t len);
+int uart_read(uart_config_t config, uint16_t *data, uint16_t len);
 
 int uart_rx_enable(uart_config_t config);
 

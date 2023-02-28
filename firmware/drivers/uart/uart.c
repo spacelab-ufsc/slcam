@@ -169,12 +169,12 @@ int uart_init(uart_config_t config)
   return 0;
 }
 
-int uart_write(uart_config_t config, uint8_t *data, uint16_t len)
+int uart_write(uart_config_t config, uint16_t *data, uint16_t len)
 {
   return -1;
 }
 
-int uart_read(uart_config_t config, uint8_t *data, uint16_t len)
+int uart_read(uart_config_t config, uint16_t *data, uint16_t len)
 {
   int err = 0;
   
@@ -335,5 +335,4 @@ static inline int uart_select_port_address(uart_config_t config, uint32_t *usart
     //Add error log system
     break;
     }
-  
 }
