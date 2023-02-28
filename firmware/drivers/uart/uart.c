@@ -38,6 +38,7 @@
 #include <hal/include/libopencm3/stm32/usart.h>
 
 #include <libs/containers/queue.h>
+#include <config/errno.h>
 
 #include "uart.h"
 
@@ -171,41 +172,38 @@ int uart_init(uart_config_t config)
 
 int uart_write(uart_config_t config, uint16_t *data, uint16_t len)
 {
-  int err = -1;
+  int err = ERRNO_SUCCESS;
   uint32_t usart;
 
-  if (uart_select_port_address(config, &usart) == 0)
+  for (uint16_t i=0; i<len; i++)
   {
-    for (uint16_t i = 0; i<len; i++)
-    {
-      usart_send(usart, *(data+i));
-    }
+    err = uart_send_byte(config, *(data+i));
   }
+
   return err;
 }
 
 int uart_read(uart_config_t config, uint16_t *data, uint16_t len)
 {
-  int err = 0;
-  
+  int err;
   uint16_t num_bytes = len;
   uint16_t i = 0U;
   queue_t *uart_rx_buffer;
 
   err = uart_select_port_buffer(config, uart_rx_buffer);
 
-  /* Check if read size isn't bigger than mtu */
-  if (num_bytes > uart_read_mtu(uart_rx_buffer))
+  if (err == ERRNO_SUCCESS)
   {
-    num_bytes = uart_read_mtu(uart_rx_buffer);
-  }
-  else
-  {
-  }
+    /* Check if read size isn't bigger than mtu */
+    if (num_bytes > uart_read_mtu(uart_rx_buffer))
+    {
+      num_bytes = uart_read_mtu(uart_rx_buffer);
+    }
 
-  for (i = 0U; i < num_bytes; i++)
-  {
-    data[i] = queue_pop_front(uart_rx_buffer);
+    for (i = 0U; i < num_bytes; i++)
+    {
+      data[i] = queue_pop_front(uart_rx_buffer);
+    }
   }
 
   return err;
@@ -225,7 +223,7 @@ int uart_rx_enable(uart_config_t config)
 
 int uart_rx_disable(uart_config_t config)
 {
-  int err = -1;
+  int err;
   uint32_t usart;
 
   err  = uart_select_port_address(config, &usart);
@@ -239,7 +237,7 @@ uint16_t uart_read_available(uart_config_t config)
   uint16_t available_bytes = 0U;
   queue_t *uart_rx_buffer;
 
-  if (uart_select_port_buffer(config, uart_rx_buffer) == 0)
+  if (uart_select_port_buffer(config, uart_rx_buffer) == ERRNO_SUCCESS)
   {
     available_bytes = queue_size(uart_rx_buffer);
   }
@@ -252,11 +250,11 @@ uint16_t uart_read_available(uart_config_t config)
 
 int uart_flush(uart_config_t config)
 {
-  int err = 0;
+  int err;
 
   queue_t *uart_rx_buffer;
 
-  if (uart_select_port_buffer(config, uart_rx_buffer) == 0)
+  if (uart_select_port_buffer(config, uart_rx_buffer) == ERRNO_SUCCESS)
   {
     queue_clear(uart_rx_buffer);
   }
@@ -274,7 +272,7 @@ static inline int uart_send_byte(uart_config_t config, uint16_t c)
 
   uint32_t usart;
 
-  if (uart_select_port_address(config, &usart) == 0)
+  if (uart_select_port_address(config, &usart) == ERRNO_SUCCESS)
   {
     usart_send_blocking(usart, c);
   }
@@ -288,17 +286,15 @@ static inline int uart_send_byte(uart_config_t config, uint16_t c)
 
 static inline int uart_read_byte(uart_config_t config, uint16_t *c)
 {
-  int err = 0;
+  int err;
   
   uint32_t usart;
 
-  if (uart_select_port_address(config, &usart) == 0)
+  err = uart_select_port_address(config, &usart);
+
+  if (err = ERRNO_SUCCESS)
   {
     *c = usart_recv_blocking(usart);
-  }
-  else
-  {
-    err = -1;
   }
 
   return err;
@@ -311,7 +307,7 @@ static inline uint16_t uart_read_mtu(queue_t *uart_rx_buffer)
 
 static inline int uart_select_port_buffer(uart_config_t config, queue_t *uart_rx_buffer)
 {
-  int err = 0;
+  int err = ERRNO_SUCCESS;
   
   switch(config.port)
   {
@@ -321,7 +317,7 @@ static inline int uart_select_port_buffer(uart_config_t config, queue_t *uart_rx
   case UART_PORT_4:   uart_rx_buffer = &uart_port_4_rx_buffer;   break;
   case UART_PORT_5:   uart_rx_buffer = &uart_port_5_rx_buffer;   break;
   default:
-    err = -1;
+    err = ERRNO_DRIVER_NO_PORT;
     //Add error log system
     break;
   }
@@ -331,7 +327,7 @@ static inline int uart_select_port_buffer(uart_config_t config, queue_t *uart_rx
 
 static inline int uart_select_port_address(uart_config_t config, uint32_t *usart)
 {
-  int err = 0;
+  int err = ERRNO_SUCCESS;
 
   switch(config.port)
   {
@@ -341,7 +337,7 @@ static inline int uart_select_port_address(uart_config_t config, uint32_t *usart
   case UART_PORT_4:   *usart = UART4_BASE;    break;
   case UART_PORT_5:   *usart = UART5_BASE;    break;
   default:
-    err = -1;
+    err = ERRNO_DRIVER_NO_PORT;
     //Add error log system
     break;
     }
