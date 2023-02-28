@@ -55,7 +55,7 @@ uint16_t queue_length(queue_t *queue)
     return queue->mtu;
 }
 
-bool queue_push_back(queue_t *queue, uint8_t byte)
+bool queue_push_back(queue_t *queue, uint16_t byte)
 {
     bool res = false;
 

@@ -49,7 +49,7 @@
  */
 typedef struct
 {
-    uint8_t data[QUEUE_LENGTH];         /**< Data buffer. */
+    uint16_t data[QUEUE_LENGTH];        /**< Data buffer. */
     uint16_t head;                      /**< Head position of the data array. */
     uint16_t tail;                      /**< Tail position of the data array. */
     uint16_t size;                      /**< Length, in bytes, of the data. */
@@ -83,7 +83,7 @@ uint16_t queue_length(queue_t *queue);
  * 
  * \return True/False if the element was pushed or not.
  */
-bool queue_push_back(queue_t *queue, uint8_t byte);
+bool queue_push_back(queue_t *queue, uint16_t byte);
 
 /**
  * \brief Grabs an element from the front position of an queue.
