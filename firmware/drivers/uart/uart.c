@@ -1,3 +1,38 @@
+/*
+ * uart.c
+ * 
+ * Copyright The SLCam Contributors.
+ * 
+ * This file is part of SLCam.
+ * 
+ * SLCam is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ * 
+ * SLCam is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with SLCam. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ */
+
+/**
+ * \brief Uart definition.
+ * 
+ * \author Miguel Boing <miguelboing13@gmail.com>
+ * 
+ * \version 0.1.3
+ * 
+ * \date 2023/02/17
+ * 
+ * \addtogroup uart
+ * \{
+ */
+
 #include <hal/include/libopencm3/stm32/rcc.h>
 #include <hal/include/libopencm3/stm32/gpio.h>
 #include <hal/include/libopencm3/stm32/usart.h>
@@ -54,7 +89,7 @@ int uart_init(uart_config_t config)
       break;
     case UART_PORT_4:
       usart = UART4_BASE;
-jk      //TODO 
+      //TODO 
       break;
     case UART_PORT_5:
       usart = UART5_BASE;
@@ -168,13 +203,25 @@ int uart_read(uart_config_t config, uint8_t *data, uint16_t len)
 
 int uart_rx_enable(uart_config_t config)
 {
-  return -1;
+  int err = -1;
+  uint32_t usart;
+
+  err  = uart_select_port_address(config, &usart);
+  usart_enable_rx_interrupt(usart);
+
+  return err;
 }
 
 
 int uart_rx_disable(uart_config_t config)
 {
-  return -1;
+  int err = -1;
+  uint32_t usart;
+
+  err  = uart_select_port_address(config, &usart);
+  usart_disable_rx_interrupt(usart);
+
+  return err;
 }
 
 uint16_t uart_read_available(uart_config_t config)
