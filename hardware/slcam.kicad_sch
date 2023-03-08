@@ -4013,7 +4013,7 @@
     (uuid c55ccd54-28af-4ab4-883e-eafa97dc9bf8)
     (property "Reference" "Y2" (id 0) (at 112.776 118.11 0))
     (property "Value" "Crystal" (id 1) (at 112.776 120.65 0))
-    (property "Footprint" "lib:ECS-.327-12.5-34R-C-TR" (id 2) (at 112.776 125.73 0)
+    (property "Footprint" "Crystal:Crystal_SMD_MicroCrystal_CC7V-T1A-2Pin_3.2x1.5mm_HandSoldering" (id 2) (at 112.776 125.73 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 112.776 125.73 0)
@@ -4285,7 +4285,7 @@
       (reference "Y1") (unit 1) (value "Crystal_GND24") (footprint "Crystal:Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm")
     )
     (path "/c55ccd54-28af-4ab4-883e-eafa97dc9bf8"
-      (reference "Y2") (unit 1) (value "Crystal") (footprint "lib:ECS-.327-12.5-34R-C-TR")
+      (reference "Y2") (unit 1) (value "Crystal") (footprint "Crystal:Crystal_SMD_MicroCrystal_CC7V-T1A-2Pin_3.2x1.5mm_HandSoldering")
     )
   )
 )
