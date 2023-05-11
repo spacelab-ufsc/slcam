@@ -9,15 +9,14 @@ Id,Designator,Package,Quantity,Partnumber,Description
 9,"J4,J5",Molex_PicoBlade_53261-0371_1x03-1MP_P1.25mm_Horizontal,2,53261-0371,3 Position Shrouded Header
 10,"R1,R6,R7",R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,3,MCT06030C1002FP500,10K 1% Resistor
 11,"R2,R3",R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,2,MCT06030C5100FP500,510 1% Resistor
-12,C2,C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,1,C0603C104K5RAC3121,0.1u 50V 10% Capacitor
+12,"C2,C3,C4,C5,C6",C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,5,C0603C104K5RAC3121,0.1u 50V 10% Capacitor
 13,D2,LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,1,CSL1901DW1,Orange LED
 14,U1,LQFP-48_7x7mm_P0.5mm,1,STM32F103C8T6,Microcontroller
 15,Y1,Crystal_SMD_Abracon_ABM8G-4Pin_3.2x2.5mm,1,ECS-80-10-33-CHN-TR3,8MHz Crystal
 16,U3,SOIC-8_3.9x4.9mm_P1.27mm,1,TCAN330GD,CAN Transceiver
 17,"R4,R5",R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,2,MCT0603MC1003FP500,100K 1% Resistor
 18,R8,R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,1,MCT06030C1200FP500,120 1% Resistor
-19,"C3,C5,C6,C4",C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,4,VJ0603Y103KXJAC31X,10nF 16V 10% Capacitor
-20,"C7,C8",C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,2,CBR06C200J5GACAUTO,20pF 5V Capacitor
-21,R9,R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,1,MCT06030C1004FP500,1M 1% Resistor
-22,"C9,C10",C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,2,CL21C120FBANNNC,12 pF 1% 50V Capacitor
-23,Y2,Crystal_SMD_MicroCrystal_CC7V-T1A-2Pin_3.2x1.5mm_HandSoldering,1,ECS-.327-12.5-34S-TR,32.768KHz Crystal
+19,"C7,C8",C_0603_1608Metric_Pad1.05x0.95mm_HandSolder,2,CBR06C200J5GACAUTO,20pF 5V Capacitor
+20,R9,R_0603_1608Metric_Pad1.05x0.95mm_HandSolder,1,MCT06030C1004FP500,1M 1% Resistor
+21,"C9,C10",C_0603_1608Metric_Pad1.08x0.95mm_HandSolder,2,CL21C120FBANNNC,12 pF 1% 50V Capacitor
+22,Y2,Crystal_SMD_MicroCrystal_CC7V-T1A-2Pin_3.2x1.5mm_HandSoldering,1,ECS-.327-12.5-34S-TR,32.768KHz Crystal
