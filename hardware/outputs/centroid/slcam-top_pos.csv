@@ -1,0 +1,13 @@
+Ref,Val,Package,PosX,PosY,Rot,Side
+"C1","1uF","C_0603_1608Metric_Pad1.05x0.95mm_HandSolder",222.9612,-70.1154,-90.0000,top
+"C2","100nF","C_0603_1608Metric_Pad1.05x0.95mm_HandSolder",211.9884,-56.3880,0.0000,top
+"D1","Green LED","LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder",201.0550,-61.4680,180.0000,top
+"D2","Orange LED","LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder",229.4242,-73.8124,0.0000,top
+"J1","53261-0671","Molex_PicoBlade_53261-0671_1x06-1MP_P1.25mm_Horizontal",214.8840,-71.8820,0.0000,top
+"J4","53261-0371","Molex_PicoBlade_53261-0371_1x03-1MP_P1.25mm_Horizontal",235.9660,-62.4840,90.0000,top
+"J5","53261-0371","Molex_PicoBlade_53261-0371_1x03-1MP_P1.25mm_Horizontal",226.3140,-53.0860,180.0000,top
+"R1","10K","R_0603_1608Metric_Pad1.05x0.95mm_HandSolder",222.6564,-66.2318,-90.0000,top
+"R2","510R","R_0603_1608Metric_Pad1.05x0.95mm_HandSolder",201.0550,-59.7916,180.0000,top
+"R3","510R","R_0603_1608Metric_Pad1.05x0.95mm_HandSolder",226.0092,-73.8124,0.0000,top
+"U2","W25Q128JVS","SOIC-8_5.23x5.23mm_P1.27mm",226.6950,-67.2660,90.0000,top
+"U4","TPS2044D","SOIC-16_3.9x9.9mm_P1.27mm",215.6460,-61.9760,-90.0000,top
