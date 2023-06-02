@@ -34,7 +34,7 @@
 </p>
 
 <p align="center">
-    <img width="70%" src="https://github.com/spacelab-ufsc/slcam/blob/main/docs/user_manual/figures/slcam-pcb-3d.png">
+    <img width="70%" src="https://github.com/spacelab-ufsc/slcam/blob/dev_mechanical/mechanical/outputs/slcam.png">
 </p>
 
 ## Overview
@@ -46,6 +46,8 @@ TODO
 * docs: Technical documentation (including firmware, hardware, user guide, and datasheet).
 * firmware: Firmware project (sources and configs).
 * hardware: Hardware project (sources and outputs).
+* mechanical: Mechanical project (sources and outputs).
+* software: Software to communicate with the camera (sources).
 
 ## Releases
 
