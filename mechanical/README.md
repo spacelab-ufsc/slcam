@@ -27,11 +27,11 @@
 </p>
 
 <p align="center">
-    <a href="#overview">Overview</a> •
+    <a href="#overview">Overview</a>
 </p>
 
 <p align="center">
-    <img width="100%" src="https://github.com/spacelab-ufsc/slcam/blob/dev_mechanical/mechanical/outputs/slcam-exploded.png">
+    <img width="70%" src="https://github.com/spacelab-ufsc/slcam/blob/dev_mechanical/mechanical/outputs/slcam-exploded.png">
 </p>
 
 ## Overview
