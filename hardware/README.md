@@ -44,5 +44,5 @@ The hardware project of the SpaceLab camera is composed by the PCB of the contro
 The block diagram of the controller PCB can be seen below:
 
 <p align="center">
-    <img width="70%" src="https://github.com/spacelab-ufsc/slcam/blob/dev_hardware/docs/figures/block-diagram.png">
+    <img width="70%" src="https://github.com/spacelab-ufsc/slcam/blob/dev_doc/docs/user_manual/figures/block-diagram.png">
 </p>
