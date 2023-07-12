@@ -5,6 +5,7 @@ ifndef BUILD_DIR
 endif
 
 PARTNUMBER=stm32f103c8t6
+OPENCM3_FAMILY=STM32F1
 
 CC=arm-none-eabi-gcc
 CPP=arm-none-eabi-g++
@@ -23,7 +24,7 @@ INC=.
 CFLAGS=--static -nostartfiles -g3 -Os -fno-common -ffunction-sections -fdata-sections -I. -mcpu=cortex-m3 -mthumb -msoft-float
 
 .PHONY: all
-all: libopencm3_stm32f1.a crt.o main.o
+all: libopencm3_stm32f1.a libs_rule drivers_rule crt.o main.o
 	$(LD) -T$(PARTNUMBER).ld $(BUILD_DIR)/*.o -o $(BUILD_DIR)/$(TARGET).elf -L$(BUILD_DIR)/ -lopencm3_stm32f1
 	$(OBJCOPY) -O binary $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).bin
 	$(SIZE) $(BUILD_DIR)/$(TARGET).elf
@@ -37,7 +38,7 @@ clean:
 	rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.a $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin
 
 main.o: main.c
-	$(CC) -c $(CFLAGS) -Ihal/include/ -DSTM32F1 $< -o $(BUILD_DIR)/$@
+	$(CC) -c $(CFLAGS) -Ihal/include/ -D$(OPENCM3_FAMILY) $< -o $(BUILD_DIR)/$@
 
 crt.o: crt.s
 	$(AS) -o $@ $<
@@ -49,10 +50,9 @@ libopencm3_stm32f1.a: hal/Makefile
 devices: devices/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C devices
 
-drivers: drivers/Makefile
-	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C drivers
-
-libs: libs/Makefile
+drivers_rule : drivers/Makefile
+	$(MAKE) BUILD_DIR=$(BUILD_DIR) OPENCM3_FAMILY=$(OPENCM3_FAMILY) -C drivers 
+libs_rule: libs/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C libs
 
 os: os/Makefile

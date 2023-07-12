@@ -4,8 +4,9 @@ endif
 
 .PHONY: all
 all:
-	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C ov2640
-	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C w25qxxx
+#	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C ov2640
+#	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C w25qxxx
+	$(MAKE) BUILD_DIR=$(BUILD_DIR) OPENCM3_FAMILY=$(OPENCM3_FAMILY) -C uart
 
 .PHONY: clean
 clean:
