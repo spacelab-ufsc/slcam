@@ -166,12 +166,11 @@ int uart_init(uart_config_t config)
 int uart_write(uart_config_t config, uint16_t *data, uint16_t len)
 {
     int err = ERRNO_SUCCESS;
-    uint32_t usart;
 
     uint16_t i = 0U;
     for(i = 0U; i < len; i++)
     {
-        err = uart_send_byte(config, *(data + i));
+        err = uart_send_byte(config, data[i]);
     }
 
     return err;
@@ -179,7 +178,7 @@ int uart_write(uart_config_t config, uint16_t *data, uint16_t len)
 
 int uart_read(uart_config_t config, uint16_t *data, uint16_t len)
 {
-    int err;
+    int err = ERRNO_SUCCESS;
     uint16_t num_bytes = len;
     uint16_t i = 0U;
     queue_t *uart_rx_buffer;
@@ -216,8 +215,8 @@ int uart_rx_enable(uart_config_t config)
 
 int uart_rx_disable(uart_config_t config)
 {
-    int err;
-    uint32_t usart;
+    int err = -1;
+    uint32_t usart = UINT32_MAX;
 
     err  = uart_select_port_address(config, &usart);
     usart_disable_rx_interrupt(usart);
@@ -240,7 +239,7 @@ uint16_t uart_read_available(uart_config_t config)
 
 int uart_flush(uart_config_t config)
 {
-    int err;
+    int err = ERRNO_SUCCESS;
 
     queue_t *uart_rx_buffer;
 
@@ -258,7 +257,7 @@ int uart_flush(uart_config_t config)
 
 static inline int uart_send_byte(uart_config_t config, uint16_t c)
 {
-    int err = 0;
+    int err = ERRNO_SUCCESS;
 
     uint32_t usart;
 

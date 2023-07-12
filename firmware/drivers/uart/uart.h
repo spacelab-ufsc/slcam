@@ -77,10 +77,10 @@ typedef enum
  */
 typedef enum 
 {
-    UART_SB_0_5=0,          /**< . */
-    UART_SB_1,              /**< . */
-    UART_SB_1_5,            /**< . */
-    UART_SB_2               /**< . */
+    UART_SB_0_5=0,          /**< 0.5 stop bit. */
+    UART_SB_1,              /**< 1 stop bit. */
+    UART_SB_1_5,            /**< 1.5 stop bit. */
+    UART_SB_2               /**< 2 stop bits. */
 } uart_sb_t;
 
 /**
@@ -124,71 +124,71 @@ typedef struct
 } uart_config_t;
 
 /**
- * \brief .
+ * \brief Initializes a given UART port.
  *
- * \param[in] config .
+ * \param[in] config are the configuration parameters of the given UART port.
  *
- * \return .
+ * \return The status/error code.
  */
 int uart_init(uart_config_t config);
 
 /**
- * \brief .
+ * \brief Writes data to a given UART port.
  *
- * \param[in] config .
+ * \param[in] config are the configuration parameters of the given UART port.
  *
- * \param[in] data .
+ * \param[in] data is the array of bytes to be written.
  *
- * \param[in] len .
+ * \param[in] len is the number of bytes to be written.
  *
- * \return .
+ * \return The status/error code.
  */
 int uart_write(uart_config_t config, uint16_t *data, uint16_t len);
 
 /**
- * \brief .
+ * \brief Reads data from a given UART port.
  *
- * \param[in] config .
+ * \param[in] config are the configuration parameters of the given UART port.
  *
- * \param[in,out] data .
+ * \param[in,out] data is a pointer to store the read data.
  *
- * \param[in] len .
+ * \param[in] len is the number of bytes to read.
  *
- * \return .
+ * \return The status/error code.
  */
 int uart_read(uart_config_t config, uint16_t *data, uint16_t len);
 
 /**
- * \brief .
+ * \brief Enables the RX of a given UART port.
  *
- * \param[in] config .
+ * \param[in] config are the configuration parameters of the given UART port.
  *
  * \return The status/error code.
  */
 int uart_rx_enable(uart_config_t config);
 
 /**
- * \brief .
+ * \brief Disables the RX of a given UART port.
  *
- * \param[in] config .
+ * \param[in] config are the configuration parameters of the given UART port.
  *
  * \return The status/error code.
  */
 int uart_rx_disable(uart_config_t config);
 
 /**
- * \brief .
+ * \brief Checks if there is available data to read from a given UART port.
  *
- * \param[in] config .
+ * \param[in] config are the configuration parameters of the given UART port.
  *
  * \return The status/error code.
  */
 uint16_t uart_read_available(uart_config_t config);
 
 /**
- * \brief .
+ * \brief Flushes the RX buffer of a given UART port.
  *
- * \param[in] config .
+ * \param[in] config are the configuration parameters of the given UART port.
  *
  * \return The status/error code.
  */
