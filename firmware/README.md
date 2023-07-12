@@ -44,6 +44,19 @@ The product tree of the firmware can be seen below:
 ## Dependencies
 
 * arm-none-eabi tools
+- st-link tools
+
+### Installation on Ubuntu
+
+```
+sudo apt install gcc-arm-none-eabi stlink-tools
+```
+
+### Installation on Fedora
+
+```
+sudo dnf install gcc-arm-linux-gnu stlink
+```
 
 ## Compiling and building
 
