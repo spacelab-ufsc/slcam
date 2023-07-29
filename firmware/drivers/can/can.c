@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * can.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,26 +21,39 @@
  */
 
 /**
- * \brief Drivers definition.
+ * \brief CAN driver implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.2.2
  * 
- * \date 2022/07/10
+ * \date 2023/07/28
  * 
- * \defgroup drivers Drivers
+ * \addtogroup can
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include <hal/include/libopencm3/stm32/rcc.h>
+#include <hal/include/libopencm3/stm32/gpio.h>
+#include <hal/include/libopencm3/stm32/can.h>
 
-#include "can/can.h"
-#include "ov2640/ov2640.h"
-#include "uart/uart.h"
-#include "w25qxx/src/driver_w25qxx.h"
+#include <config/errno.h>
 
-#endif /* DRIVERS_H_ */
+#include "can.h"
 
-/** \} End of drivers group */
+int can_init(can_config_t config)
+{
+    return -1;
+}
+
+int can_write(can_config_t config, uint16_t *data, uint16_t len)
+{
+    return -1;
+}
+
+int can_read(can_config_t config, uint16_t *data, uint16_t len)
+{
+    return -1;
+}
+
+/** \} End of can group */
