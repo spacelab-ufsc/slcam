@@ -4,7 +4,9 @@ ifndef BUILD_DIR
 	BUILD_DIR=$(CURDIR)
 endif
 
-PARTNUMBER=stm32f103c8t6
+ifndef OPENCM3_FAMILY
+	OPENCM3_FAMILY=STM32F1
+endif
 
 CC=arm-none-eabi-gcc
 CPP=arm-none-eabi-g++
