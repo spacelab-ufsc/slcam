@@ -39,13 +39,14 @@
 
 #include <stdint.h>
 
+#define CAN_MODULE_NAME             "CAN"
+
 /**
  * \brief CAN ports.
  */
 typedef enum
 {
     CAN_PORT_1=0,           /**< CAN port 1. */
-    CAN_PORT_2,             /**< CAN port 2. */
 } can_port_t;
 
 /**
@@ -55,6 +56,8 @@ typedef struct
 {
     can_port_t port;        /**< Port. */
     can_speet_t speed;      /**< Speed in bits per second. */
+    bool loopback;          /**< Loopback mode (TX=On, RX=Off). */
+    bool silent;            /**< Silent mode (TX=Off, RX=On). */
 } can_config_t;
 
 /**
