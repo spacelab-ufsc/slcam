@@ -50,12 +50,23 @@ typedef enum
 } can_port_t;
 
 /**
+ * \brief CAN speed type.
+ */
+typedef uint32_t can_speed_t;
+
+/**
+ * \brief CAN ID type.
+ */
+typedef uint32_t can_id_t;
+
+/**
  * \brief Configuration structure.
  */
 typedef struct
 {
     can_port_t port;        /**< Port. */
-    can_speet_t speed;      /**< Speed in bits per second. */
+    can_speed_t speed;      /**< Speed in bits per second. */
+    can_id_t id;            /**< My ID. */
     bool loopback;          /**< Loopback mode (TX=On, RX=Off). */
     bool silent;            /**< Silent mode (TX=Off, RX=On). */
 } can_config_t;
@@ -67,12 +78,14 @@ typedef struct
  *
  * \return The status/error code.
  */
-int can_init(can_config_t config);
+int can_init_drv(can_config_t config);
 
 /**
  * \brief Writes data to a given CAN port.
  *
  * \param[in] config are the configuration parameters of the given CAN port.
+ *
+ * \param[in] dst is the destination ID of the packet.
  *
  * \param[in] data is the array of bytes to be written.
  *
@@ -80,7 +93,16 @@ int can_init(can_config_t config);
  *
  * \return The status/error code.
  */
-int can_write(can_config_t config, uint16_t *data, uint16_t len);
+int can_write(can_config_t config, can_id_t dst, uint16_t *data, uint16_t len);
+
+/**
+ * \brief Reads the number of available bytes to read from the CAN RX.
+ *
+ * \param[in] config are the configuration parameters of the given CAN port.
+ *
+ * \return The number of available bytes to read.
+ */
+int can_available(can_config_t config);
 
 /**
  * \brief Reads data from a given CAN port.

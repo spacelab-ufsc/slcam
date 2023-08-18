@@ -33,17 +33,16 @@
  * \{
  */
 
-#include <hal/include/libopencm3/stm32/rcc.h>
-#include <hal/include/libopencm3/stm32/gpio.h>
+#include <hal/include/libopencm3/cm3/nvic.h>
 #include <hal/include/libopencm3/stm32/can.h>
-
-#include <system/sys_log/sys_log.h>
+#include <hal/include/libopencm3/stm32/gpio.h>
+#include <hal/include/libopencm3/stm32/rcc.h>
 
 #include <config/errno.h>
 
 #include "can.h"
 
-int can_init(can_config_t config)
+int can_init_drv(can_config_t config)
 {
     int err = ERRNO_SUCCESS;
 
@@ -57,17 +56,20 @@ int can_init(can_config_t config)
                  CAN_BTR_SJW_1TQ, CAN_BTR_TS1_11TQ, CAN_BTR_TS2_4TQ, 6,
                  config.loopback, config.silent) < 0)
     {
-    #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
-        sys_log_print_event_from_module(SYS_LOG_ERROR, CAN_MODULE_NAME, "Error initializing the CAN port!");
-        sys_log_new_line();
-    #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
         err = ERRNO_DRIVER_FAILED;
     }
     else
     {
+        /* Create a filter mask that passes all critical broadcast & command CAN messages */
+        can_filter_id_mask_16bit_init(0,            /* Filter number */
+                                      id1, mask1,   /* First filter */
+                                      id2, mask2,   /* Second filter */
+                                      0,            /* FIFO 0 */
+                                      true);        /* Enable */
+
         /* Enable CAN interrupts for FIFO message pending (FMPIE) */
-        can_enable_irq(CONTROLLER_CAN, CAN_IER_FMPIE0 | CAN_IER_FMPIE1);
-        nvic_enable_irq(NVIC_CEC_CAN_IRQ);
+        can_enable_irq(CAN1, CAN_IER_FMPIE0);
+        nvic_enable_irq(NVIC_SV_CALL_IRQ);
 
         /* Route the CAN signal to our selected GPIOs */
         gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO11 | GPIO12);
@@ -77,9 +79,14 @@ int can_init(can_config_t config)
     return err;
 }
 
-int can_write(can_config_t config, uint16_t *data, uint16_t len)
+int can_write(can_config_t config, can_id_t dst, uint16_t *data, uint16_t len)
 {
-    return can_transmit(CAN1, uint32_t id, bool ext, bool rtr, len, data);
+    return can_transmit(CAN1, dst, false, false, len, data);
+}
+
+int can_available(can_config_t config)
+{
+    return -1;
 }
 
 int can_read(can_config_t config, uint16_t *data, uint16_t *len)
@@ -91,6 +98,21 @@ int can_read(can_config_t config, uint16_t *data, uint16_t *len)
                 len, data, &frame.ts);
 
     return ERRNO_SUCCESS;
+}
+
+void cec_can_isr(void)
+{
+    /* Message pending on FIFO 0? */
+    if (CAN_RF0R(CONTROLLER_CAN) & CAN_RF0R_FMP0_MASK)
+    {
+        receive(0);
+    }
+
+    /* Message pending on FIFO 1? */
+    if (CAN_RF1R(CONTROLLER_CAN) & CAN_RF1R_FMP1_MASK)
+    {
+        receive(1);
+    }
 }
 
 /** \} End of can group */
