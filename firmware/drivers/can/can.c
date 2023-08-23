@@ -61,19 +61,22 @@ int can_init_drv(can_config_t config)
     else
     {
         /* Create a filter mask that passes all critical broadcast & command CAN messages */
-        can_filter_id_mask_16bit_init(0,            /* Filter number */
-                                      id1, mask1,   /* First filter */
-                                      id2, mask2,   /* Second filter */
-                                      0,            /* FIFO 0 */
-                                      true);        /* Enable */
+        can_filter_id_mask_16bit_init(0,        /* Filter number */
+                                      0, 0,     /* First filter */
+                                      0, 0,     /* Second filter */
+                                      0,        /* FIFO 0 */
+                                      true);    /* Enable */
 
         /* Enable CAN interrupts for FIFO message pending (FMPIE) */
         can_enable_irq(CAN1, CAN_IER_FMPIE0);
         nvic_enable_irq(NVIC_SV_CALL_IRQ);
 
         /* Route the CAN signal to our selected GPIOs */
-        gpio_mode_setup(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO11 | GPIO12);
-        gpio_set_af(GPIOA, GPIO_AF4, GPIO11 | GPIO12);
+        gpio_set_mode(GPIOA, GPIO_MODE_INPUT, GPIO_CNF_INPUT_PULL_UPDOWN, GPIO11);
+        gpio_set(GPIOA, GPIO11);
+
+        gpio_set_mode(GPIOA, GPIO_MODE_OUTPUT_50_MHZ, GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, GPIO12);
+        gpio_set(GPIOA, GPIO12);
     }
 
     return err;
@@ -92,7 +95,7 @@ int can_available(can_config_t config)
 int can_read(can_config_t config, uint16_t *data, uint16_t *len)
 {
     can_receive(CAN1,
-                fifo,   /* FIFO id */
+                0,      /* FIFO id */
                 true,   /* Automatically release FIFO after rx */
                 &frame.id, &frame.extended_id, &frame.rtr, &frame.filter_id,
                 len, data, &frame.ts);
