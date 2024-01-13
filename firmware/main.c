@@ -26,7 +26,7 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Miguel Boing <miguelboing13@gmail.com>
  * 
- * \version 0.1.3
+ * \version 0.2.4
  * 
  * \date 2022/07/10
  * 
@@ -34,24 +34,21 @@
  * \{
  */
 
-#include <hal/include/libopencm3/stm32/rcc.h>
-#include <hal/include/libopencm3/stm32/gpio.h>
+#include <FreeRTOS.h>
+#include <task.h>
+
+#include "tasks/tasks.h"
 
 int main(void)
 {
-    rcc_periph_clock_enable(RCC_GPIOC);
+    /* Create all the tasks */
+    create_tasks();
 
-    gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
+    /* Start the scheduler */
+    vTaskStartScheduler();
 
-    while(1)
-    {
-        for (int i = 0; i < 1000000; i++)
-        {
-            __asm__("nop");
-        }
-
-        gpio_toggle(GPIOC, GPIO13);
-    }
+    /* Will only get here if there was insufficient memory to create the idle and/or timer task */
+    while(1);
 
     return 0;
 }
