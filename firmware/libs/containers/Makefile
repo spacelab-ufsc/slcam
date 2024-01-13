@@ -28,6 +28,5 @@ buffer_lib.o: buffer.c
 	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
 .PHONY: clean
-
 clean:
 	rm $(BUILD_DIR)/*.o

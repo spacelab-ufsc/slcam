@@ -22,7 +22,7 @@
 MEMORY
 {
 	rom (rx) : ORIGIN = 0x08000000, LENGTH = 64K
-	ram (rwx) : ORIGIN = 0x20000000, LENGTH = 20K
+	ram (rwx) : ORIGIN = 0x20000000, LENGTH = 80K
 }
 
 /* Enforce emmition of the vector table. */
@@ -95,12 +95,6 @@ SECTIONS
 		. = ALIGN(4);
 		_ebss = .;
 	} >ram
-
-	/*
-	 * The .eh_frame section appears to be used for C++ exception handling.
-	 * You may need to fix this if you're using C++.
-	 */
-	/DISCARD/ : { *(.eh_frame) }
 
 	. = ALIGN(4);
 	end = .;
