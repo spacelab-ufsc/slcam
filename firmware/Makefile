@@ -35,6 +35,7 @@ flash:
 
 .PHONY: clean
 clean:
+	$(MAKE) clean -C hal
 	rm $(BUILD_DIR)/*.o $(BUILD_DIR)/*.a $(BUILD_DIR)/*.elf $(BUILD_DIR)/*.bin
 
 main.o: main.c
