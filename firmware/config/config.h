@@ -1,5 +1,5 @@
 /*
- * version.h
+ * config.h
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,29 +21,24 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief Configuration parameters definition.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.2.3
  * 
- * \date 2022/07/10
+ * \date 2024/01/13
  * 
- * \defgroup version Version control
+ * \defgroup config Configuration
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#ifndef CONFIG_H_
+#define CONFIG_H_
 
-#define FIRMWARE_VERSION            "0.2.3"
+/* Tasks */
+#define CONFIG_TASK_HEARTBEAT_ENABLED                   1
 
-#define FIRMWARE_STATUS             "Development"
+#endif /* CONFIG_H_ */
 
-#define FIRMWARE_AUTHOR             "SpaceLab-UFSC"
-
-#define FIRMWARE_AUTHOR_EMAIL       "contact@spacelab.ufsc.br"
-
-#endif /* VERSION_H_ */
-
-/** \} End of version group */
+/** \} End of config group */

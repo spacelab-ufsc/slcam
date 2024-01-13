@@ -1,5 +1,5 @@
 /*
- * version.h
+ * tasks.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,29 +21,37 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief Tasks implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.2.3
  * 
- * \date 2022/07/10
+ * \date 2024/01/13
  * 
- * \defgroup version Version control
+ * \addtogroup tasks
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include <FreeRTOS.h>
+#include <task.h>
 
-#define FIRMWARE_VERSION            "0.2.3"
+#include <config/config.h>
 
-#define FIRMWARE_STATUS             "Development"
+#include "tasks.h"
+#include "heartbeat.h"
 
-#define FIRMWARE_AUTHOR             "SpaceLab-UFSC"
+void create_tasks(void)
+{
+    /* Heartbeat task */
+#if CONFIG_TASK_HEARTBEAT_ENABLED == 1
+    xTaskCreate(vTaskHeartbeat, TASK_HEARTBEAT_NAME, TASK_HEARTBEAT_STACK_SIZE, NULL, TASK_HEARTBEAT_PRIORITY, &xTaskHeartbeatHandle);
 
-#define FIRMWARE_AUTHOR_EMAIL       "contact@spacelab.ufsc.br"
+    if (xTaskHeartbeatHandle == NULL)
+    {
+        /* Error creating the heartbeat task */
+    }
+#endif /* CONFIG_TASK_HEARTBEAT_ENABLED */
+}
 
-#endif /* VERSION_H_ */
-
-/** \} End of version group */
+/** \} End of tasks group */

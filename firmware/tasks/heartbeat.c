@@ -1,5 +1,5 @@
 /*
- * version.h
+ * heartbeat.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,29 +21,39 @@
  */
 
 /**
- * \brief Version control file.
+ * \brief Heartbeat task implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.2.3
  * 
- * \date 2022/07/10
+ * \date 2024/01/13
  * 
- * \defgroup version Version control
+ * \addtogroup heartbeat
  * \{
  */
 
-#ifndef VERSION_H_
-#define VERSION_H_
+#include <hal/include/libopencm3/stm32/rcc.h>
+#include <hal/include/libopencm3/stm32/gpio.h>
 
-#define FIRMWARE_VERSION            "0.2.3"
+#include "heartbeat.h"
 
-#define FIRMWARE_STATUS             "Development"
+xTaskHandle xTaskHeartbeatHandle;
 
-#define FIRMWARE_AUTHOR             "SpaceLab-UFSC"
+void vTaskHeartbeat(void *pvParameters)
+{
+    rcc_periph_clock_enable(RCC_GPIOC);
 
-#define FIRMWARE_AUTHOR_EMAIL       "contact@spacelab.ufsc.br"
+    gpio_set_mode(GPIOC, GPIO_MODE_OUTPUT_2_MHZ, GPIO_CNF_OUTPUT_PUSHPULL, GPIO13);
 
-#endif /* VERSION_H_ */
+    while(1)
+    {
+        TickType_t last_cycle = xTaskGetTickCount();
 
-/** \} End of version group */
+        gpio_toggle(GPIOC, GPIO13);
+
+        vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_HEARTBEAT_PERIOD_MS));
+    }
+}
+
+/** \} End of heartbeat group */
