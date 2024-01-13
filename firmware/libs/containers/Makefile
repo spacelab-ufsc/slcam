@@ -19,13 +19,13 @@ GDB=arm-none-eabi-gdb
 CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0
 
 .PHONY: all
-all: queue buffer
+all: queue_lib.o buffer_lib.o
 
-queue: queue.c
-	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@.o
+queue_lib.o: queue.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-buffer: buffer.c
-	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@.o
+buffer_lib.o: buffer.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
 .PHONY: clean
 

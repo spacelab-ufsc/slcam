@@ -52,6 +52,7 @@ devices: devices/Makefile
 
 drivers_rule : drivers/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) OPENCM3_FAMILY=$(OPENCM3_FAMILY) -C drivers 
+
 libs_rule: libs/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C libs
 
