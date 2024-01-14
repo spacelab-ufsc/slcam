@@ -17,10 +17,13 @@ GDB=arm-none-eabi-gdb
 CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0 -I../config/ -I../os/include/ -I../os/portable/GCC/ARM_CM3/
 
 .PHONY: all
-all: hooks_sys.o
+all: hooks_sys.o sys_log_rule
 
 hooks_sys.o: hooks.c
 	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
+
+sys_log_rule: sys_log/Makefile
+	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C sys_log
 
 .PHONY: clean
 clean:

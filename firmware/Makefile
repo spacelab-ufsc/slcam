@@ -52,8 +52,8 @@ libopencm3_stm32f1.a: hal/Makefile
 devices: devices/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C devices
 
-drivers_rule : drivers/Makefile
-	$(MAKE) BUILD_DIR=$(BUILD_DIR) OPENCM3_FAMILY=$(OPENCM3_FAMILY) -C drivers 
+drivers_rule: drivers/Makefile
+	$(MAKE) BUILD_DIR=$(BUILD_DIR) OPENCM3_FAMILY=$(OPENCM3_FAMILY) -C drivers
 
 libs_rule: libs/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C libs

@@ -12,7 +12,7 @@ NM=arm-none-eabi-nm
 SIZE=arm-none-eabi-size
 GDB=arm-none-eabi-gdb
 
-CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0 -I../config/ -I../os/include/ -I../os/portable/GCC/ARM_CM3/
+CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0 -I../../ -I../../config/ -I../../os/include/ -I../../os/portable/GCC/ARM_CM3/
 
 .PHONY: all
 all: sys_log.o sys_log_mutex.o sys_log_uart.o
