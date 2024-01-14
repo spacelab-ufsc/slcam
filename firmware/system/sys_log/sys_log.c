@@ -1,22 +1,22 @@
 /*
  * sys_log.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The SLCam Contributors.
  * 
- * This file is part of OBDH 2.0.
+ * This file is part of SLCam.
  * 
- * OBDH 2.0 is free software: you can redistribute it and/or modify
+ * SLCam is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * OBDH 2.0 is distributed in the hope that it will be useful,
+ * SLCam is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with OBDH 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with SLCam. If not, see <http://www.gnu.org/licenses/>.
  * 
  */
 
@@ -25,15 +25,16 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.3.16
+ * \version 0.2.5
  * 
- * \date 03/11/2019
+ * \date 2024/01/14
  * 
  * \addtogroup sys_log
  * \{
  */
 
 #include <math.h>
+#include <stdlib.h>
 
 #include <FreeRTOS.h>
 #include <task.h>
@@ -43,7 +44,7 @@
 #include "sys_log.h"
 #include "sys_log_config.h"
 
-int sys_log_init()
+int sys_log_init(void)
 {
     if (sys_log_uart_init())
     {
@@ -117,7 +118,7 @@ void sys_log_set_color(uint8_t color)
     }
 }
 
-void sys_log_reset_color()
+void sys_log_reset_color(void)
 {
     sys_log_print_msg("\033[0m");
 }
@@ -185,7 +186,7 @@ void sys_log_print_msg(const char *msg)
     }
 }
 
-void sys_log_new_line()
+void sys_log_new_line(void)
 {
     sys_log_reset_color();
     sys_log_print_msg("\n\r");
@@ -336,7 +337,7 @@ void sys_log_print_system_time()
     sys_log_reset_color();
 }
 
-void sys_log_print_license_msg()
+void sys_log_print_license_msg(void)
 {
     sys_log_print_msg("OBDH 2.0 Copyright (C) 2020, SpaceLab;");
     sys_log_new_line();
@@ -353,7 +354,7 @@ void sys_log_print_license_msg()
     sys_log_new_line();
 }
 
-void sys_log_print_splash_screen()
+void sys_log_print_splash_screen(void)
 {
     sys_log_print_msg("                                                                   ");
     sys_log_new_line();
@@ -403,7 +404,7 @@ void sys_log_print_splash_screen()
     sys_log_new_line();
 }
 
-void sys_log_print_firmware_version()
+void sys_log_print_firmware_version(void)
 {
     sys_log_print_msg("[ ");
     sys_log_print_msg(FIRMWARE_VERSION);

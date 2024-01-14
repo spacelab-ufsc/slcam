@@ -1,22 +1,22 @@
 /*
  * sys_log_uart.c
  * 
- * Copyright (C) 2020, SpaceLab.
+ * Copyright The SLCam Contributors.
  * 
- * This file is part of OBDH 2.0.
+ * This file is part of SLCam.
  * 
- * OBDH 2.0 is free software: you can redistribute it and/or modify
+ * SLCam is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  * 
- * OBDH 2.0 is distributed in the hope that it will be useful,
+ * SLCam is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with OBDH 2.0. If not, see <http://www.gnu.org/licenses/>.
+ * along with SLCam. If not, see <http://www.gnu.org/licenses/>.
  * 
  */
 
@@ -25,9 +25,9 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.3.11
+ * \version 0.2.5
  * 
- * \date 03/11/2019
+ * \date 2024/01/14
  * 
  * \defgroup sys_log_uart UART
  * \ingroup sys_log
@@ -38,21 +38,24 @@
 
 #include "sys_log.h"
 
-bool sys_log_uart_init()
+uart_config_t sys_log_conf = {0};
+
+bool sys_log_uart_init(void)
 {
-    uart_config_t config;
+    sys_log_conf.port           = UART_PORT_1;
+    sys_log_conf.mode           = UART_MODE_TX;
+    sys_log_conf.parity         = UART_NO_PARITY;
+    sys_log_conf.stop_bits      = UART_SB_1;
+    sys_log_conf.word_length    = UART_WL_8;
+    sys_log_conf.flow_control   = UART_FC_NONE;
+    sys_log_conf.baudrate       = 115200;
 
-    config.baudrate     = 115200;
-    config.data_bits    = 8;
-    config.parity       = UART_NO_PARITY;
-    config.stop_bits    = UART_ONE_STOP_BIT;
-
-    return uart_init(UART_PORT_2, config) == 0 ? true : false;
+    return uart_init(sys_log_conf) == 0 ? true : false;
 }
 
 void sys_log_uart_write_byte(uint8_t byte)
 {
-    uart_write(UART_PORT_2, &byte, 1);
+    uart_write(sys_log_conf, (uint16_t*)&byte, 1);
 }
 
 /** \} End of sys_log_uart group */
