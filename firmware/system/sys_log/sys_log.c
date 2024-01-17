@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.5
+ * \version 0.2.6
  * 
  * \date 2024/01/14
  * 
@@ -339,7 +339,7 @@ void sys_log_print_system_time()
 
 void sys_log_print_license_msg(void)
 {
-    sys_log_print_msg("OBDH 2.0 Copyright (C) 2020, SpaceLab;");
+    sys_log_print_msg("Copyright The SLCam Contributors;");
     sys_log_new_line();
     sys_log_print_msg("This program comes with ABSOLUTELY NO WARRANTY.");
     sys_log_new_line();
@@ -348,9 +348,9 @@ void sys_log_print_license_msg(void)
     sys_log_print_msg("under certain conditions.");
     sys_log_new_line();
     sys_log_new_line();
-    sys_log_print_msg("Source code: https://github.com/spacelab-ufsc/obdh2");
+    sys_log_print_msg("Source code: https://github.com/spacelab-ufsc/slcam");
     sys_log_new_line();
-    sys_log_print_msg("Documentation: https://github.com/spacelab-ufsc/obdh2/doc");
+    sys_log_print_msg("Documentation: https://github.com/spacelab-ufsc/slcam/doc");
     sys_log_new_line();
 }
 
@@ -380,15 +380,15 @@ void sys_log_print_splash_screen(void)
     sys_log_new_line();
     sys_log_print_msg("..........                                               ..........");
     sys_log_new_line();
-    sys_log_print_msg("..........     ___  ____  ____  _   _   ____    ___      ..........");
+    sys_log_print_msg("..........   ____  _     ____                            ..........");
     sys_log_new_line();
-    sys_log_print_msg("..........    / _ \\| __ )|  _ \\| | | | |___ \\  / _ \\     ..........");
+    sys_log_print_msg("..........  / ___|| |   / ___|__ _ _ __ ___              ..........");
     sys_log_new_line();
-    sys_log_print_msg("..........   | | | |  _ \\| | | | |_| |   __) || | | |    ..........");
+    sys_log_print_msg("..........  \\___ \\| |  | |   / _` | '_ ` _ \\             ..........");
     sys_log_new_line();
-    sys_log_print_msg("..........   | |_| | |_) | |_| |  _  |  / __/ | |_| |    ..........");
+    sys_log_print_msg("..........   ___) | |__| |__| (_| | | | | | |            ..........");
     sys_log_new_line();
-    sys_log_print_msg("..........    \\___/|____/|____/|_| |_| |_____(_)___/     ..........");
+    sys_log_print_msg("..........  |____/|_____\\____\\__,_|_| |_| |_|            ..........");
     sys_log_new_line();
     sys_log_print_msg("..........                                               ..........");
     sys_log_new_line();
