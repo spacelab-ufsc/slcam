@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.3
+ * \version 0.2.7
  * 
  * \date 2024/01/13
  * 
@@ -38,6 +38,7 @@
 
 /* Tasks */
 #define CONFIG_TASK_HEARTBEAT_ENABLED                   1
+#define CONFIG_STARTUP_ENABLED                          1
 
 #endif /* CONFIG_H_ */
 
