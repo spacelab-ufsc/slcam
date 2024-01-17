@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.3
+ * \version 0.2.7
  * 
  * \date 2024/01/13
  * 
@@ -39,10 +39,21 @@
 #include <config/config.h>
 
 #include "tasks.h"
+#include "startup.h"
 #include "heartbeat.h"
 
 void create_tasks(void)
 {
+    /* Startup task */
+#if CONFIG_TASK_STARTUP_ENABLED == 1
+    xTaskCreate(vTaskStartup, TASK_STARTUP_NAME, TASK_STARTUP_STACK_SIZE, NULL, TASK_STARTUP_PRIORITY, &xTaskStartupHandle);
+
+    if (xTaskStartupHandle == NULL)
+    {
+        /* Error creating the startup task */
+    }
+#endif /* CONFIG_TASK_STARTUP_ENABLED */
+
     /* Heartbeat task */
 #if CONFIG_TASK_HEARTBEAT_ENABLED == 1
     xTaskCreate(vTaskHeartbeat, TASK_HEARTBEAT_NAME, TASK_HEARTBEAT_STACK_SIZE, NULL, TASK_HEARTBEAT_PRIORITY, &xTaskHeartbeatHandle);
