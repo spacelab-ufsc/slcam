@@ -2,7 +2,9 @@ ifndef BUILD_DIR
 	BUILD_DIR=$(CURDIR)
 endif
 
-PARTNUMBER=stm32f103c8t6
+ifndef OPENCM3_FAMILY
+	OPENCM3_FAMILY=STM32F1
+endif
 
 CC=arm-none-eabi-gcc
 AS=arm-none-eabi-as
@@ -14,12 +16,15 @@ NM=arm-none-eabi-nm
 SIZE=arm-none-eabi-size
 GDB=arm-none-eabi-gdb
 
-CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0 -I../config/ -I../os/include/ -I../os/portable/GCC/ARM_CM3/
+CFLAGS=-c -mcpu=cortex-m3 -mthumb -O0 -I../ -I../hal/include -I../config/ -I../os/include/ -I../os/portable/GCC/ARM_CM3/ -D$(OPENCM3_FAMILY)
 
 .PHONY: all
-all: hooks_sys.o sys_log_rule
+all: hooks_sys.o system_sys.o sys_log_rule
 
 hooks_sys.o: hooks.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
+
+system_sys.o: system.c
 	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
 sys_log_rule: sys_log/Makefile

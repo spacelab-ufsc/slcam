@@ -26,13 +26,15 @@
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * \author Miguel Boing <miguelboing13@gmail.com>
  * 
- * \version 0.2.4
+ * \version 0.2.8
  * 
  * \date 2022/07/10
  * 
  * \defgroup main Main file
  * \{
  */
+
+#include <system/system.h>
 
 #include <FreeRTOS.h>
 #include <task.h>
@@ -41,6 +43,8 @@
 
 int main(void)
 {
+    system_init_clocks();
+
     /* Create all the tasks */
     create_tasks();
 

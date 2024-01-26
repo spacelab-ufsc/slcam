@@ -1,5 +1,5 @@
 /*
- * system.h
+ * system.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,28 +21,25 @@
  */
 
 /**
- * \brief System definition.
+ * \brief System general functions implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.2.8
  * 
- * \date 2022/07/10
+ * \date 2022/01/13
  * 
- * \defgroup system System
+ * \addtogroup system
  * \{
  */
 
-#ifndef SYSTEM_H_
-#define SYSTEM_H_
+#include <hal/include/libopencm3/stm32/rcc.h>
 
-/**
- * \brief System clocks initialization.
- *
- * \return None.
- */
-void system_init_clocks(void);
+#include "system.h"
 
-#endif /* SYSTEM_H_ */
+void system_init_clocks(void)
+{
+    rcc_clock_setup_pll(&rcc_hse_configs[RCC_CLOCK_HSE8_72MHZ]);
+}
 
 /** \} End of system group */

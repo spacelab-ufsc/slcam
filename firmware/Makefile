@@ -62,7 +62,7 @@ os_rule: os/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C os
 
 system_rule: system/Makefile
-	$(MAKE) BUILD_DIR=$(BUILD_DIR) -C system
+	$(MAKE) BUILD_DIR=$(BUILD_DIR) OPENCM3_FAMILY=$(OPENCM3_FAMILY) -C system
 
 tasks_rule: tasks/Makefile
 	$(MAKE) BUILD_DIR=$(BUILD_DIR) OPENCM3_FAMILY=$(OPENCM3_FAMILY) -C tasks
