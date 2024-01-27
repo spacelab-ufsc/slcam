@@ -52,11 +52,11 @@
 #define configUSE_PREEMPTION            1
 #define configUSE_IDLE_HOOK             1
 #define configUSE_TICK_HOOK             0
-#define configCPU_CLOCK_HZ              ( 32000000UL )
-#define configLFXT_CLOCK_HZ             ( 32768L )
+#define configCPU_CLOCK_HZ              ( 72000000UL )
+#define configSYSTICK_CLOCK_HZ          ( configCPU_CLOCK_HZ / 8U )
 #define configTICK_RATE_HZ              ( ( TickType_t ) 1000 )
 #define configMAX_PRIORITIES            ( 5 )
-#define configTOTAL_HEAP_SIZE           ( ( size_t ) ( 75 * 1024 ) )
+#define configTOTAL_HEAP_SIZE           ( ( size_t ) ( 17U * 1024U ) )
 #define configMAX_TASK_NAME_LEN         ( 20 )
 #define configUSE_TRACE_FACILITY        0
 #define configUSE_16_BIT_TICKS          0
@@ -123,8 +123,8 @@ See http://www.FreeRTOS.org/RTOS-Cortex-M3-M4.html. */
 #define configASSERT( x ) if( ( x ) == 0 ) { taskDISABLE_INTERRUPTS(); for( ;; ); }
 
 /* Definitions that map the FreeRTOS port interrupt handlers to their CMSIS standard names. */
-#define vPortSVCHandler                 SVC_Handler
-#define xPortPendSVHandler              PendSV_Handler
-#define xPortSysTickHandler             SysTick_Handler
+#define vPortSVCHandler                 sv_call_handler
+#define xPortPendSVHandler              pend_sv_handler
+#define xPortSysTickHandler             sys_tick_handler
 
 #endif /* FREERTOS_CONFIG_H */
