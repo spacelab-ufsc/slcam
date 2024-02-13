@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * can_wrap.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,26 +21,41 @@
  */
 
 /**
- * \brief Drivers definition.
+ * \brief CAN driver wrap implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.2.2
  * 
- * \date 2022/07/10
+ * \date 2023/07/28
  * 
- * \defgroup drivers Drivers
+ * \addtogroup can_wrap
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <setjmp.h>
+#include <float.h>
+#include <cmocka.h>
 
-#include "can/can.h"
-#include "ov2640/ov2640.h"
-#include "uart/uart.h"
-#include "w25qxx/src/driver_w25qxx.h"
+#include "can_wrap.h"
 
-#endif /* DRIVERS_H_ */
+int __wrap_can_init(can_config_t config)
+{
+    return -1;
+}
 
-/** \} End of drivers group */
+int __wrap_can_write(can_config_t config, uint8_t *data, uint16_t len)
+{
+    return -1;
+}
+
+int __wrap_can_read(can_config_t config, uint8_t *data, uint16_t len)
+{
+    return -1;
+}
+
+/** \} End of can_wrap group */
