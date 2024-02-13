@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.2
+ * \version 0.2.10
  * 
  * \date 2022/07/10
  * 
@@ -40,6 +40,7 @@
 #include "ov2640/ov2640.h"
 #include "uart/uart.h"
 #include "w25qxx/src/driver_w25qxx.h"
+#include "spi/spi.h"
 
 #endif /* DRIVERS_H_ */
 
