@@ -1,5 +1,5 @@
 /*
- * main.cpp
+ * heartbeat.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -16,28 +16,31 @@
  * GNU General Public License for more details.
  * 
  * You should have received a copy of the GNU General Public License
- * along with SLCam. If not, see <http:/\/www.gnu.org/licenses/>.
+ * along with SLCam. If not, see <http://www.gnu.org/licenses/>.
  * 
  */
 
 /**
- * \brief Main file.
+ * \brief Heartbeat task implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
- * \author Miguel Boing <miguelboing13@gmail.com>
  * 
- * \version 0.1.3
+ * \version 0.2.3
  * 
- * \date 2022/07/10
+ * \date 2024/01/13
  * 
- * \defgroup main Main file
+ * \addtogroup heartbeat
  * \{
  */
 
 #include <hal/include/libopencm3/stm32/rcc.h>
 #include <hal/include/libopencm3/stm32/gpio.h>
 
-int main(void)
+#include "heartbeat.h"
+
+xTaskHandle xTaskHeartbeatHandle;
+
+void vTaskHeartbeat(void *pvParameters)
 {
     rcc_periph_clock_enable(RCC_GPIOC);
 
@@ -45,15 +48,12 @@ int main(void)
 
     while(1)
     {
-        for (int i = 0; i < 1000000; i++)
-        {
-            __asm__("nop");
-        }
+        TickType_t last_cycle = xTaskGetTickCount();
 
         gpio_toggle(GPIOC, GPIO13);
-    }
 
-    return 0;
+        vTaskDelayUntil(&last_cycle, pdMS_TO_TICKS(TASK_HEARTBEAT_PERIOD_MS));
+    }
 }
 
-/** \} End of main group */
+/** \} End of heartbeat group */

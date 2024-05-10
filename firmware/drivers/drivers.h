@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.1.2
+ * \version 0.2.2
  * 
  * \date 2022/07/10
  * 
@@ -36,7 +36,9 @@
 #ifndef DRIVERS_H_
 #define DRIVERS_H_
 
+#include "can/can.h"
 #include "ov2640/ov2640.h"
+#include "uart/uart.h"
 #include "w25qxx/src/driver_w25qxx.h"
 
 #endif /* DRIVERS_H_ */

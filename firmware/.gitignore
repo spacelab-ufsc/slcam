@@ -13,3 +13,4 @@ cppcheck-addon-ctu-file-list
 *.a
 *.bin
 *.elf
+*.map

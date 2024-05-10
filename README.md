@@ -39,7 +39,7 @@
 
 ## Overview
 
-TODO
+The SLCam ("SpaceLab Camera") is a camera payload designed to be used in nanosatellite missions. The main object is to take pictures of the Earth from space. It's the first project from SpaceLab using cameras in payloads.
 
 ## Repository Organization
 
@@ -48,6 +48,10 @@ TODO
 * hardware: Hardware project (sources and outputs).
 * mechanical: Mechanical project (sources and outputs).
 * software: Software to communicate with the camera (sources).
+
+## License
+
+This project is open-source under three different licenses: GNU General Public License v3.0 for firmware sources, CERN Open Hardware License v2.0 for hardware and mechanical files, and CC BY-SA 4.0 for the documentation. Some third-part files and libraries are subjected to their specific terms and licenses.
 
 ## Releases
 

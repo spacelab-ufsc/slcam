@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.0.0
+ * \version 0.2.8
  * 
  * \date 2022/07/10
  * 
@@ -35,6 +35,13 @@
 
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
+
+/**
+ * \brief System clocks initialization.
+ *
+ * \return None.
+ */
+void system_init_clocks(void);
 
 #endif /* SYSTEM_H_ */
 

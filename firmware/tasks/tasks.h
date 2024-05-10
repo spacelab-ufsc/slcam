@@ -25,7 +25,7 @@
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.0.0
+ * \version 0.2.3
  * 
  * \date 2022/07/10
  * 
@@ -35,6 +35,13 @@
 
 #ifndef TASKS_H_
 #define TASKS_H_
+
+/**
+ * \brief Creates the system tasks.
+ *
+ * \return None.
+ */
+void create_tasks(void);
 
 #endif /* TASKS_H_ */
 
