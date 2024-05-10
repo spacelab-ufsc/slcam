@@ -15,35 +15,35 @@ GDB=arm-none-eabi-gdb
 CFLAGS=--static -nostartfiles -g3 -Os -fno-common -ffunction-sections -fdata-sections -I../config/ -Iinclude/ -Iportable/GCC/ARM_CM3/ -mcpu=cortex-m3 -mthumb -msoft-float -c
 
 .PHONY: all
-all: croutine.o event_groups.o list.o queue.o stream_buffer.o tasks.o timers.o heap_1.o
+all: croutine_frtos.o event_groups_frtos.o list_frtos.o queue_frtos.o stream_buffer_frtos.o tasks_frtos.o timers_frtos.o heap_1_frtos.o port_frtos.o
 
 .PHONY: clean
 clean:
 	rm $(BUILD_DIR)/*.o
 
-croutine.o: croutine.c
-	$(CC) $(CFLAGS) $< -o $@
+croutine_frtos.o: croutine.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-event_groups.o: event_groups.c
-	$(CC) $(CFLAGS) $< -o $@
+event_groups_frtos.o: event_groups.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-list.o: list.c
-	$(CC) $(CFLAGS) $< -o $@
+list_frtos.o: list.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-queue.o: queue.c
-	$(CC) $(CFLAGS) $< -o $@
+queue_frtos.o: queue.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-stream_buffer.o: stream_buffer.c
-	$(CC) $(CFLAGS) $< -o $@
+stream_buffer_frtos.o: stream_buffer.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-tasks.o: tasks.c
-	$(CC) $(CFLAGS) $< -o $@
+tasks_frtos.o: tasks.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-timers.o: timers.c
-	$(CC) $(CFLAGS) $< -o $@
+timers_frtos.o: timers.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-heap_1.o: portable/MemMang/heap_1.c
-	$(CC) $(CFLAGS) $< -o $@
+heap_1_frtos.o: portable/MemMang/heap_1.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-port.o: portable/GCC/ARM_CM3/port.c
-	$(CC) $(CFLAGS) $< -o $@
+port_frtos.o: portable/GCC/ARM_CM3/port.c
+	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
