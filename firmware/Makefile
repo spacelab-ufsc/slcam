@@ -22,7 +22,7 @@ FLASH=st-flash
 
 INC=.
 CFLAGS=--static -nostartfiles -g3 -Os -fno-common -ffunction-sections -fdata-sections -I. -mcpu=cortex-m3 -mthumb -msoft-float -Iconfig/ -Ios/include/ -Ios/portable/GCC/ARM_CM3/ -D$(OPENCM3_FAMILY)
-LDFLAGS=--specs=nano.specs -Wl,--gc-sections,-Map,$(TARGET).map,-T$(PARTNUMBER).ld
+LDFLAGS=-nostartfiles --specs=nano.specs -Wl,--gc-sections,-Map,$(TARGET).map,-T$(PARTNUMBER).ld -mcpu=cortex-m3 -mthumb
 
 .PHONY: all
 all: libopencm3_stm32f1.a libs_rule drivers_rule os_rule system_rule tasks_rule crt.o main.o
