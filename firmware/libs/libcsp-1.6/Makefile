@@ -75,10 +75,10 @@ csp_services.o: src/csp_services.c
 csp_sfp.o: src/csp_sfp.c
 	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-csp_system.o: src/arch/freertos/csp_system.c
+csp_system.o: src/arch/csp_system.c
 	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
-csp_time.o: src/arch/freertos/csp_time.c
+csp_time.o: src/arch/csp_time.c
 	$(CC) $(CFLAGS) $< -o $(BUILD_DIR)/$@
 
 csp_clock.o: src/arch/freertos/csp_clock.c
