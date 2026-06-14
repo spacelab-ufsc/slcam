@@ -1,0 +1,600 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Interfaces &mdash; SLCam Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=df8d88bb"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Usage Instructions" href="usage.html" />
+    <link rel="prev" title="Mechanical" href="mechanical.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            slcam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firmware.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechanical.html">Mechanical</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#electrical">Electrical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#software">Software</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#control-data">Control/Data</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#variables-and-parameters">Variables and Parameters</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#debug">Debug</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#programming">Programming</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#mechanical">Mechanical</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">slcam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Interfaces</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/interfaces.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="interfaces">
+<h1>Interfaces<a class="headerlink" href="#interfaces" title="Permalink to this heading"></a></h1>
+<p>This chapter details the interfaces of the SLCam module, dividing them into three categories: electrical, software, and mechanical interfaces. Each of these categories is described in the following sections.</p>
+<section id="electrical">
+<h2>Electrical<a class="headerlink" href="#electrical" title="Permalink to this heading"></a></h2>
+<p>All external electrical interfaces available to the user are listed in <a class="reference internal" href="#tab-electrical-interfaces"><span class="std std-numref">Table 4</span></a>, together with their location, connector type, and pinout.</p>
+<span id="tab-electrical-interfaces"></span><table class="docutils align-center" id="id2" style="width: 100%">
+<caption><span class="caption-number">Table 4 </span><span class="caption-text">Electrical interfaces.</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 12.0%" />
+<col style="width: 12.0%" />
+<col style="width: 33.0%" />
+<col style="width: 14.0%" />
+<col style="width: 14.0%" />
+<col style="width: 15.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Connector</strong></p></th>
+<th class="head"><p><strong>Purpose</strong></p></th>
+<th class="head"><p><strong>Image</strong></p></th>
+<th class="head"><p><strong>Interface</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><p><strong>Pins</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>J1</em></p></td>
+<td><div class="line-block">
+<div class="line">Control/Data</div>
+<div class="line">and power</div>
+</div>
+</td>
+<td><a class="reference internal image-reference" href="_images/j1-pins.png"><img alt="_images/j1-pins.png" src="_images/j1-pins.png" style="width: 4cm;" /></a>
+</td>
+<td><p>SPI/Power</p></td>
+<td><p>PicoBlade</p></td>
+<td><div class="line-block">
+<div class="line">1=3V3</div>
+<div class="line">2=GND</div>
+<div class="line">3=MISO</div>
+<div class="line">4=MOSI</div>
+<div class="line">5=CLK</div>
+<div class="line">6=CS</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><em>J3</em></p></td>
+<td><p>Programming</p></td>
+<td><a class="reference internal image-reference" href="_images/j3-pins.png"><img alt="_images/j3-pins.png" src="_images/j3-pins.png" style="width: 4cm;" /></a>
+</td>
+<td><p>JTAG</p></td>
+<td><p>PinHeader</p></td>
+<td><div class="line-block">
+<div class="line">1=DIO</div>
+<div class="line">2=CLK</div>
+<div class="line">3=3V3</div>
+<div class="line">4=GND</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><em>J4</em></p></td>
+<td><p>Control/Data</p></td>
+<td><a class="reference internal image-reference" href="_images/j4-pins.png"><img alt="_images/j4-pins.png" src="_images/j4-pins.png" style="width: 4cm;" /></a>
+</td>
+<td><p>CAN</p></td>
+<td><p>PicoBlade</p></td>
+<td><div class="line-block">
+<div class="line">1=GND</div>
+<div class="line">2=CAN High</div>
+<div class="line">3=CAN Low</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p><em>J5</em></p></td>
+<td><p>Debug</p></td>
+<td><a class="reference internal image-reference" href="_images/j5-pins.png"><img alt="_images/j5-pins.png" src="_images/j5-pins.png" style="width: 4cm;" /></a>
+</td>
+<td><p>UART</p></td>
+<td><p>PicoBlade</p></td>
+<td><div class="line-block">
+<div class="line">1=GND</div>
+<div class="line">2=UART_RX</div>
+<div class="line">3=UART_TX</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>All pins presented in <a class="reference internal" href="#tab-electrical-interfaces"><span class="std std-numref">Table 4</span></a> operate at CMOS 3V3 voltage level!</p>
+</div>
+</section>
+<section id="software">
+<h2>Software<a class="headerlink" href="#software" title="Permalink to this heading"></a></h2>
+<p>Todas as interfaces de software do módulo estão associadas as interfaces elétricas apresentadas na seção anterior. Nas subseções a seguir, os parâmetros de configuração e características de cada interface estão descritas.</p>
+<section id="control-data">
+<h3>Control/Data<a class="headerlink" href="#control-data" title="Permalink to this heading"></a></h3>
+<p>The control and data interfaces allow commands to be sent and their respective responses to be received, in addition to enabling data transfer from the module to the host system, such as image transmission.</p>
+<p>Two interfaces are available for control and data transfer: the SPI and CAN interfaces. Therefore, both interfaces provide the same functionalities and enable redundant access to the device.</p>
+<p>The specifications required to communicate with these interfaces are described in <a class="reference internal" href="#tab-control-spi-specs"><span class="std std-numref">Table 5</span></a> and <a class="reference internal" href="#tab-control-can-specs"><span class="std std-numref">Table 6</span></a> (SPI and CAN, respectively).</p>
+<span id="tab-control-spi-specs"></span><table class="docutils align-center" id="id3">
+<caption><span class="caption-number">Table 5 </span><span class="caption-text">Control/Data interface specifications (SPI port).</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>PHY</em></p></td>
+<td><p>SPI</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Signal Level</em></p></td>
+<td><p>CMOS 3V3</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Mode</em></p></td>
+<td><p>0 (CPHA=0/CPOL=0)</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Baudrate</em></p></td>
+<td><p>500 kbps</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Data Link/Network Protocol</em></p></td>
+<td><p>CSP</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Address</em></p></td>
+<td><p>10</p></td>
+</tr>
+</tbody>
+</table>
+<span id="tab-control-can-specs"></span><table class="docutils align-center" id="id4">
+<caption><span class="caption-number">Table 6 </span><span class="caption-text">Control/Data interface specifications (CAN port).</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>PHY</em></p></td>
+<td><p>CAN</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Signal Level</em></p></td>
+<td><p>CMOS 3V3</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Type</em></p></td>
+<td><p>Standard CAN</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Baudrate</em></p></td>
+<td><p>500 kbps</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Data Link/Network Protocol</em></p></td>
+<td><p>CSP</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Address</em></p></td>
+<td><p>11</p></td>
+</tr>
+</tbody>
+</table>
+<p>Both interfaces use the CSP protocol <span id="id1">[<a class="reference internal" href="references.html#id8" title="The libcsp developers. The Cubesat Space Protocol. 2026. Available at &lt;https://github.com/libcsp/libcsp&gt;.">8</a>]</span> as the data link and network layer protocol. Commands and their respective responses are transmitted within the payload field of each CSP packet (transport layer), following the format descrided in the next section. In all CSP packets, the CRC flag must be enabled.</p>
+<section id="commands">
+<h4>Commands<a class="headerlink" href="#commands" title="Permalink to this heading"></a></h4>
+<p>To externally control and access the SLCam module, some commands are available through the control/data interfaces of the board. A list with the commands is available in <a class="reference internal" href="#tab-commands"><span class="std std-numref">Table 7</span></a>. The format of the commands’ answers can be seen in <a class="reference internal" href="#tab-commands-ans"><span class="std std-numref">Table 8</span></a>.</p>
+<span id="tab-commands"></span><table class="docutils align-center" id="id5">
+<caption><span class="caption-number">Table 7 </span><span class="caption-text">List of commands.</span><a class="headerlink" href="#id5" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 30.0%" />
+<col style="width: 40.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ID</strong></p></th>
+<th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Content</strong></p></th>
+<th class="head"><p><strong>Interface</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Read Parameter</p></td>
+<td><p>Param. ID (1 byte)</p></td>
+<td><p>SPI, CAN</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Write Parameter</p></td>
+<td><p>Param. ID (1 byte), Param. Value (8 bytes)</p></td>
+<td><p>SPI, CAN</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>Capture Single Image</p></td>
+<td><p>None</p></td>
+<td><p>SPI, CAN</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Start Automatic Capture</p></td>
+<td><p>None</p></td>
+<td><p>SPI, CAN</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Stop Automatic Capture</p></td>
+<td><p>None</p></td>
+<td><p>SPI, CAN</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><p>Read Image</p></td>
+<td><p>Image ID (4 bytes)</p></td>
+<td><p>SPI, CAN</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Remove Image</p></td>
+<td><p>Image ID (4 bytes)</p></td>
+<td><p>SPI, CAN</p></td>
+</tr>
+</tbody>
+</table>
+<span id="tab-commands-ans"></span><table class="docutils align-center" id="id6">
+<caption><span class="caption-number">Table 8 </span><span class="caption-text">Format of the command’s answers.</span><a class="headerlink" href="#id6" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 45.0%" />
+<col style="width: 45.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ID</strong></p></th>
+<th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Content</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>TBD</p></td>
+<td><p>TBD</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="variables-and-parameters">
+<h4>Variables and Parameters<a class="headerlink" href="#variables-and-parameters" title="Permalink to this heading"></a></h4>
+<p>All variables and parameters available for reading and writing are listed in <a class="reference internal" href="#tab-parameters"><span class="std std-numref">Table 9</span></a>. Each variable/parameter has a unique ID and can be read by an external device. As shown, some variables can also be written.</p>
+<span id="tab-parameters"></span><table class="docutils align-center" id="id7" style="width: 100%">
+<caption><span class="caption-number">Table 9 </span><span class="caption-text">List of variables and parameters.</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 10.0%" />
+<col style="width: 25.0%" />
+<col style="width: 25.0%" />
+<col style="width: 15.0%" />
+<col style="width: 15.0%" />
+<col style="width: 10.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>ID</strong></p></th>
+<th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+<th class="head"><p><strong>Access</strong></p></th>
+<th class="head"><p><strong>Type</strong></p></th>
+<th class="head"><div class="line-block">
+<div class="line"><strong>Length</strong></div>
+<div class="line"><strong>[bytes]</strong></div>
+</div>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0</p></td>
+<td><p>Firmware version</p></td>
+<td><p>v1.2.3=0x00010203</p></td>
+<td><p>Read</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-odd"><td><p>1</p></td>
+<td><p>Hardware version</p></td>
+<td><p>v1.2.3=0x00010203</p></td>
+<td><p>Read</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>2</p></td>
+<td><p>System Time</p></td>
+<td><p>Epoch in seconds</p></td>
+<td><p>Read/Write</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p>3</p></td>
+<td><p>Reset Counter</p></td>
+<td><p>Resets since factory reset</p></td>
+<td><p>Read</p></td>
+<td><p>uint32</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-even"><td><p>4</p></td>
+<td><p>Operation Mode</p></td>
+<td><p>TBD</p></td>
+<td><p>Read/Write</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>5</p></td>
+<td><div class="line-block">
+<div class="line">Number of Available</div>
+<div class="line">Images</div>
+</div>
+</td>
+<td><p>Images in memory</p></td>
+<td><p>Read</p></td>
+<td><p>uint16</p></td>
+<td><p>2</p></td>
+</tr>
+<tr class="row-even"><td><p>6</p></td>
+<td><p>Image Size</p></td>
+<td><div class="line-block">
+<div class="line">0=160x120,</div>
+<div class="line">1=176x144,</div>
+<div class="line">2=320x240,</div>
+<div class="line">3=352x288,</div>
+<div class="line">4=640x480,</div>
+<div class="line">5=800x600,</div>
+<div class="line">6=1024x768,</div>
+<div class="line">7=1280x1024,</div>
+<div class="line">8=1600x1200</div>
+</div>
+</td>
+<td><p>Read/Write</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>7</p></td>
+<td><p>Light Mode</p></td>
+<td><div class="line-block">
+<div class="line">0=Auto,</div>
+<div class="line">1=Sunny,</div>
+<div class="line">2=Cloudy,</div>
+<div class="line">3=Office,</div>
+<div class="line">4=Home</div>
+</div>
+</td>
+<td><p>Read/Write</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>8</p></td>
+<td><p>Color Saturation</p></td>
+<td><div class="line-block">
+<div class="line">0=Saturation 0,</div>
+<div class="line">1=Saturation 1,</div>
+<div class="line">2=Saturation 2</div>
+</div>
+</td>
+<td><p>Read/Write</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>9</p></td>
+<td><p>Brightness</p></td>
+<td><div class="line-block">
+<div class="line">0=Brightness 0,</div>
+<div class="line">1=Brightness 1,</div>
+<div class="line">2=Brightness 2</div>
+</div>
+</td>
+<td><p>Read/Write</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>10</p></td>
+<td><p>Contrast</p></td>
+<td><div class="line-block">
+<div class="line">0=Contrast 0,</div>
+<div class="line">1=Contrast 1,</div>
+<div class="line">2=Contrast 2</div>
+</div>
+</td>
+<td><p>Read/Write</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>11</p></td>
+<td><p>Special Effect</p></td>
+<td><div class="line-block">
+<div class="line">0=Antique,</div>
+<div class="line">1=Bluish,</div>
+<div class="line">2=Greenish,</div>
+<div class="line">3=Reddish,</div>
+<div class="line">4=Black and White,</div>
+<div class="line">5=Negative,</div>
+<div class="line">6=Negative Black and White,</div>
+<div class="line">7=Normal</div>
+</div>
+</td>
+<td><p>Read/Write</p></td>
+<td><p>uint8</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="debug">
+<h3>Debug<a class="headerlink" href="#debug" title="Permalink to this heading"></a></h3>
+<p>The debug interface consists of a serial port where system log messages are written and configuration and operation commands can be sent, both through a command-line terminal interface. The communication specifications of this interface are described in <a class="reference internal" href="#tab-debug-specs"><span class="std std-numref">Table 10</span></a>.</p>
+<span id="tab-debug-specs"></span><table class="docutils align-center" id="id8">
+<caption><span class="caption-number">Table 10 </span><span class="caption-text">Debug interface specifications.</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>PHY</em></p></td>
+<td><p>UART</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Signal Level</em></p></td>
+<td><p>CMOS 3V3</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Baudrate</em></p></td>
+<td><p>115200 bps</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Data Bits</em></p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Stop Bits</em></p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Parity</em></p></td>
+<td><p>None</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Flow Control</em></p></td>
+<td><p>XON/XOFF</p></td>
+</tr>
+</tbody>
+</table>
+<p>An example of the output of this interface when the SLCam is connected to a computer and powered on can be seen in <a class="reference internal" href="#fig-debug-example"><span class="std std-numref">Fig. 14</span></a>.</p>
+<figure class="align-center" id="id9">
+<span id="fig-debug-example"></span><a class="reference internal image-reference" href="_images/putty-output.png"><img alt="Debug output example" src="_images/putty-output.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 14 </span><span class="caption-text">Debug interface output example.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="programming">
+<h3>Programming<a class="headerlink" href="#programming" title="Permalink to this heading"></a></h3>
+<p>To upload the firmware to the module, the programming interface must be used. This interface provides a JTAG port, where an ST-Link programmer must be connected for code uploading.</p>
+</section>
+</section>
+<section id="mechanical">
+<h2>Mechanical<a class="headerlink" href="#mechanical" title="Permalink to this heading"></a></h2>
+<p>The SLCam module provides two main external mechanical interfaces: the mounting structure and the optical interface of the camera lens. These interfaces are responsible for enabling the mechanical integration of the payload into the satellite structure while also providing the required optical access for image acquisition.</p>
+<p>For structural integration, the module includes four 3.2 mm diameter through holes designed for the use of standard M3 screws. These mounting holes allow the SLCam to be securely attached to the satellite structure or to external support fixtures during integration and testing activities. The location of the mounting holes on the mechanical case is illustrated in <a class="reference internal" href="#fig-mounting-holes"><span class="std std-numref">Fig. 15</span></a>.</p>
+<figure class="align-center" id="id10">
+<span id="fig-mounting-holes"></span><a class="reference internal image-reference" href="_images/mounting-holes.png"><img alt="Mounting holes" src="_images/mounting-holes.png" style="width: 75%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 15 </span><span class="caption-text">Mounting holes of the SLCam case.</span><a class="headerlink" href="#id10" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The relative spacing and distances between the mounting holes are presented in <a class="reference internal" href="#fig-mounting-holes-distance"><span class="std std-numref">Fig. 16</span></a>. These dimensions are important for the mechanical integration of the payload and must be considered during the design of the satellite support structure and assembly interfaces.</p>
+<figure class="align-center" id="id11">
+<span id="fig-mounting-holes-distance"></span><a class="reference internal image-reference" href="_images/mounting-holes-distance.png"><img alt="Mounting holes distance" src="_images/mounting-holes-distance.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 16 </span><span class="caption-text">Distance between the mounting holes.</span><a class="headerlink" href="#id11" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="mechanical.html" class="btn btn-neutral float-left" title="Mechanical" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="usage.html" class="btn btn-neutral float-right" title="Usage Instructions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The SLCam Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

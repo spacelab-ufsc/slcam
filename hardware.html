@@ -1,0 +1,308 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hardware &mdash; SLCam Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=df8d88bb"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Firmware" href="firmware.html" />
+    <link rel="prev" title="Overview" href="overview.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            slcam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#image-sensor">Image Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#controller-board">Controller Board</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#printed-circuit-board">Printed Circuit Board</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#integration-between-the-image-sensor-and-the-controller-board">Integration Between the Image Sensor and the Controller Board</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="firmware.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechanical.html">Mechanical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces.html">Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">slcam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Hardware</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/hardware.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  
+<style>
+  .ss-layout-default-AB { grid-template-areas: 'A B'; }
+@media (max-width: 576px) {
+  .ss-layout-sm-A_B { grid-template-areas: 'A' 'B'; }
+}
+</style>
+<section id="hardware">
+<h1>Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading"></a></h1>
+<p>This chapter presents a description of the hardware project of the SLCam payload. As the primary reference, a block diagram can be seen in <a class="reference internal" href="#fig-block-diagram"><span class="std std-numref">Fig. 3</span></a>.</p>
+<figure class="align-center" id="id3">
+<span id="fig-block-diagram"></span><a class="reference internal image-reference" href="_images/block-diagram.png"><img alt="Block diagram" src="_images/block-diagram.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 3 </span><span class="caption-text">Block diagram of the SLCam hardware.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>As can be seen in the block diagram, the hardware design of the module can be divided into two parts: the image sensor and the camera control board.</p>
+<p>The following sections present a further description of each part of the hardware.</p>
+<section id="image-sensor">
+<h2>Image Sensor<a class="headerlink" href="#image-sensor" title="Permalink to this heading"></a></h2>
+<p>The image sensor used in the SLCam module is the Arducam Mini 2MP Plus camera module <span id="id1">[<a class="reference internal" href="references.html#id9" title="Arducam. Arducam Mini 2MP Plus. 2026. Available at &lt;https://www.arducam.com/arducam-2mp-spi-camera-b0067-arduino.html&gt;.">5</a>]</span>. This module is based on the OV2640 image sensor and provides a compact and low-power solution for embedded imaging applications. It supports image resolutions up to 1600 <span class="math notranslate nohighlight">\(\times\)</span> 1200 pixels and communicates with the main controller through an I<sup>2</sup>C and an SPI interface.</p>
+<p>In addition to integrating the image sensor itself, the module also includes onboard FIFO memory, allowing image buffering and simplified data acquisition by the host microcontroller. Due to its reduced size, low power consumption, and ease of integration, the Arducam Mini 2MP Plus was selected as the primary imaging device for the SLCam payload.</p>
+<p>A photograph of the Arducam Mini 2MP Plus module is shown in <a class="reference internal" href="#fig-arducam"><span class="std std-numref">Fig. 4</span></a>. The top and bottom view of the board can also be seen in <a class="reference internal" href="#fig-arducam-top-bottom"><span class="std std-numref">Fig. 5</span></a>.</p>
+<figure class="align-center" id="id4">
+<span id="fig-arducam"></span><a class="reference internal image-reference" href="_images/arducam-2mp.png"><img alt="Arducam Mini 2MP" src="_images/arducam-2mp.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 4 </span><span class="caption-text">Arducam Mini 2MP Plus.</span><a class="headerlink" href="#id4" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<figure class="sphinx-subfigure align-center" id="arducam-board">
+<span id="fig-arducam-top-bottom"></span><div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B outline" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<a class="reference internal image-reference" href="_images/arducam-top.jpg"><img alt="Top view." class="align-center" src="_images/arducam-top.jpg" style="width: 70%;" /></a>
+<span class="caption">Top view.</span>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<a class="reference internal image-reference" href="_images/arducam-bottom.jpg"><img alt="Bottom view." class="align-center" src="_images/arducam-bottom.jpg" style="width: 70%;" /></a>
+<span class="caption">Bottom view.</span>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 5 </span><span class="caption-text">Arducam Mini 2MP Plus top and bottom view.</span><a class="headerlink" href="#arducam-board" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The internal architecture of the Arducam Mini 2MP Plus module is illustrated in the block diagram shown in <a class="reference internal" href="#fig-arducam-block-diagram"><span class="std std-numref">Fig. 6</span></a>. The module is centered around the OV2640 image sensor and the ArduChip controller, which is responsible for image acquisition, buffering, and communication with the host system.</p>
+<figure class="align-center" id="id5">
+<span id="fig-arducam-block-diagram"></span><a class="reference internal image-reference" href="_images/arducam-block-diagram.png"><img alt="Block diagram Arducam" src="_images/arducam-block-diagram.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 6 </span><span class="caption-text">Block diagram of the Arducam Mini 2MP Plus.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The image sensor is connected to the ArduChip through a dedicated camera interface, responsible for receiving pixel data and synchronization signals. Internally, the ArduChip includes a Frame Buffer Finite State Machine (FSM) and memory timing control logic, which manage the storage and retrieval of image data from the external FIFO memory. This architecture allows complete image frames to be temporarily buffered before being transmitted to the host microcontroller.</p>
+<p>Communication with the host system is performed through an SPI slave interface, using the standard signals CS, MISO, MOSI, and SCLK. Additionally, the image sensor configuration is performed through an I<sup>2</sup>C-compatible interface using the SDA and SCL signals. A register module is also available inside the ArduChip, enabling configuration and control of the camera operation and memory management functions.</p>
+<p>The connection between the Arducam module and the control board is made using an 8-pin vertical header connector. Since the Arducam module originally comes with a horizontal pin header connector, it must be replaced with a vertical connector during the assembly of the SLCam device.</p>
+<p>For integration purposes, the dimensions of the Arducam board are available in <a class="reference internal" href="#fig-arducam-dimensions"><span class="std std-numref">Fig. 7</span></a>.</p>
+<figure class="align-center" id="id6">
+<span id="fig-arducam-dimensions"></span><a class="reference internal image-reference" href="_images/arducam-dimensions.png"><img alt="Arducam Mini 2MP Dimensions" src="_images/arducam-dimensions.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 7 </span><span class="caption-text">Arducam Mini 2MP Plus dimensions.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="controller-board">
+<h2>Controller Board<a class="headerlink" href="#controller-board" title="Permalink to this heading"></a></h2>
+<p>The camera control board is responsible for managing the operation of the SLCam module and interfacing the image sensor with external systems. As illustrated in the block diagram, the control board is centered around the STM32F103C8T6 microcontroller, which performs image acquisition control, communication management, data processing, and system supervision. The microcontroller communicates with the image sensor through SPI and I<sup>2</sup>C interfaces, using a dedicated image sensor connector that also provides the 3V3 power supply required by the camera module.</p>
+<p>For non-volatile data storage, the control board includes a W25Q128JVSIM NOR Flash memory device connected through the SPI bus. This memory is used for image storage, buffering, and firmware-related data retention. External communication with host systems can be performed through both SPI and CAN interfaces, providing redundant communication channels for control and image transfer operations. The CAN interface is implemented using the TCAN330GD CAN transceiver, which provides the physical layer interface between the microcontroller and the external CAN bus network.</p>
+<p>The board also provides dedicated UART and JTAG connectors for debugging and firmware programming purposes. The UART interface allows access to system logs and command-line interaction, while the JTAG connector enables firmware upload and low-level debugging of the microcontroller.</p>
+<p>Power distribution and protection are managed through the TPS2010AD power switch device, which controls the power supplied to the image sensor module. The switch is controlled by a GPIO signal from the microcontroller, allowing the firmware to enable or disable the camera module dynamically for power management and fault recovery purposes. Together, these components form a compact and modular camera controller architecture suitable for embedded and small satellite applications.</p>
+<p>A picture of the controller board is shown in <a class="reference internal" href="#fig-controller"><span class="std std-numref">Fig. 8</span></a>.</p>
+<figure class="align-center" id="id7">
+<span id="fig-controller"></span><a class="reference internal image-reference" href="_images/controller-overview.png"><img alt="Controller board" src="_images/controller-overview.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 8 </span><span class="caption-text">Controller board.</span><a class="headerlink" href="#id7" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>A list with the components and part numbers of the controller board is available in <a class="reference internal" href="#tab-controller-bom"><span class="std std-numref">Table 2</span></a>.</p>
+<span id="tab-controller-bom"></span><table class="docutils align-center" id="id8" style="width: 100%">
+<caption><span class="caption-number">Table 2 </span><span class="caption-text">Components of the controller board.</span><a class="headerlink" href="#id8" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 35.0%" />
+<col style="width: 25.0%" />
+<col style="width: 10.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Part Number</p></th>
+<th class="head"><p>Quantity</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Microcontroller</p></td>
+<td><p>ARM Cortex M3</p></td>
+<td><p>STM32F103C8T6</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Flash Memory</p></td>
+<td><p>NOR 128 Mbit</p></td>
+<td><p>W25Q128JVSIM TR</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>Switch</p></td>
+<td><p>Load switch</p></td>
+<td><p>TPS2010AD</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>CAN Transceiver</p></td>
+<td><p>CAN transceiver</p></td>
+<td><p>TCAN330GD</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>SPI/3V3 Connector</p></td>
+<td><p>PicoBlade 6 pin</p></td>
+<td><p>532610671</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>UART Connector</p></td>
+<td><p>PicoBlade 3 pin</p></td>
+<td><p>532610371</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>CAN Connector</p></td>
+<td><p>PicoBlade 3 pin</p></td>
+<td><p>532610371</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Image Sensor Connector</p></td>
+<td><p>Female header 8 pin straight</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>JTAG Connector</p></td>
+<td><p>Male header 4 pin angled</p></td>
+<td><ul class="simple">
+<li></li>
+</ul>
+</td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>Crystal</p></td>
+<td><p>8 MHz crystal</p></td>
+<td><p>ECS-80-10-33-CHN-TR3</p></td>
+<td><p>1</p></td>
+</tr>
+</tbody>
+</table>
+<section id="printed-circuit-board">
+<h3>Printed Circuit Board<a class="headerlink" href="#printed-circuit-board" title="Permalink to this heading"></a></h3>
+<p>The controller board PCB was developed using the KiCad v5 tool <span id="id2">[<a class="reference internal" href="references.html#id10" title="The KiCad developers. KiCad - A Cross Platform and Open Source PCB Design Suite. 2026. Available at &lt;https://www.kicad.org/&gt;.">7</a>]</span> and was designed as a compact four-layer board. The multilayer structure improves signal integrity, simplifies power distribution, and reduces electromagnetic interference, which is particularly important for embedded systems operating with high-speed digital interfaces such as SPI and CAN.</p>
+<p>The PCB was designed using standard FR-4 material with a total thickness of 1.6 mm. The engineering model uses a HASL (Hot Air Solder Leveling) surface finish, while the flight model is planned to use an ENIG (Electroless Nickel Immersion Gold) finish to improve corrosion resistance and soldering reliability. No special dielectric or impedance-controlled stack-up requirements were necessary for the current design.</p>
+<p>Mechanically, the controller board measures 41.7 <span class="math notranslate nohighlight">\(\times\)</span> 27.4 mm and includes four mounting holes with a diameter of 3.2 mm, allowing secure integration into the payload mechanical structure. The compact dimensions of the PCB contribute to the reduced size and mass of the SLCam module, making it suitable for small satellite and embedded imaging applications.</p>
+<p>Top and bottom views of the controller board are presented in <a class="reference internal" href="#fig-controller-board-top-bottom"><span class="std std-numref">Fig. 9</span></a>, highlighting the component placement and routing distribution across the PCB layers.</p>
+<figure class="sphinx-subfigure align-center" id="controler-board">
+<span id="fig-controller-board-top-bottom"></span><div class="sphinx-subfigure-grid ss-layout-default-AB ss-layout-sm-A_B outline" style="display: grid; gap: 8px; grid-gap: 8px;">
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: A;">
+<a class="reference internal image-reference" href="_images/controller-top.png"><img alt="Top view." class="align-center" src="_images/controller-top.png" style="width: 60%;" /></a>
+<span class="caption">Top view.</span>
+</div>
+<div class="sphinx-subfigure-area" style="display: flex; flex-direction: column; justify-content: center; align-items: center; grid-area: B;">
+<a class="reference internal image-reference" href="_images/controller-bottom.png"><img alt="Bottom view." class="align-center" src="_images/controller-bottom.png" style="width: 60%;" /></a>
+<span class="caption">Bottom view.</span>
+</div>
+</div>
+<figcaption>
+<p><span class="caption-number">Fig. 9 </span><span class="caption-text">Controller board top and bottom view.</span><a class="headerlink" href="#controler-board" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+<section id="integration-between-the-image-sensor-and-the-controller-board">
+<h2>Integration Between the Image Sensor and the Controller Board<a class="headerlink" href="#integration-between-the-image-sensor-and-the-controller-board" title="Permalink to this heading"></a></h2>
+<p>The SLCam module is composed of two independent electronic boards: the Arducam Mini 2MP Plus image sensor board and the custom-developed controller board. The integration between these two boards is illustrated in <a class="reference internal" href="#fig-boards-integration"><span class="std std-numref">Fig. 10</span></a>.</p>
+<figure class="align-center" id="id9">
+<span id="fig-boards-integration"></span><a class="reference internal image-reference" href="_images/boards-integration.png"><img alt="Boards integration" src="_images/boards-integration.png" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 10 </span><span class="caption-text">Integration between the Arducam image sensor board and the controller board.</span><a class="headerlink" href="#id9" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The controller board is positioned below the image sensor module and is responsible for power distribution, communication management, image acquisition control, and external interfacing of the SLCam module. The Arducam board is mounted above the controller board using metallic spacers that provide mechanical support, structural rigidity, and controlled spacing between the two PCBs.</p>
+<p>The electrical connection between both boards is performed through a vertical pin header interface. Through this connector, the controller board provides the required 3V3 power supply to the image sensor module and establishes the SPI and I<sup>2</sup>C communication buses used for image transfer and camera configuration. The SPI interface is responsible for image data acquisition from the ArduChip FIFO memory, while the I<sup>2</sup>C bus is used for configuring the OV2640 image sensor registers and operating parameters.</p>
+<p>As shown in <a class="reference internal" href="#fig-boards-integration"><span class="std std-numref">Fig. 10</span></a>, the optical axis of the camera module is aligned with the center of the mechanical enclosure opening, allowing unobstructed image acquisition. The stacked PCB arrangement contributes to reducing the overall footprint of the payload while maintaining accessibility to the external electrical interfaces located on the controller board.</p>
+<p>Additionally, insulating foam spacers are positioned between the boards to reduce mechanical vibrations, minimize stress concentration during assembly, and prevent unintended contact between electronic components mounted on opposite PCB surfaces. This integration approach results in a compact, lightweight, and mechanically robust imaging subsystem suitable for embedded and nanosatellite applications.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="overview.html" class="btn btn-neutral float-left" title="Overview" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="firmware.html" class="btn btn-neutral float-right" title="Firmware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The SLCam Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

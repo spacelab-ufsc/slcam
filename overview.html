@@ -1,0 +1,208 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Overview &mdash; SLCam Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=df8d88bb"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Hardware" href="hardware.html" />
+    <link rel="prev" title="SLCam" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            slcam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#specifications">Specifications</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#product-tree">Product tree</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="firmware.html">Firmware</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mechanical.html">Mechanical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces.html">Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">slcam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Overview</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/overview.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="overview">
+<h1>Overview<a class="headerlink" href="#overview" title="Permalink to this heading"></a></h1>
+<p>The SLCam is a compact camera payload developed by SpaceLab at the Federal University of Santa Catarina (UFSC) for nanosatellite and embedded imaging applications. The primary objective of the module is to capture images of the Earth from orbit, providing a low-cost and modular imaging solution suitable for CubeSat-class missions and technology demonstration platforms. The SLCam project also represents the first SpaceLab payload specifically designed around camera-based image acquisition systems. A picture of the camera module can be seen in <a class="reference internal" href="#fig-slcam-mounted"><span class="std std-numref">Fig. 1</span></a>.</p>
+<figure class="align-center" id="id1">
+<span id="fig-slcam-mounted"></span><a class="reference internal image-reference" href="_images/slcam-small.png"><img alt="SLCam" src="_images/slcam-small.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">SLCam.</span><a class="headerlink" href="#id1" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>The payload architecture is divided into two main subsystems: the image sensor module and the camera controller board. The imaging subsystem is based on the Arducam Mini 2MP Plus module, which integrates the OV2640 image sensor and onboard FIFO memory for image buffering. The controller board, built around the STM32F103C8T6 microcontroller, is responsible for image acquisition control, communication management, data storage, and system supervision. The module also includes external NOR Flash memory for image storage and supports both SPI and CAN interfaces for communication and image transfer.</p>
+<p>From the software perspective, the SLCam firmware is organized using a layered architecture based on FreeRTOS, separating low-level hardware abstraction, peripheral drivers, device management, and application tasks. The firmware also incorporates software validation mechanisms such as static analysis, unit testing, and hardware integration testing, contributing to the reliability and maintainability of the system. Automated verification workflows are executed through GitHub Actions, enabling continuous integration and validation of the firmware throughout the development process.</p>
+<p>Mechanically, the payload was designed as a compact and lightweight module suitable for constrained satellite platforms. The controller PCB uses a four-layer FR-4 stack-up and integrates all the required interfaces for programming, debugging, control, and data transfer. Together, the hardware, firmware, mechanical, and software components form a complete imaging payload platform intended for research, educational, and experimental space missions.</p>
+<section id="specifications">
+<h2>Specifications<a class="headerlink" href="#specifications" title="Permalink to this heading"></a></h2>
+<p>The SLCam is a compact imaging payload designed for nanosatellite and embedded applications. The module integrates the Arducam Mini 2MP Plus image sensor together with a dedicated controller board based on the STM32F103C8T6 ARM Cortex-M3 microcontroller operating at 72 MHz. The system also includes external NOR Flash memory for non-volatile image storage and supports multiple communication interfaces for control, debugging, and programming purposes.</p>
+<p>The main specifications of the SLCam module are available in <a class="reference internal" href="#tab-slcam-specs"><span class="std std-numref">Table 1</span></a>.</p>
+<span id="tab-slcam-specs"></span><table class="docutils align-center" id="id2" style="width: 60%">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">General specifications of the SLCam module.</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 50.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Parameter</strong></p></th>
+<th class="head"><p><strong>Value</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><em>Sensor type</em></p></td>
+<td><p>RGB</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Image Sensor</em></p></td>
+<td><p>OV2640</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Pixel size</em></p></td>
+<td><p>2.2 <span class="math notranslate nohighlight">\(\times\)</span> 2.2 <span class="math notranslate nohighlight">\(\mu\)</span> m</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Max. Resolution</em></p></td>
+<td><p>1600 <span class="math notranslate nohighlight">\(\times\)</span> 1200 px</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Shutter</em></p></td>
+<td><p>Rolling Shutter</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Field of View (FoV)</em></p></td>
+<td><p><span class="math notranslate nohighlight">\(68^{\circ}\)</span> (6 mm) (<strong>TBC</strong>)</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Processor</em></p></td>
+<td><p>STM32 ARM Cortex-M3</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Storage</em></p></td>
+<td><p>16 MB (Flash NOR)</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Power Supply</em></p></td>
+<td><p>3V3 &#64; 140 mA (<strong>TBC</strong>)</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Control/Data Interface</em></p></td>
+<td><p>SPI and/or CAN</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Debug Interface</em></p></td>
+<td><p>UART</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Programming</em></p></td>
+<td><p>JTAG</p></td>
+</tr>
+<tr class="row-even"><td><p><em>Operating System</em></p></td>
+<td><p>FreeRTOS</p></td>
+</tr>
+<tr class="row-odd"><td><p><em>Dimensions</em></p></td>
+<td><div class="line-block">
+<div class="line">54.0 <span class="math notranslate nohighlight">\(\times\)</span> 26.1 <span class="math notranslate nohighlight">\(\times\)</span> 34.1 mm (main core)</div>
+<div class="line">82.2 <span class="math notranslate nohighlight">\(\times\)</span> 34.8 <span class="math notranslate nohighlight">\(\times\)</span> 34.1 mm (envelope)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p><em>Weight</em></p></td>
+<td><p>67 g</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="product-tree">
+<h2>Product tree<a class="headerlink" href="#product-tree" title="Permalink to this heading"></a></h2>
+<p>The product tree of the SLCam payload can be divided into five branches: hardware, firmware, mechanical, software and documentation. A diagram of the product tree is available in <a class="reference internal" href="#fig-product-tree"><span class="std std-numref">Fig. 2</span></a>.</p>
+<figure class="align-center" id="id3">
+<span id="fig-product-tree"></span><a class="reference internal image-reference" href="_images/product-tree.png"><img alt="Product tree" src="_images/product-tree.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">Product tree of the SLCam Payload.</span><a class="headerlink" href="#id3" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>Each branch and element of the product tree are described in the next chapters of this documentation.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="SLCam" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="hardware.html" class="btn btn-neutral float-right" title="Hardware" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The SLCam Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

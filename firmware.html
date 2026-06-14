@@ -1,0 +1,254 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Firmware &mdash; SLCam Documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js?v=df8d88bb"></script>
+      <script src="_static/doctools.js?v=888ff710"></script>
+      <script src="_static/sphinx_highlight.js?v=4825356b"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Mechanical" href="mechanical.html" />
+    <link rel="prev" title="Hardware" href="hardware.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            slcam
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hardware.html">Hardware</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Firmware</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#product-tree">Product Tree</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#layers">Layers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#hardware-abstraction-layer-hal">Hardware Abstraction Layer (HAL)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drivers">Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#devices">Devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#system">System</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tasks">Tasks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rtos">RTOS</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#libraries">Libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#tests">Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="mechanical.html">Mechanical</a></li>
+<li class="toctree-l1"><a class="reference internal" href="interfaces.html">Interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usage.html">Usage Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">slcam</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Firmware</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/firmware.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="firmware">
+<h1>Firmware<a class="headerlink" href="#firmware" title="Permalink to this heading"></a></h1>
+<p>This chapter describes the main characteristics of the firmware part of the SLCam module.</p>
+<section id="product-tree">
+<h2>Product Tree<a class="headerlink" href="#product-tree" title="Permalink to this heading"></a></h2>
+<p>The product tree of the firmware part of the SLCam module is available in <a class="reference internal" href="#fig-product-tree-fw"><span class="std std-numref">Fig. 11</span></a>. This product tree follows the architecture of the firmware, being divided according to the firmware layers. Each box of the product tree represents a software module of the firmware.</p>
+<figure class="align-center" id="id5">
+<span id="fig-product-tree-fw"></span><a class="reference internal image-reference" href="_images/product-tree-fw.png"><img alt="Firmware product tree" src="_images/product-tree-fw.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 11 </span><span class="caption-text">Product tree of the firmware of the SLCam module.</span><a class="headerlink" href="#id5" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="layers">
+<h2>Layers<a class="headerlink" href="#layers" title="Permalink to this heading"></a></h2>
+<p>The proposed software architecture is organized into layered abstractions, separating hardware-dependent components from high-level application logic. At the lowest level, the Hardware layer represents the physical components of the embedded system, including the microcontroller, peripherals, and communication interfaces. Above it, the Hardware Abstraction Layer (HAL) provides standardized interfaces that isolate the upper software layers from platform-specific details, improving portability and maintainability.</p>
+<p>The Drivers layer implements low-level control and communication with hardware peripherals, while the Devices and System layers provide higher-level services, peripheral management, scheduling, timing, and operating system utilities. At the top of the architecture, the Tasks (Application) layer contains the application logic and device-specific functionalities. Additionally, the RTOS and Libraries layers act as cross-cutting components, providing task management, synchronization, reusable software modules, protocol stacks, and common utilities used throughout the system.</p>
+<p>In <a class="reference internal" href="#fig-system-layers"><span class="std std-numref">Fig. 12</span></a> there is a diagram illustrating this layer hierarchy.</p>
+<figure class="align-center" id="id6">
+<span id="fig-system-layers"></span><a class="reference internal image-reference" href="_images/system-layers.png"><img alt="System layers" src="_images/system-layers.png" style="width: 50%;" /></a>
+<figcaption>
+<p><span class="caption-number">Fig. 12 </span><span class="caption-text">Layers of the SLCam system.</span><a class="headerlink" href="#id6" title="Permalink to this image"></a></p>
+</figcaption>
+</figure>
+<p>In the next subsections, a brief description of each layer is presented.</p>
+<section id="hardware-abstraction-layer-hal">
+<h3>Hardware Abstraction Layer (HAL)<a class="headerlink" href="#hardware-abstraction-layer-hal" title="Permalink to this heading"></a></h3>
+<p>The HAL layer is the API libopencm3 developed STMicroelectronics; it includes register manipulating functions to accelerate development. The SLCam uses HAL to handle GPIO operations and serial communications such as SPI, UART, and <span class="math notranslate nohighlight">\(I^2C\)</span>.</p>
+</section>
+<section id="drivers">
+<h3>Drivers<a class="headerlink" href="#drivers" title="Permalink to this heading"></a></h3>
+<p>Driver Layer is created to have the flexibility of the HAL layer but contains only the necessary abstraction to be still generic enough to support all the functionalities needed in Devices or other Drivers modules.</p>
+</section>
+<section id="devices">
+<h3>Devices<a class="headerlink" href="#devices" title="Permalink to this heading"></a></h3>
+<p>In this level of abstraction, the devices are used to create specific configurations with the Drivers Layer to build functions used in the Tasks layer. In opposition to the Drivers layer, the Devices do not communicate between themselves and are only used inside Tasks.</p>
+</section>
+<section id="system">
+<h3>System<a class="headerlink" href="#system" title="Permalink to this heading"></a></h3>
+<p>The System layer is used for housekeeping and management routines; it contains the system log. Its executions occur in almost all the SLCam abstraction layers (except the Tests layer), mostly for log purposes.</p>
+</section>
+<section id="tasks">
+<h3>Tasks<a class="headerlink" href="#tasks" title="Permalink to this heading"></a></h3>
+<p>Tasks are the RTOS threads equivalent and are the uppermost abstraction layer of code inside the SLCam flow of execution. Each task is designated a priority level, initial delay, period, and stack size as shown in <a class="reference internal" href="#tab-firmware-tasks"><span class="std std-numref">Table 3</span></a>.</p>
+<span id="tab-firmware-tasks"></span><table class="docutils align-default" id="id7">
+<caption><span class="caption-number">Table 3 </span><span class="caption-text">List of SLCam Tasks with configuration parameters.</span><a class="headerlink" href="#id7" title="Permalink to this table"></a></caption>
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+<col style="width: 20.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>Name</strong></p></th>
+<th class="head"><p><strong>Priority</strong></p></th>
+<th class="head"><p><strong>Initial Delay [ms]</strong></p></th>
+<th class="head"><p><strong>Period [ms]</strong></p></th>
+<th class="head"><p><strong>Stack [bytes]</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Startup</p></td>
+<td><p>Highest</p></td>
+<td><p>0</p></td>
+<td><p>Aperiodic</p></td>
+<td><p>300</p></td>
+</tr>
+<tr class="row-odd"><td><p>Watchdog Reset</p></td>
+<td><p>Lowest</p></td>
+<td><p>0</p></td>
+<td><p>100</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-even"><td><p>Heartbeat</p></td>
+<td><p>Lowest</p></td>
+<td><p>2000</p></td>
+<td><p>500</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-odd"><td><p>System Reset</p></td>
+<td><p>Medium</p></td>
+<td><p>0</p></td>
+<td><p>3600000</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-even"><td><p>Time Control</p></td>
+<td><p>Medium</p></td>
+<td><p>1000</p></td>
+<td><p>1000</p></td>
+<td><p>150</p></td>
+</tr>
+<tr class="row-odd"><td><p>CSP Server</p></td>
+<td><p>TBD</p></td>
+<td><p>0</p></td>
+<td><p>TBC</p></td>
+<td><p>TBC</p></td>
+</tr>
+</tbody>
+</table>
+<p>Each of the tasks presented in <a class="reference internal" href="#tab-firmware-tasks"><span class="std std-numref">Table 3</span></a> is described below:</p>
+<ul class="simple">
+<li><p><strong>Startup</strong>: This task is the first executed task when the system starts. All devices, libraries, and data structures are initialized in this task. When the execution is done, the remaining tasks of the system are allowed to execute.</p></li>
+<li><p><strong>Watchdog Reset</strong>: This task resets the internal watchdog timer at every 100 ms. The internal watchdog has a maximum count time of 500 ms.</p></li>
+<li><p><strong>Heartbeat</strong>: The heartbeat task keeps blinking a LED at a rate of 1 Hz during the execution of the system. Its purpose is to give visual feedback on the execution of the scheduler. This task does not have a specific purpose on the flight version of the module (the flight version of the PCB does not have LEDs).</p></li>
+<li><p><strong>System Reset</strong>: This task resets the microcontroller by software every hour. This can be useful to clean up possible wrong values in variables, clean up the RAM, etc.</p></li>
+<li><p><strong>Time Control</strong>: This task is responsible for the time management of the system. At every second, it increments the system time (epoch). Also, it saves the current system time in the non-volatile memory every minute.</p></li>
+<li><p><strong>CSP Server</strong>: TODO.</p></li>
+</ul>
+</section>
+<section id="rtos">
+<h3>RTOS<a class="headerlink" href="#rtos" title="Permalink to this heading"></a></h3>
+<p>The SLCam uses FreeRTOS kernel <span id="id1">[<a class="reference internal" href="references.html#id3" title="Amazon Web Services, Inc. FreeRTOS - Real-time operating system for microcontrollers and small microprocessors. 2026. Available at &lt;https://www.freertos.org/&gt;.">4</a>]</span>. Using an RTOS-based kernel enables the system to regularly maintain routine functions such as housekeeping, sensor reading, checking for receptions, and dealing with specific delays used in hardware, such as the radio. The priority level of a task dictates who has the most preference for execution. Initial delay and period are used to determine the delay time to execute the task initialization after a boot; this regulates the time between the task executions. The stack is the amount of memory delimited to execute a task.</p>
+</section>
+<section id="libraries">
+<h3>Libraries<a class="headerlink" href="#libraries" title="Permalink to this heading"></a></h3>
+<p>The Libraries are used for algorithm purposes and are not related to any hardware. Their function removes the redundancy of creating multiple identical structures for different driver modules.</p>
+</section>
+</section>
+<section id="tests">
+<h2>Tests<a class="headerlink" href="#tests" title="Permalink to this heading"></a></h2>
+<p>The Tests segment of the SLCam firmware project is responsible for ensuring the reliability, safety, and correctness of the developed software throughout the entire development cycle. This module provides verification and validation mechanisms for both the Drivers and Devices layers, helping to detect implementation errors, interface inconsistencies, and hardware integration issues before deployment in the final embedded platform. The testing strategy is divided into three complementary levels: static analysis, unit testing, and hardware integration testing.</p>
+<p>The first level consists of static analysis tests, which are based on the MISRA C:2012 guidelines <span id="id2">[<a class="reference internal" href="references.html#id4" title="MISRA C:2012 - Guidelines for the use of the C language in critical systems. MIRA Limited, Watling Street, Nuneaton, Warwickshire - United Kingdom, 2013.">1</a>]</span>. These tests aim to enforce safe and predictable programming practices for embedded C applications, reducing the probability of undefined behavior, memory corruption, portability problems, and runtime failures. The project uses the Cppcheck static analysis tool <span id="id3">[<a class="reference internal" href="references.html#id7" title="The Cppcheck developers. Cppcheck - a tool for static c/c++ code analysis. 2026. Available at &lt;https://cppcheck.sourceforge.io/&gt;.">2</a>]</span> to automatically inspect the source code and verify compliance with MISRA recommendations and additional code quality rules. Static analysis is performed without executing the firmware, allowing the detection of issues related to type safety, pointer usage, control flow, resource management, and software maintainability at early development stages. This process significantly contributes to improving software robustness and facilitating long-term maintenance of the firmware.</p>
+<p>The second level is composed of unit tests, implemented using the Cmocka framework <span id="id4">[<a class="reference internal" href="references.html#id6" title="Andreas Schneider. Cmocka. 2026. Available at &lt;https://cmocka.org/&gt;.">3</a>]</span>. In this stage, each software module is tested individually in isolation from the hardware platform. Hardware-dependent interfaces are replaced by mockups, allowing the validation of algorithms, state machines, communication protocols, and internal logic without requiring the physical embedded system. This approach enables deterministic and repeatable tests, simplifies debugging, and accelerates the development process by allowing early detection of software defects during implementation.</p>
+<p>Finally, the project includes hardware integration tests, which validate the interaction between the firmware and the real embedded hardware. These tests verify the correct operation of peripheral interfaces, external devices, timing constraints, and communication buses under real execution conditions. Integration testing is particularly important for confirming that the low-level drivers and device abstractions operate correctly with the target hardware, ensuring proper synchronization between software and physical components.</p>
+<p>To improve development workflow reliability and enforce continuous software validation, the project integrates automated testing pipelines directly into the GitHub repository through GitHub Actions. Both the static analysis procedures using Cppcheck and the unit tests based on Cmocka are automatically executed for every commit and merge request submitted to the repository. This continuous integration approach allows developers to identify regressions and software defects immediately after code modifications, ensuring that new contributions do not compromise code quality, MISRA compliance, or existing functionalities. The automation of these verification stages also contributes to standardizing the development process and improving the overall maintainability and dependability of the SLCam firmware project.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="hardware.html" class="btn btn-neutral float-left" title="Hardware" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="mechanical.html" class="btn btn-neutral float-right" title="Mechanical" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright The SLCam Contributors.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
