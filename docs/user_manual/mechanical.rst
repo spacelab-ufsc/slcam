@@ -31,6 +31,17 @@ The optical interface is located on the upper surface of the enclosure, where a 
 
 The enclosure was manufactured from 7075 aluminum alloy using a CNC milling process. This material was selected due to its high mechanical strength, low density, and suitability for aerospace and embedded applications. After machining, all external and internal surfaces of the enclosure received an anodization treatment to improve corrosion resistance, surface hardness, and long-term durability.
 
-The SLCam module has compact dimensions suitable for CubeSat-class payloads. The dimensions of the main structural core are 54.0 :math:`\times` 26.1 :math:`\times` 34.1 mm, while the overall envelope dimensions are 82.2 :math:`\times` 34.8 :math:`\times` 34.1 mm. The total mass of the module is approximately 67 g, including the enclosure, electronics, fasteners, and optical assembly.
+The SLCam module has compact dimensions suitable for CubeSat-class payloads. The dimensions of the main structural core are 54.0 :math:`\times` 24.0 :math:`\times` 34.0 mm, while the overall envelope dimensions are 82.4 :math:`\times` 34.8 :math:`\times` 34.0 mm. The total mass of the module is approximately 67 g, including the enclosure, electronics, fasteners, and optical assembly.
+
+The external dimensions of the SLCam enclosure are detailed in :numref:`fig:case-dimensions`. The drawing provides the overall dimensions of the mechanical assembly, including the mounting flanges, fastening holes, optical aperture location, and connector opening. These dimensions shall be used as the primary mechanical reference for payload integration, accommodation studies, and the design of satellite mounting structures.
+
+.. _fig:case-dimensions:
+
+.. figure:: img/case-dimensions.jpg
+   :width: 100%
+   :align: center
+   :alt: SLCam case dimensions
+
+   Dimensions of the mechanical case.
 
 For structural integration into the satellite platform, the mechanical case includes mounting holes compatible with M3 screws, allowing secure attachment to the spacecraft structure. The positions and spacing of these mounting interfaces are described in the following sections.
