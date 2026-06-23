@@ -68,6 +68,111 @@ int ov2640_read_reg(uint8_t adr, uint8_t *val);
  */
 int ov2640_write_reg(uint8_t adr, uint8_t val);
 
+/**
+ * \brief .
+ *
+ * \return The status/error code.
+ */
+int ov2640_flush_fifo(void);
+
+/**
+ * \brief .
+ *
+ * \return The status/error code.
+ */
+int ov2640_start_capture(void);
+
+/**
+ * \brief .
+ *
+ * \return The status/error code.
+ */
+int ov2640_clear_fifo_flag(void);
+
+/**
+ * \brief .
+ *
+ * \return The status/error code.
+ */
+int ov2640_read_fifo_lentgh(void);
+
+/**
+ * \brief .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_fifo_burst(void);
+
+/**
+ * \brief .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_mode(void);
+
+/**
+ * \brief .
+ *
+ * \param[in] format .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_format(ov2640_format_t format);
+
+/**
+ * \brief .
+ *
+ * \param[in] res .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_resolution(ov2640_resolution_t res);
+
+/**
+ * \brief .
+ *
+ * \param[in] lm .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_light_mode(ov2640_light_mode_t lm);
+
+/**
+ * \brief .
+ *
+ * \param[in] cs .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_color_saturation(ov2640_color_sat_t cs);
+
+/**
+ * \brief .
+ *
+ * \param[in] br .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_brightness(ov2640_brightness_t br);
+
+/**
+ * \brief .
+ *
+ * \param[in] cont .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_contrast(ov2640_contrast_t cont);
+
+/**
+ * \brief .
+ *
+ * \param[in] effects .
+ *
+ * \return The status/error code.
+ */
+int ov2640_set_special_effects(ov2640_effects_t effects);
+
 #endif /* OV2640_H_ */
 
 /** \} End of ov2640 group */

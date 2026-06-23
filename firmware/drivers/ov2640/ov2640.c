@@ -50,4 +50,69 @@ int ov2640_write_reg(uint8_t adr, uint8_t val)
     return -1;
 }
 
+int ov2640_flush_fifo(void)
+{
+    return -1;
+}
+
+int ov2640_start_capture(void)
+{
+    return -1;
+}
+
+int ov2640_clear_fifo_flag(void)
+{
+    return -1;
+}
+
+int ov2640_read_fifo_lentgh(void)
+{
+    return -1;
+}
+
+int ov2640_set_fifo_burst(void)
+{
+    return -1;
+}
+
+int ov2640_set_mode(void)
+{
+    return -1;
+}
+
+int ov2640_set_format(ov2640_format_t format)
+{
+    return -1;
+}
+
+int ov2640_set_resolution(ov2640_resolution_t res)
+{
+    return -1;
+}
+
+int ov2640_set_light_mode(ov2640_light_mode_t lm)
+{
+    return -1;
+}
+
+int ov2640_set_color_saturation(ov2640_color_sat_t cs)
+{
+    return -1;
+}
+
+int ov2640_set_brightness(ov2640_brightness_t br)
+{
+    return -1;
+}
+
+int ov2640_set_contrast(ov2640_contrast_t cont)
+{
+    return -1;
+}
+
+int ov2640_set_special_effects(ov2640_effects_t effects)
+{
+    return -1;
+}
+
 /** \} End of ov2640 group */
