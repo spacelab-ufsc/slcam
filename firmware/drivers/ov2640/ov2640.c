@@ -87,12 +87,90 @@ int ov2640_set_format(ov2640_format_t format)
 
 int ov2640_set_resolution(ov2640_resolution_t res)
 {
-    return -1;
+    switch(res)
+    {
+        case OV2640_RES_160X120:
+
+            break;
+        case OV2640_RES_176X144:
+
+            break;
+        case OV2640_RES_320X240:
+
+            break;
+        case OV2640_RES_352X288:
+
+            break;
+        case OV2640_RES_640X480:
+
+            break;
+        case OV2640_RES_800X600:
+
+            break;
+        case OV2640_RES_1024X768:
+
+            break;
+        case OV2640_RES_1280X1024:
+
+            break;
+        case OV2640_RES_1600X1200:
+
+            break;
+        default:
+            break;
+    }
+
+    return err;
 }
 
 int ov2640_set_light_mode(ov2640_light_mode_t lm)
 {
-    return -1;
+    int err = 0;
+
+    switch(lm)
+    {
+        case OV2640_LIGHT_MODE_AUTO:
+            ov2640_write_reg(0xff, 0x00);
+            ov2640_write_reg(0xc7, 0x00);   /* AWB on */
+            break;
+        case OV2640_LIGHT_MODE_SUNNY
+            ov2640_write_reg(0xff, 0x00);
+            ov2640_write_reg(0xc7, 0x40);   /* AWB off */
+            ov2640_write_reg(0xcc, 0x5e);
+            ov2640_write_reg(0xcd, 0x41);
+            ov2640_write_reg(0xce, 0x54);
+            break;
+        case OV2640_LIGHT_MODE_CLOUDY:
+            ov2640_write_reg(0xff, 0x00);
+            ov2640_write_reg(0xc7, 0x40);   /* AWB off */
+            ov2640_write_reg(0xcc, 0x65);
+            ov2640_write_reg(0xcd, 0x41);
+            ov2640_write_reg(0xce, 0x4f);
+            break;
+        case OV2640_LIGHT_MODE_OFFICE:
+            ov2640_write_reg(0xff, 0x00);
+            ov2640_write_reg(0xc7, 0x40);   /* AWB off */
+            ov2640_write_reg(0xcc, 0x52);
+            ov2640_write_reg(0xcd, 0x41);
+            ov2640_write_reg(0xce, 0x66);
+            break;
+        case OV2640_LIGHT_MODE_HOME:
+            ov2640_write_reg(0xff, 0x00);
+            ov2640_write_reg(0xc7, 0x40);   /* AWB off */
+            ov2640_write_reg(0xcc, 0x42);
+            ov2640_write_reg(0xcd, 0x3f);
+            ov2640_write_reg(0xce, 0x71);
+            break;
+        default:
+            err = -1;
+
+            ov2640_write_reg(0xff, 0x00);
+            ov2640_write_reg(0xc7, 0x00);   /* AWB on */
+
+            break;
+    }
+
+    return err;
 }
 
 int ov2640_set_color_saturation(ov2640_color_sat_t cs)

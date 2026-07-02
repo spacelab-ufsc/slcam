@@ -40,6 +40,43 @@
 #include <stdint.h>
 
 /**
+ * \brief Resolution options.
+ */
+typedef enum
+{
+    OV2640_RES_160X120=0,   /**< 160x120 px. */
+    OV2640_RES_176X144,     /**< 176x144 px. */
+    OV2640_RES_320X240,     /**< 320x240 px. */
+    OV2640_RES_352X288,     /**< 352x288 px. */
+    OV2640_RES_640X480,     /**< 640x480 px. */
+    OV2640_RES_800X600,     /**< 800x600 px. */
+    OV2640_RES_1024X768,    /**< 1024x768 px. */
+    OV2640_RES_1280X1024,   /**< 1280x1024 px. */
+    OV2640_RES_1600X1200    /**< 1600x1200 px. */
+} ov2640_resolution_t;
+
+/**
+ * \brief Light mode options.
+ */
+typedef enum
+{
+    OV2640_LIGHT_MODE_AUTO=0,   /**< Auto. */
+    OV2640_LIGHT_MODE_SUNNY,    /**< Sunny. */
+    OV2640_LIGHT_MODE_CLOUDY,   /**< Cloudy. */
+    OV2640_LIGHT_MODE_OFFICE,   /**< Office. */
+    OV2640_LIGHT_MODE_HOME      /**< Home. */
+} ov2640_light_mode_t;
+
+/**
+ * \brief Register value.
+ */
+typedef struct
+{
+    uint16_t adr;           /**< Address. */
+    uint16_t val;           /**< Value. */
+} ov2640_reg_t;
+
+/**
  * \brief OV2640 initialization routine.
  *
  * \return The status/error code.
@@ -67,6 +104,15 @@ int ov2640_read_reg(uint8_t adr, uint8_t *val);
  * \return The status/error code.
  */
 int ov2640_write_reg(uint8_t adr, uint8_t val);
+
+/**
+ * \brief .
+ *
+ * \param[in] .
+ *
+ * \return The status/error code.
+ */
+int ov2640_write_regs(const struct ov2640_reg_t reglist[]);
 
 /**
  * \brief .
@@ -120,18 +166,38 @@ int ov2640_set_mode(void);
 int ov2640_set_format(ov2640_format_t format);
 
 /**
- * \brief .
+ * \brief Sets the resolution of incomming frames.
  *
- * \param[in] res .
+ * \param[in] res is the resolution of frames. It can be:
+ * \parblock
+ *     -\b OV2640_RES_160X120
+ *     -\b OV2640_RES_176X144
+ *     -\b OV2640_RES_320X240
+ *     -\b OV2640_RES_352X288
+ *     -\b OV2640_RES_640X480
+ *     -\b OV2640_RES_800X600
+ *     -\b OV2640_RES_1024X768
+ *     -\b OV2640_RES_1280X1024
+ *     -\b OV2640_RES_1600X1200
+ *     .
+ * \endparblock
  *
  * \return The status/error code.
  */
 int ov2640_set_resolution(ov2640_resolution_t res);
 
 /**
- * \brief .
+ * \brief Sets the light mode of the sensor.
  *
- * \param[in] lm .
+ * \param[in] lm is the light mode. It can be:
+ * \parblock
+ *     -\b OV2640_LIGHT_MODE_AUTO
+ *     -\b OV2640_LIGHT_MODE_SUNNY
+ *     -\b OV2640_LIGHT_MODE_CLOUDY
+ *     -\b OV2640_LIGHT_MODE_OFFICE
+ *     -\b OV2640_LIGHT_MODE_HOME
+ *     .
+ * \endparblock
  *
  * \return The status/error code.
  */
