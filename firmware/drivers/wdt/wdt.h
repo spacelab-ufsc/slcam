@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * uart.h
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,28 +21,46 @@
  */
 
 /**
- * \brief Drivers definition.
+ * \brief Internal Watchdog driver definition.
  * 
+ * \author Pedro Ferrari Barbosa <pedro.ferraribarbosa2007@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.10
+ * \version 0.2.1
  * 
- * \date 2022/07/10
+ * \date 2026/08/21
  * 
- * \defgroup drivers Drivers
+ * \defgroup wdt WDT
+ * \ingroup drivers
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#ifndef WDT_H_
+#define WDT_H_
 
-#include "can/can.h"
-#include "ov2640/ov2640.h"
-#include "uart/uart.h"
-#include "w25qxx/src/driver_w25qxx.h"
-#include "spi/spi.h"
-#include "wdt/wdt.h"
+#include <hal/include/libopencm3/stm32/rcc.h>
+#include <hal/include/libopencm3/stm32/iwdg.h>
 
-#endif /* DRIVERS_H_ */
+#include <stdint.h>
 
-/** \} End of drivers group */
+#define WDT_MODULE_NAME             "WDT"
+
+/**
+ * \brief Watchdog period in miliseconds.
+ */
+#define DEFAULT_WTD_PERIOD_MS 500
+
+/**
+ * \brief Watchdog configuration.
+ */
+typedef struct
+{
+    uint64_t clk_period_ms; 
+} wdt_config_t;
+
+void wdt_init(wdt_config_t config);
+void wdt_reset(void);
+
+#endif /* WDT_H_ */
+
+/** \} End of wdt group */
