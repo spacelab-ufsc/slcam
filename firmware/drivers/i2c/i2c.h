@@ -1,7 +1,7 @@
 /*
  * i2c.h
  * 
- * Copyright (C) 2021, SpaceLab.
+ * Copyright The SLCam Contributors.
  * 
  * This file is part of SLCam.
  * 
