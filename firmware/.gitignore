@@ -4,9 +4,15 @@
 # ctags files
 tags
 
+# generated files
+../ac
+
 # CppCheck files
 *.ctu-info
 cppcheck-addon-ctu-file-list
+
+# vscode
+.vscode/
 
 # Compilation Files
 *.o
