@@ -5,7 +5,7 @@
 tags
 
 # generated files
-../ac
+tests/ac
 
 # CppCheck files
 *.ctu-info
