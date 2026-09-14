@@ -61,8 +61,8 @@ typedef struct
 /**
  * \brief initiates the internal watchdog timer
  *
- * \param config configuration struct that defines some functionality of the
- * instantiated watchdog
+ * \param config configuration struct that defines the functionality of the
+ * internal watchdog
  *
  * \return void
  */
