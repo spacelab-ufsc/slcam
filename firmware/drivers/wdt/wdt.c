@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * wdt.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,28 +21,38 @@
  */
 
 /**
- * \brief Drivers definition.
+ * \brief Internal watchdog timer driver implementation.
  * 
+ * \author Pedro Ferrari Barbosa <pedro.ferraribarbosa2007@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.10
+ * \version 0.8.8
  * 
- * \date 2022/07/10
+ * \date 2026/08/21
  * 
- * \defgroup drivers Drivers
+ * \addtogroup wdt
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include <config/config.h>
+#include <system/sys_log/sys_log.h>
 
-#include "can/can.h"
-#include "ov2640/ov2640.h"
-#include "uart/uart.h"
-#include "w25qxx/src/driver_w25qxx.h"
-#include "spi/spi.h"
-#include "wdt/wdt.h"
+#include "wdt.h"
 
-#endif /* DRIVERS_H_ */
+void wdt_init(wdt_config_t config)
+{
+    iwdg_set_period_ms(config.clk_period_ms);
+    iwdg_start();
 
-/** \} End of drivers group */
+#if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
+    sys_log_print_event_from_module(SYS_LOG_INFO, WDT_MODULE_NAME, "Internal Watchdog Timer Initialized!");
+    sys_log_new_line();
+#endif /* CONFIG_DRIVERS_DEBUG_ENABLED */          
+}
+
+void wdt_reset(void)
+{
+    iwdg_reset();
+}
+
+/** \} End of wdt group */
