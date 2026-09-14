@@ -1,5 +1,5 @@
 /*
- * uart.h
+ * wdt.h
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -48,7 +48,7 @@
 /**
  * \brief Watchdog period in miliseconds.
  */
-#define DEFAULT_WTD_PERIOD_MS 500
+#define WTD_DEFAULT_PERIOD_MS 500
 
 /**
  * \brief Watchdog configuration.
@@ -58,7 +58,24 @@ typedef struct
     uint64_t clk_period_ms; 
 } wdt_config_t;
 
+/**
+ * \brief initiates the internal watchdog timer
+ *
+ * \param config configuration struct that defines some functionality of the
+ * instantiated watchdog
+ *
+ * \return void
+ */
 void wdt_init(wdt_config_t config);
+
+/**
+ * \brief resets the watchdog timer
+ *
+ * \param void
+ *
+ * \return void
+ */
+
 void wdt_reset(void);
 
 #endif /* WDT_H_ */
