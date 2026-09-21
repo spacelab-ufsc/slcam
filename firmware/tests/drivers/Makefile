@@ -1,4 +1,5 @@
 TARGET_I2C	=	i2c_unit_test
+TARGET_SPI	=	spi_unit_test
 
 
 ifndef BUILD_DIR
@@ -18,7 +19,7 @@ CFLAGS = -fpic -std=c99 -Wall -pedantic \
          -I../../tests/freertos_sim \
          -I../../hal/include
 
-LDFLAGS = \
+I2C_LDFLAGS = \
     -Wl,--wrap=rcc_periph_clock_enable \
     -Wl,--wrap=i2c_peripheral_disable \
     -Wl,--wrap=gpio_set_mode \
@@ -29,9 +30,12 @@ LDFLAGS = \
     -Wl,--wrap=i2c_peripheral_enable \
 	-Wl,--wrap=i2c_transfer7
 
+# SPI_LDFLAGS = \
+    -Wl,--wrap=WRAP \
+
 .PHONY: all
 .PHONY: all
-all: i2c_test
+all: i2c_test spi_test
 
 .PHONY: i2c_test
 i2c_test: $(BUILD_DIR)/i2c.o \
@@ -39,7 +43,10 @@ i2c_test: $(BUILD_DIR)/i2c.o \
           $(BUILD_DIR)/hal_gpio_wrap.o \
           $(BUILD_DIR)/hal_i2c_wrap.o \
           $(BUILD_DIR)/hal_rcc_wrap.o
-	$(CC) $(LDFLAGS) $^ -lcmocka -o $(BUILD_DIR)/$(TARGET_I2C)
+	$(CC) $(I2C_LDFLAGS) $^ -lcmocka -o $(BUILD_DIR)/$(TARGET_I2C)
+
+spi_test: $(BUILD_DIR)/spi_test.o 
+	$(CC) $^ -lcmocka -o $(BUILD_DIR)/$(TARGET_SPI)
 
 #Drivers
 $(BUILD_DIR)/i2c.o: ../../drivers/i2c/i2c.c
@@ -47,6 +54,9 @@ $(BUILD_DIR)/i2c.o: ../../drivers/i2c/i2c.c
 
 #Tests
 $(BUILD_DIR)/i2c_test.o: i2c_test.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(BUILD_DIR)/spi_test.o: spi_test.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
 
@@ -62,4 +72,6 @@ $(BUILD_DIR)/hal_rcc_wrap.o: ../mockups/hal/hal_rcc_wrap.c
 
 .PHONY: clean
 clean:
-	rm $(BUILD_DIR)/$(TARGET_I2C) $(BUILD_DIR)/*.o
+	rm -f $(BUILD_DIR)/$(TARGET_I2C) \
+	      $(BUILD_DIR)/$(TARGET_SPI) \
+	      $(BUILD_DIR)/*.o

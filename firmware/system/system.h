@@ -36,6 +36,8 @@
 #ifndef SYSTEM_H_
 #define SYSTEM_H_
 
+#define SYSTEM_CLOCK_FREQ_HZ (72000000)
+
 /**
  * \brief System clocks initialization.
  *

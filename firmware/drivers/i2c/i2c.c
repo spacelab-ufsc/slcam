@@ -95,11 +95,7 @@ int i2c_init(i2c_port_t port, i2c_config_t config){
 
         if(err == 0){
             /*initially disable the peripheral so it can be configured*/
-            i2c_peripheral_disable(I2C1);
-
-            /*reset the 'under reset' bit*/
-            I2C_CR1(base_address) |= I2C_CR1_SWRST;
-            I2C_CR1(base_address) &= ~I2C_CR1_SWRST;
+            i2c_peripheral_disable(base_address);
 
             i2c_set_clock_frequency(base_address, config.clock_freq_mhz);
             i2c_set_speed(base_address, config.speed_hz, config.clock_freq_mhz);

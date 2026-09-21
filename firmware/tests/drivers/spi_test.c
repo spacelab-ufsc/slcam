@@ -51,43 +51,52 @@
 
 i2c_config_t config = {0};
 
-static void i2c_init_test(void** state){
-    (void)state;
-
-    assert_return_code(i2c_init(I2C_PORT_0, config), 0);
+static void spi_init_test(void** state){
+    return -1;
 }
 
-static void i2c_write_test(void** state){
-    (void)state;
-
-    uint8_t data[7] = {13, 21, 44, 202, 55, 224, 3};
-    uint16_t len = 7;
-
-    assert_return_code(i2c_write(I2C_PORT_0, SLAVE_ADDR, data, len), 0);
+static void spi_select_slave_test(void** state){
+    return -1;
 }
 
-static void i2c_read_test(void** state){
-    (void)state;
+static void spi_configure_test(void** state){
+    return -1;
+}
 
-    uint8_t data[7] = {0};
-    uint8_t not_expected[7] = {0};
+static void spi_write_test(void** state){
+    return -1;
+}
 
-    uint16_t len = 7;
+static void spi_write_only_test(void** state){
+    return -1;
+}
 
-    assert_return_code(i2c_read(I2C_PORT_0, SLAVE_ADDR, data, len), 0);
-    assert_memory_not_equal(data, not_expected, len);
+static void spi_read_test(void** state){
+    return -1;
+}
+
+static void spi_read_only_test(void** state){
+    return -1;
+}
+
+static void spi_transfer_test(void** state){
+    return -1;
 }
 
 int main(void)
 {
-    config.clock_freq_mhz = 42;
-    config.speed_hz = i2c_speed_fm_400k;
-
-    const struct CMUnitTest i2c_tests[] = {
-        cmocka_unit_test(i2c_init_test),
-        cmocka_unit_test(i2c_write_test),
-        cmocka_unit_test(i2c_read_test),
+    const struct CMUnitTest spi_tests[] = {
+        cmocka_unit_test(spi_init_test),
+        cmocka_unit_test(spi_select_slave_test),
+        cmocka_unit_test(spi_configure_test),
+        cmocka_unit_test(spi_write_test),
+        cmocka_unit_test(spi_write_only_test),
+        cmocka_unit_test(spi_read_test),
+        cmocka_unit_test(spi_read_only_test),
+        cmocka_unit_test(spi_transfer_test)     
     };
 
-    return cmocka_run_group_tests(i2c_tests, NULL, NULL);
+    return cmocka_run_group_tests(spi_tests, NULL, NULL);
 }
+/** \} End of i2c_unit_test group */
+
