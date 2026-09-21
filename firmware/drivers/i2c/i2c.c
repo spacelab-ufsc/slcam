@@ -64,11 +64,9 @@ int i2c_init(i2c_port_t port, i2c_config_t config){
     {
         uint32_t base_address = UINT32_MAX;
 
-        // in both port cases, SDA and SCL will be on port B
+        /*in both port cases, SDA and SCL will be on port B*/
         rcc_periph_clock_enable(RCC_GPIOB);
 
-        // initially disable the peripheral so it can be configured
-        i2c_peripheral_disable(I2C1);
 
         switch(port)
         {
@@ -96,6 +94,13 @@ int i2c_init(i2c_port_t port, i2c_config_t config){
         }
 
         if(err == 0){
+            /*initially disable the peripheral so it can be configured*/
+            i2c_peripheral_disable(I2C1);
+
+            /*reset the 'under reset' bit*/
+            I2C_CR1(base_address) |= I2C_CR1_SWRST;
+            I2C_CR1(base_address) &= ~I2C_CR1_SWRST;
+
             i2c_set_clock_frequency(base_address, config.clock_freq_mhz);
             i2c_set_speed(base_address, config.speed_hz, config.clock_freq_mhz);
             i2c_set_own_7bit_slave_address(base_address, I2C_SLAVE_OWN_7BIT_ADDR);
