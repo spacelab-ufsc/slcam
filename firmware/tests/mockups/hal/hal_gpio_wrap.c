@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * can_wrap.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,28 +21,31 @@
  */
 
 /**
- * \brief Drivers definition.
+ * \brief GPIO wrap implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.10
+ * \version 0.2.2
  * 
- * \date 2022/07/10
+ * \date 2023/07/28
  * 
- * \defgroup drivers Drivers
+ * \addtogroup can_wrap
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <setjmp.h>
+#include <float.h>
+#include <cmocka.h>
 
-#include "can/can.h"
-#include "ov2640/ov2640.h"
-#include "uart/uart.h"
-#include "w25qxx/src/driver_w25qxx.h"
-#include "spi/spi.h"
-#include "i2c/i2c.h"
+#include "hal_gpio_wrap.h"
 
-#endif /* DRIVERS_H_ */
+void __wrap_gpio_set_mode(uint32_t gpioport, uint8_t mode, uint8_t cnf, uint16_t gpios){
+    return;
+}
 
-/** \} End of drivers group */
+
+/** \} End of can_wrap group */

@@ -4,9 +4,16 @@
 # ctags files
 tags
 
+# generated files
+tests/ac
+i2c_unit_test
+
 # CppCheck files
 *.ctu-info
 cppcheck-addon-ctu-file-list
+
+# vscode
+.vscode/
 
 # Compilation Files
 *.o

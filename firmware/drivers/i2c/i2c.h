@@ -23,43 +23,40 @@
 /**
  * \brief I2C driver definition.
  * 
+ * \author Pedro Ferrari Barbosa <pedro.ferraribarbosa2007@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
  * \version 0.7.41
  * 
- * \date 2019/12/07
+ * \date 2026/08/27
  * 
  * \defgroup i2c I2C
  * \ingroup drivers
  * \{
  */
 
+
 #ifndef I2C_H_
 #define I2C_H_
 
 #include <stdint.h>
+#include <libopencm3/cm3/memorymap.h>
+#include <libopencm3/stm32/i2c.h>
 
 #define I2C_MODULE_NAME         "I2C"
 
-#define I2C_SLAVE_TIMEOUT       10000U
+#define I2C_SLAVE_OWN_7BIT_ADDR      (0x00)
 
-/**
- * \brief I2C ports.
- */
 typedef enum
 {
     I2C_PORT_0=0,       /**< I2C port 0. */
     I2C_PORT_1,         /**< I2C port 1. */
-    I2C_PORT_2          /**< I2C port 2. */
 } i2c_port_t;
 
-/**
- * \brief I2C bus configuration parameters.
- */
-typedef struct
-{
-    uint32_t speed_hz;  /**< Transfer rate in bps (available values: 100 or 400 kbps). */
-} i2c_config_t;
+typedef struct{
+    uint32_t speed_hz;  /**< Transfer rate in bps (choose between 100k, 400k and 1m)*/
+    uint32_t clock_freq_mhz;   /**< clock frequency in MHz*/
+}i2c_config_t;
 
 /**
  * \brief I2C slave 7-bit address.
@@ -73,7 +70,6 @@ typedef uint8_t i2c_slave_adr_t;
  * \parblock
  *      -\b I2C_PORT_0
  *      -\b I2C_PORT_1
- *      -\b I2C_PORT_2
  * \endparblock
  *
  * \param[in] config is the configuration of the I2C port.
@@ -89,7 +85,6 @@ int i2c_init(i2c_port_t port, i2c_config_t config);
  * \parblock
  *      -\b I2C_PORT_0
  *      -\b I2C_PORT_1
- *      -\b I2C_PORT_2
  * \endparblock
  *
  * \param[in] adr is the 7-bit slave address to write.
@@ -109,7 +104,6 @@ int i2c_write(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
  * \parblock
  *      -\b I2C_PORT_0
  *      -\b I2C_PORT_1
- *      -\b I2C_PORT_2
  * \endparblock
  *
  * \param[in] adr is the 7-bit slave address to read.
@@ -122,6 +116,5 @@ int i2c_write(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len)
  */
 int i2c_read(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
 
-#endif /* I2C_H_ */
 
-/** \} End of i2c group */
+#endif // I2C_H_

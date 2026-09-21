@@ -1,5 +1,5 @@
 /*
- * drivers.h
+ * hal_rcc_wrap.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,28 +21,30 @@
  */
 
 /**
- * \brief Drivers definition.
+ * \brief HAL I2C wrap implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.10
+ * \version 0.2.2
  * 
- * \date 2022/07/10
+ * \date 2023/07/28
  * 
- * \defgroup drivers Drivers
+ * \addtogroup can_wrap
  * \{
  */
 
-#ifndef DRIVERS_H_
-#define DRIVERS_H_
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <setjmp.h>
+#include <float.h>
+#include <cmocka.h>
 
-#include "can/can.h"
-#include "ov2640/ov2640.h"
-#include "uart/uart.h"
-#include "w25qxx/src/driver_w25qxx.h"
-#include "spi/spi.h"
-#include "i2c/i2c.h"
+#include "hal_rcc_wrap.h"
 
-#endif /* DRIVERS_H_ */
+void __wrap_rcc_periph_clock_enable(enum rcc_periph_clken clken){
+    return;
+}
 
-/** \} End of drivers group */
+/** \} End of hal_i2c_wrap group */
