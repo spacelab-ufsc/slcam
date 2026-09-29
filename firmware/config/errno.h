@@ -45,7 +45,7 @@
 */
 #define ERROR_LIST \
   /*no error ocurred*/ \
-  X(ERRNO_SUCCESS) \
+  X(ERROR_SUCCESS) \
   /*driver level errors*/ \
   X(ERROR_DRIVER_NO_PORT) \
   X(ERROR_DRIVER_NO_PARAMETER) \
