@@ -63,11 +63,6 @@
   X(ERRNO_MISC_TIMEOUT) \
 
 /*
- * \brief retrieve error code as string
- */
-#define ERROR_AS_STRING(error) (#error)
-
-/*
  * \brief error enum type
  */
 typedef enum error_t{
@@ -76,6 +71,19 @@ typedef enum error_t{
 #undef X /*avoid global namespace pollution*/
 }error_t;
 
-#endif /*ERRNO_H */
+/*
+ * \brief returns error as its string representation
+ */
+static const char *error_as_string(error_t error)
+{
+    switch (error) {
+#define X(error) case error: return #error;
+        ERROR_LIST
+#undef X
+    }
 
+    return "ERRNO_FAILED_STRING_CONVERSION";
+}
+
+#endif /*ERRNO_H */
 /** \} End of errno group */
