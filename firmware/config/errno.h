@@ -58,9 +58,9 @@
   /*miscellaneous errors*/ \
   X(ERROR_MISC_INVALID_ARG) \
   X(ERROR_MISC_FAILED_ALLOC) \
-  X(ERRNO_MISC_UNSUPPORTED_OP) \
-  X(ERRNO_MISC_UNKNOWN) \
-  X(ERRNO_MISC_TIMEOUT) \
+  X(ERROR_MISC_UNSUPPORTED_OP) \
+  X(ERROR_MISC_UNKNOWN) \
+  X(ERROR_MISC_TIMEOUT) \
 
 /*
  * \brief error enum type
@@ -82,7 +82,7 @@ static const char *error_as_string(error_t error)
 #undef X
     }
 
-    return "ERRNO_FAILED_STRING_CONVERSION";
+    return "ERROR_FAILED_STRING_CONVERSION";
 }
 
 #endif /*ERRNO_H */
