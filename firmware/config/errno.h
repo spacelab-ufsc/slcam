@@ -45,7 +45,7 @@
 */
 #define ERROR_LIST \
   /*no error ocurred*/ \
-  X(ERRNO_SUCCESS) \
+  X(ERROR_SUCCESS) \
   /*driver level errors*/ \
   X(ERROR_DRIVER_NO_PORT) \
   X(ERROR_DRIVER_NO_PARAMETER) \
@@ -58,9 +58,9 @@
   /*miscellaneous errors*/ \
   X(ERROR_MISC_INVALID_ARG) \
   X(ERROR_MISC_FAILED_ALLOC) \
-  X(ERRNO_MISC_UNSUPPORTED_OP) \
-  X(ERRNO_MISC_UNKNOWN) \
-  X(ERRNO_MISC_TIMEOUT) \
+  X(ERROR_MISC_UNSUPPORTED_OP) \
+  X(ERROR_MISC_UNKNOWN) \
+  X(ERROR_MISC_TIMEOUT) \
 
 /*
  * \brief error enum type
@@ -69,6 +69,8 @@ typedef enum error_t{
 #define X(error) error, 
   ERROR_LIST
 #undef X /*avoid global namespace pollution*/
+
+  ERROR_LIST_LENGTH
 }error_t;
 
 /*
@@ -80,9 +82,10 @@ static const char *error_as_string(error_t error)
 #define X(error) case error: return #error;
         ERROR_LIST
 #undef X
+      case ERROR_LIST_LENGTH: return "ERROR_LIST_LENGTH";
     }
 
-    return "ERRNO_FAILED_STRING_CONVERSION";
+    return "ERROR_FAILED_STRING_CONVERSION";
 }
 
 #endif /*ERRNO_H */
