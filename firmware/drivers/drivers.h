@@ -42,6 +42,7 @@
 #include "w25qxx/src/driver_w25qxx.h"
 #include "spi/spi.h"
 #include "wdt/wdt.h"
+#include "i2c/i2c.h"
 
 #endif /* DRIVERS_H_ */
 

@@ -1,5 +1,5 @@
 /*
- * system.h
+ * can_wrap.c
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,30 +21,31 @@
  */
 
 /**
- * \brief System definition.
+ * \brief GPIO wrap implementation.
  * 
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.8
+ * \version 0.2.2
  * 
- * \date 2022/07/10
+ * \date 2023/07/28
  * 
- * \defgroup system System
+ * \addtogroup can_wrap
  * \{
  */
 
-#ifndef SYSTEM_H_
-#define SYSTEM_H_
+#include <stdarg.h>
+#include <stddef.h>
+#include <stdint.h>
+#include <stdbool.h>
+#include <setjmp.h>
+#include <float.h>
+#include <cmocka.h>
 
-#define SYSTEM_CLOCK_FREQ_HZ (72000000)
+#include "hal_gpio_wrap.h"
 
-/**
- * \brief System clocks initialization.
- *
- * \return None.
- */
-void system_init_clocks(void);
+void __wrap_gpio_set_mode(uint32_t gpioport, uint8_t mode, uint8_t cnf, uint16_t gpios){
+    return;
+}
 
-#endif /* SYSTEM_H_ */
 
-/** \} End of system group */
+/** \} End of can_wrap group */

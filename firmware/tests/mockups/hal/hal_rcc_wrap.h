@@ -1,5 +1,5 @@
 /*
- * system.h
+ * hal_rcc_wrap.h
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,30 +21,32 @@
  */
 
 /**
- * \brief System definition.
+ * \brief RCC wrap implementation.
  * 
+ * \author Pedro Ferrari Barbosa <pedro.ferraribarbosa2007@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.8
+ * \version 0.2.2
  * 
- * \date 2022/07/10
+ * \date 2026/08/01
  * 
- * \defgroup system System
+ * \defgroup can_wrap CAN Wrap
+ * \ingroup tests
  * \{
  */
 
-#ifndef SYSTEM_H_
-#define SYSTEM_H_
+#ifndef RCC_WRAP_H_
+#define RCC_WRAP_H_
 
-#define SYSTEM_CLOCK_FREQ_HZ (72000000)
+#include <stdint.h>
 
-/**
- * \brief System clocks initialization.
- *
- * \return None.
- */
-void system_init_clocks(void);
+enum rcc_periph_clken{
+    RCC_GPIOB = 771,
+};
 
-#endif /* SYSTEM_H_ */
+void __wrap_rcc_periph_clock_enable(enum rcc_periph_clken clken);
 
-/** \} End of system group */
+
+#endif /* RCC_WRAP_H_ */
+
+/** \} End of hal_rcc_wrap group */

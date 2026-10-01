@@ -1,5 +1,5 @@
 /*
- * system.h
+ * i2c_wrap.h
  * 
  * Copyright The SLCam Contributors.
  * 
@@ -21,30 +21,34 @@
  */
 
 /**
- * \brief System definition.
+ * \brief CAN driver wrap definition.
  * 
+ * \author Pedro Ferrari Barbosa <pedro.ferraribarbosa2007@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
  * 
- * \version 0.2.8
+ * \version 0.2.2
  * 
- * \date 2022/07/10
+ * \date 2026/08/01
  * 
- * \defgroup system System
+ * \defgroup can_wrap CAN Wrap
+ * \ingroup tests
  * \{
  */
 
-#ifndef SYSTEM_H_
-#define SYSTEM_H_
+#ifndef I2C_WRAP_H_
+#define I2C_WRAP_H_
 
-#define SYSTEM_CLOCK_FREQ_HZ (72000000)
+#include <stdint.h>
 
-/**
- * \brief System clocks initialization.
- *
- * \return None.
- */
-void system_init_clocks(void);
+#include <drivers/i2c/i2c.h>
 
-#endif /* SYSTEM_H_ */
+int __wrap_i2c_init(can_config_t config);
 
-/** \} End of system group */
+int __wrap_i2c_write(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
+
+int __wrap_i2c_read(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len);
+
+
+#endif /* I2C_WRAP_H_ */
+
+/** \} End of can_wrap group */
