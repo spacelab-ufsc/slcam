@@ -57,7 +57,7 @@ typedef enum error_t{
  *
  * \return the string representation of the parameter.
  */
-static const char *error_as_string(error_t error)
+static const char *errno_to_string(error_t error)
 {
     switch (error) {
 #define ERROR(errno) case errno: return #errno;
