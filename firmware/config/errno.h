@@ -40,49 +40,30 @@
 #include <utils/macros/macros.h>
 
 /*
- * \brief error listing using X Macros pattern
- * \to add an error, just add another entry
-*/
-#define ERROR_LIST \
-  /*no error ocurred*/ \
-  X(ERROR_SUCCESS) \
-  /*driver level errors*/ \
-  X(ERROR_DRIVER_NO_PORT) \
-  X(ERROR_DRIVER_NO_PARAMETER) \
-  X(ERROR_DRIVER_FAILED) \
-  X(ERROR_DRIVER_UNINITIALIZED) \
-  X(ERROR_DRIVER_NO_HW_IMPL) \
-  /*device level errors*/ \
-  X(ERROR_DEVICE_FAILED_CONFIG) \
-  X(ERROR_DEVICE_FAILED_COM) \
-  /*miscellaneous errors*/ \
-  X(ERROR_MISC_INVALID_ARG) \
-  X(ERROR_MISC_FAILED_ALLOC) \
-  X(ERROR_MISC_UNSUPPORTED_OP) \
-  X(ERROR_MISC_UNKNOWN) \
-  X(ERROR_MISC_TIMEOUT) \
-
-/*
  * \brief error enum type
  */
 typedef enum error_t{
-#define X(error) error, 
-  ERROR_LIST
-#undef X /*avoid global namespace pollution*/
+#define ERROR(errno) errno, 
+  #include "error.inc"
+#undef ERROR /*avoid global namespace pollution*/
 
-  ERROR_LIST_LENGTH
+  ERRNO_LIST_LENGTH
 }error_t;
 
-/*
- * \brief returns error as its string representation
+/**
+ * \brief converts errno value to its string representation.
+ *
+ * \param error is the error that will be converted.
+ *
+ * \return the string representation of the parameter.
  */
 static const char *error_as_string(error_t error)
 {
     switch (error) {
-#define X(error) case error: return #error;
-        ERROR_LIST
-#undef X
-      case ERROR_LIST_LENGTH: return "ERROR_LIST_LENGTH";
+#define ERROR(errno) case errno: return #errno;
+  #include "error.inc"
+#undef ERROR
+      case ERRNO_LIST_LENGTH: return "ERROR_LIST_LENGTH";
     }
 
     return "ERROR_FAILED_STRING_CONVERSION";
