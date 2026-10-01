@@ -48,7 +48,7 @@
 /**
  * \brief Watchdog period in miliseconds.
  */
-#define WTD_DEFAULT_PERIOD_MS 500
+#define WDT_DEFAULT_PERIOD_MS 500
 
 /**
  * \brief Watchdog configuration.
