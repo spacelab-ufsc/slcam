@@ -39,7 +39,7 @@
 #include <hal/include/libopencm3/stm32/rcc.h>
 
 #include "spi.h"
-#include "system.h"
+#include "system/system.h"
 
 static inline uint32_t port_to_base_address(const enum spi_port port)
 {
@@ -91,7 +91,7 @@ uint32_t spi_get_prescaler(uint32_t speed_hz)
 }
 
 static int spi_stm32_init(struct spi_controller *controller,
-			  const struct spi_config *config, const enum spi_port port)
+	     const struct spi_config *config, const enum spi_port port)
 {
 	int err = 0;
 	uint32_t port_addr = port_to_base_address(port);
@@ -103,8 +103,8 @@ static int spi_stm32_init(struct spi_controller *controller,
 	uint32_t c_pol = UINT32_MAX;
 
 	switch(config->mode){
-		case SPI_MODE_0: case SPI_MODE_1:		c_pol = SPI_CR1_CPOL_CLK_TO_0_WHEN_IDLE; break;
-		case SPI_MODE_2: case SPI_MODE_3:		c_pol = SPI_CR1_CPOL_CLK_TO_1_WHEN_IDLE; break;
+		case SPI_MODE_0: case SPI_MODE_1:   c_pol = SPI_CR1_CPOL_CLK_TO_0_WHEN_IDLE; break;
+		case SPI_MODE_2: case SPI_MODE_3:   c_pol = SPI_CR1_CPOL_CLK_TO_1_WHEN_IDLE; break;
 		default:{
 			#if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
             	sys_log_print_event_from_module(SYS_LOG_ERROR, SPI_MODULE_NAME, "Invalid SPI mode!");
@@ -168,6 +168,8 @@ static int spi_stm32_init(struct spi_controller *controller,
 		}
 	}
 
+	uint32_t baudrate_prescaler = spi_get_prescaler(config->speed_hz);
+
 	spi_reset(port_addr);
 	spi_set_dff_8bit(port_addr);
 
@@ -177,12 +179,15 @@ static int spi_stm32_init(struct spi_controller *controller,
 		c_phase,
 		SPI_CR1_DFF_8BIT, 
 		SPI_CR1_MSBFIRST);
-			
-	/* software Chip Select management */
-    spi_enable_software_slave_management(port_addr);
-    spi_set_nss_high(port_addr);
+  
 
-    spi_enable(port_addr);
+	spi_set_baudrate_prescaler(port_addr, baudrate_prescaler);
+
+	/* software Chip Select management */
+  spi_enable_software_slave_management(port_addr);
+  spi_set_nss_high(port_addr);
+
+  spi_enable(port_addr);
 
 	return ERRNO_SUCCESS;
 }
@@ -203,6 +208,35 @@ static int spi_stm32_configure(struct spi_controller *controller,
 	spi_set_baudrate_prescaler(port_addr, baudrate_prescaler);
 
 	return ERRNO_SUCCESS;
+}
+
+static int spi_stm32_write_only(struct spi_device *dev, uint8_t *buf, size_t len){
+	if(dev == NULL || buf == NULL){
+		return ERRNO_MISC_INVALID_ARG;
+	}
+
+	uint32_t port_addr = port_to_base_address(dev->controller->port);
+
+	for(uint16_t i = 0; i < len; i++){
+		spi_send(port_addr, buf[i]);
+	}
+
+	return ERRNO_SUCCESS;
+}
+
+static int spi_stm32_read_only(struct spi_device *dev, uint8_t *buf, size_t len){
+	if(dev == NULL || buf == NULL){
+		return ERRNO_MISC_INVALID_ARG;
+	}
+
+	uint32_t port_addr = port_to_base_address(dev->controller->port);
+	uint32_t bytes_read = 0;
+
+	for(uint16_t i = 0; i < len; i++){
+		buf[i] = spi_read(port_addr);
+	}
+
+	return bytes_read;
 }
 
 static int spi_stm32_write(struct spi_device *dev, uint8_t *buf, size_t len){
@@ -272,34 +306,6 @@ static int spi_stm32_select_slave(struct spi_device *dev, bool slave_state){
 	return ERRNO_SUCCESS;
 }
 
-static int spi_stm32_write_only(struct spi_device *dev, uint8_t *buf, size_t len){
-	if(dev == NULL || buf == NULL){
-		return ERRNO_MISC_INVALID_ARG;
-	}
-
-	uint32_t port_addr = port_to_base_address(dev->controller->port);
-
-	for(uint16_t i = 0; i < len; i++){
-		spi_send(port_addr, buf[i]);
-	}
-
-	return ERRNO_SUCCESS;
-}
-
-static int spi_stm32_read_only(struct spi_device *dev, uint8_t *buf, size_t len){
-	if(dev == NULL || buf == NULL){
-		return ERRNO_MISC_INVALID_ARG;
-	}
-
-	uint32_t port_addr = port_to_base_address(dev->controller->port);
-	uint32_t bytes_read = 0;
-
-	for(uint16_t i = 0; i < len; i++){
-		buf[i] = spi_read(port_addr);
-	}
-
-	return bytes_read;
-}
 
 static struct spi_driver_api stm32_spi_api = {
 	.init = spi_stm32_init,
