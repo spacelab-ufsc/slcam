@@ -39,12 +39,8 @@
 #include <stdarg.h>
 #include <stddef.h>
 #include <stdint.h>
-#include <setjmp.h>
 #include <float.h>
 #include <cmocka.h>
-
-#include <stdlib.h>
-#include <math.h>
 
 #include <drivers/i2c/i2c.h>
 
@@ -69,20 +65,7 @@ static void spi_write_test(void** state){
 }
 
 static void spi_write_only_test(void** state){
-    return -1;
-}
 
-static void spi_read_test(void** state){
-    return -1;
-}
-
-static void spi_read_only_test(void** state){
-    return -1;
-}
-
-static void spi_transfer_test(void** state){
-    return -1;
-=======
 #include <stdint.h>
 #include <config/errno.h>
 #include <drivers/spi/spi.h>
@@ -93,25 +76,10 @@ static void delay(volatile uint32_t n)
 {
     while (n--)
         ;
->>>>>>> Stashed changes
 }
 
 int main(void)
 {
-<<<<<<< Updated upstream
-    const struct CMUnitTest spi_tests[] = {
-        cmocka_unit_test(spi_init_test),
-        cmocka_unit_test(spi_select_slave_test),
-        cmocka_unit_test(spi_configure_test),
-        cmocka_unit_test(spi_write_test),
-        cmocka_unit_test(spi_write_only_test),
-        cmocka_unit_test(spi_read_test),
-        cmocka_unit_test(spi_read_only_test),
-        cmocka_unit_test(spi_transfer_test)     
-    };
-
-    return cmocka_run_group_tests(spi_tests, NULL, NULL);
-=======
     int err;
 
     struct spi_config config = {
@@ -137,7 +105,6 @@ int main(void)
         delay(100000);  
 
     }
->>>>>>> Stashed changes
 }
 /** \} End of i2c_unit_test group */
 
