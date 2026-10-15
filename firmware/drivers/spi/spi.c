@@ -45,7 +45,7 @@ int spi_init_controller(struct spi_controller **controller, enum spi_port port,
 {
 	struct spi_driver_api *api;
 	struct spi_controller *ctrl;
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!controller)
 		return -ERRNO_MISC_INVALID_ARG;
@@ -90,7 +90,7 @@ int spi_init_controller(struct spi_controller **controller, enum spi_port port,
 
 int spi_configure_controller(struct spi_controller *controller, struct spi_config *config)
 {
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!config || !controller)
 		return -ERRNO_MISC_INVALID_ARG;
@@ -111,7 +111,7 @@ int spi_configure_controller(struct spi_controller *controller, struct spi_confi
 int spi_init_device(struct spi_device *dev, enum spi_port port, const struct spi_config *config,
 		    const uint8_t cs_pin, const uint8_t cs_active_level)
 {
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!dev)
 		return -ERRNO_MISC_INVALID_ARG;
@@ -137,7 +137,7 @@ int spi_init_device(struct spi_device *dev, enum spi_port port, const struct spi
 int spi_select_slave(struct spi_device *dev, bool state)
 {
 	struct spi_controller *controller = dev->controller;
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!dev || !dev->controller)
 		return -ERRNO_MISC_INVALID_ARG;
@@ -157,7 +157,7 @@ int spi_select_slave(struct spi_device *dev, bool state)
 int spi_device_write(struct spi_device *dev, uint8_t *buf, size_t len)
 {
 	struct spi_controller *controller = dev->controller;
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!dev || !dev->controller)
 		return -ERRNO_MISC_INVALID_ARG;
@@ -177,7 +177,7 @@ int spi_device_write(struct spi_device *dev, uint8_t *buf, size_t len)
 int spi_device_write_only(struct spi_device *dev, uint8_t *buf, size_t len)
 {
 	struct spi_controller *controller = dev->controller;
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!dev || !dev->controller)
 		return -ERRNO_MISC_INVALID_ARG;
@@ -197,7 +197,7 @@ int spi_device_write_only(struct spi_device *dev, uint8_t *buf, size_t len)
 int spi_device_read(struct spi_device *dev, uint8_t *buf, size_t len)
 {
 	struct spi_controller *controller = dev->controller;
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!dev || !dev->controller)
 		return -ERRNO_MISC_INVALID_ARG;
@@ -217,7 +217,7 @@ int spi_device_read(struct spi_device *dev, uint8_t *buf, size_t len)
 int spi_device_read_only(struct spi_device *dev, uint8_t *buf, size_t len)
 {
 	struct spi_controller *controller = dev->controller;
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!dev || !dev->controller)
 		return -ERRNO_MISC_INVALID_ARG;
@@ -238,7 +238,7 @@ int spi_device_transfer(struct spi_device *dev, uint8_t *tx_buf, size_t tx_len, 
 			size_t rx_len)
 {
 	struct spi_controller *controller = dev->controller;
-	int err;
+	int err = ERRNO_SUCCESS;
 
 	if (!dev || !dev->controller)
 		return -ERRNO_MISC_INVALID_ARG;

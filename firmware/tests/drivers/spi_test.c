@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 /*
  * i2c_test.c
  * 
@@ -81,10 +82,23 @@ static void spi_read_only_test(void** state){
 
 static void spi_transfer_test(void** state){
     return -1;
+=======
+#include <stdint.h>
+#include <config/errno.h>
+#include <drivers/spi/spi.h>
+
+#define SPI_TEST_CS_PIN  (0x04U)
+
+static void delay(volatile uint32_t n)
+{
+    while (n--)
+        ;
+>>>>>>> Stashed changes
 }
 
 int main(void)
 {
+<<<<<<< Updated upstream
     const struct CMUnitTest spi_tests[] = {
         cmocka_unit_test(spi_init_test),
         cmocka_unit_test(spi_select_slave_test),
@@ -97,6 +111,33 @@ int main(void)
     };
 
     return cmocka_run_group_tests(spi_tests, NULL, NULL);
+=======
+    int err;
+
+    struct spi_config config = {
+        .speed_hz = 1000000,
+        .mode     = SPI_MODE_0,
+    };
+
+    struct spi_device dev = { 0 };
+
+    err = spi_init_device(&dev, SPI_PORT_0, &config, SPI_TEST_CS_PIN, 1U);
+    if (err < 0) {
+        while (1)
+            ;   
+    }
+
+    uint8_t tx[8] = { 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40, 0x40 };
+    uint8_t rx[8] = { 0 };
+
+    while (1) {
+        err = spi_device_transfer(&dev, tx, sizeof(tx), rx, sizeof(rx));
+        (void)err;
+
+        delay(100000);  
+
+    }
+>>>>>>> Stashed changes
 }
 /** \} End of i2c_unit_test group */
 

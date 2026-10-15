@@ -39,7 +39,21 @@
 #include <hal/include/libopencm3/stm32/rcc.h>
 
 #include "spi.h"
+#include "gpio.h"
 #include "system/system.h"
+
+#define HIGH  (false)
+#define LOW   (true)
+
+struct spi_cs_pins{ 
+  uint32_t gpio_port; 
+  uint16_t cs_pin; 
+};
+
+static const struct spi_cs_pins cs_pins[] = {
+    [SPI_PORT_0] = {GPIOA, GPIO4 },
+    [SPI_PORT_1] = {GPIOB, GPIO12},
+};
 
 static inline uint32_t port_to_base_address(const enum spi_port port)
 {
@@ -52,9 +66,7 @@ static inline uint32_t port_to_base_address(const enum spi_port port)
 	case SPI_PORT_1:
 		addr = SPI2_BASE;
 		break;
-	case SPI_PORT_2:
-		addr = SPI3_BASE;
-		break;
+
 	default:
 		break;
 	}
@@ -133,32 +145,59 @@ static int spi_stm32_init(struct spi_controller *controller,
 	switch(port_addr){
 		case(SPI1_BASE):{
 			rcc_periph_clock_enable(RCC_SPI1);
+			rcc_periph_clock_enable(RCC_GPIOA);
 
-			gpio_set_mode(GPIOA, 
-				GPIO_MODE_OUTPUT_50_MHZ, 
-				GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, 
-				GPIO4 | GPIO5 | GPIO6 | GPIO7);
+      /*start with CS high*/
+      gpio_set(GPIOA, GPIO4);
+
+      /*SCK and MOSI*/
+      gpio_set_mode(GPIOA,
+              GPIO_MODE_OUTPUT_50_MHZ,
+              GPIO_CNF_OUTPUT_ALTFN_PUSHPULL,
+              GPIO5 | GPIO7);
+
+      /*MISO */
+      gpio_set_mode(GPIOA,
+              GPIO_MODE_INPUT,
+              GPIO_CNF_INPUT_FLOAT,
+              GPIO6);
+
+      /*CS*/
+      gpio_set_mode(GPIOA,
+              GPIO_MODE_OUTPUT_50_MHZ,
+              GPIO_CNF_OUTPUT_PUSHPULL,
+              GPIO4);
+
 		}break;
 
 		case(SPI2_BASE):{
 			rcc_periph_clock_enable(RCC_SPI2);
+      rcc_periph_clock_enable(RCC_GPIOB);
 
-			gpio_set_mode(GPIOA, 
-				GPIO_MODE_OUTPUT_50_MHZ, 
-				GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, 
-				GPIO4 | GPIO5 | GPIO6 | GPIO7);
+      /*Start with CS high*/
+      gpio_set(GPIOB, GPIO12);
+
+      /*SCK and MOSI*/
+      gpio_set_mode(GPIOB,
+              GPIO_MODE_OUTPUT_50_MHZ,
+              GPIO_CNF_OUTPUT_ALTFN_PUSHPULL,
+              GPIO13 | GPIO15);
+
+      /*MISO */
+      gpio_set_mode(GPIOB,
+              GPIO_MODE_INPUT,
+              GPIO_CNF_INPUT_FLOAT,
+              GPIO14);
+
+      /*CS*/
+      gpio_set_mode(GPIOB,
+              GPIO_MODE_OUTPUT_50_MHZ,
+              GPIO_CNF_OUTPUT_PUSHPULL,
+              GPIO12);
+
 		}break;
 
-		case(SPI3_BASE):{
-			rcc_periph_clock_enable(RCC_SPI3);
-
-			gpio_set_mode(GPIOA, 
-				GPIO_MODE_OUTPUT_50_MHZ, 
-				GPIO_CNF_OUTPUT_ALTFN_PUSHPULL, 
-				GPIO4 | GPIO5 | GPIO6 | GPIO7);
-		}break;
-
-		defalt: {
+		default: {
 			#if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
             	sys_log_print_event_from_module(SYS_LOG_ERROR, SPI_MODULE_NAME, "Invalid SPI port!");
             	sys_log_new_line();
@@ -171,18 +210,14 @@ static int spi_stm32_init(struct spi_controller *controller,
 	uint32_t baudrate_prescaler = spi_get_prescaler(config->speed_hz);
 
 	spi_reset(port_addr);
-	spi_set_dff_8bit(port_addr);
 
 	spi_init_master(port_addr, 
-		SPI_CR1_BAUDRATE_FPCLK_DIV_16, 
+		baudrate_prescaler, 
 		c_pol, 
 		c_phase,
 		SPI_CR1_DFF_8BIT, 
 		SPI_CR1_MSBFIRST);
   
-
-	spi_set_baudrate_prescaler(port_addr, baudrate_prescaler);
-
 	/* software Chip Select management */
   spi_enable_software_slave_management(port_addr);
   spi_set_nss_high(port_addr);
@@ -210,6 +245,21 @@ static int spi_stm32_configure(struct spi_controller *controller,
 	return ERRNO_SUCCESS;
 }
 
+static int spi_stm32_select_slave(struct spi_device *dev, bool slave_state){
+	if (dev == NULL || dev->controller == NULL)
+        return -ERRNO_MISC_INVALID_ARG;
+
+  const struct spi_cs_pins *p = &cs_pins[dev->controller->port];
+  dev->cs_active_level = slave_state;
+
+  if (slave_state == LOW)
+      gpio_set(p->gpio_port, p->cs_pin);
+  else
+      gpio_clear(p->gpio_port, p->cs_pin);
+
+  return ERRNO_SUCCESS;
+}
+
 static int spi_stm32_write_only(struct spi_device *dev, uint8_t *buf, size_t len){
 	if(dev == NULL || buf == NULL){
 		return ERRNO_MISC_INVALID_ARG;
@@ -218,8 +268,12 @@ static int spi_stm32_write_only(struct spi_device *dev, uint8_t *buf, size_t len
 	uint32_t port_addr = port_to_base_address(dev->controller->port);
 
 	for(uint16_t i = 0; i < len; i++){
-		spi_send(port_addr, buf[i]);
+	  (void)spi_xfer(port_addr, buf[i]);	
 	}
+
+  /*wait for transfer to finish*/
+  while (SPI_SR(port_addr) & SPI_SR_BSY)
+    ;
 
 	return ERRNO_SUCCESS;
 }
@@ -233,8 +287,12 @@ static int spi_stm32_read_only(struct spi_device *dev, uint8_t *buf, size_t len)
 	uint32_t bytes_read = 0;
 
 	for(uint16_t i = 0; i < len; i++){
-		buf[i] = spi_read(port_addr);
+		buf[bytes_read++] = (uint8_t)spi_xfer(port_addr, 0xFF);
 	}
+
+  /*wait for transfer to finish*/
+  while (SPI_SR(port_addr) & SPI_SR_BSY)
+    ;
 
 	return bytes_read;
 }
@@ -246,13 +304,11 @@ static int spi_stm32_write(struct spi_device *dev, uint8_t *buf, size_t len){
 
 	uint32_t port_addr = port_to_base_address(dev->controller->port);
 
-	/* change CS state */
-	spi_set_nss_low(port_addr);
+  spi_stm32_select_slave(dev, LOW);
 
 	spi_stm32_write_only(dev, buf, len);
 
-	/* change CS state */
-	spi_set_nss_high(port_addr);
+  spi_stm32_select_slave(dev, HIGH);
 	return ERRNO_SUCCESS;
 }
 
@@ -263,13 +319,11 @@ static int spi_stm32_read(struct spi_device *dev, uint8_t *buf, size_t len){
 
 	uint32_t port_addr = port_to_base_address(dev->controller->port);
 
-	/* change CS state */
-	spi_set_nss_low(port_addr);
+  spi_stm32_select_slave(dev, LOW);
 
 	spi_stm32_read_only(dev, buf, len);
 
-	/* change CS state */
-	spi_set_nss_high(port_addr);
+  spi_stm32_select_slave(dev, HIGH);
 	return ERRNO_SUCCESS;
 }
 
@@ -278,34 +332,31 @@ static int spi_stm32_transfer(struct spi_device *dev, uint8_t *tx_buf, size_t tx
 		return -1;
 	}
 
-	int errno = 0;
-	uint32_t bytes_read = 0;
+	int errno = ERRNO_SUCCESS;
+  uint32_t port_addr = port_to_base_address(dev->controller->port);
 
-	if(rx_len > 0){
-		bytes_read = spi_stm32_read(dev, rx_buf, rx_len);
-	}
+  uint32_t total_len = (tx_len > rx_len) ? tx_len : rx_len;
 
-	if(tx_len > 0){
-		errno = spi_stm32_write(dev, tx_buf, tx_len);
-	}
+  spi_stm32_select_slave(dev, LOW);
+
+	for(int i = 0; i < total_len; i++){
+	  uint8_t tx_byte = (i < tx_len) ? tx_buf[i] : 0xFF;
+
+    uint8_t rx_byte = spi_xfer(port_addr, tx_byte);
+
+    if (i < rx_len)
+      rx_buf[i] = rx_byte;
+  }
+  
+  /*wait for transfer to finish*/
+  while (SPI_SR(port_addr) & SPI_SR_BSY)
+    ;
+
+  spi_stm32_select_slave(dev, HIGH);
 
 	if(errno != 0) return errno;
-	else return bytes_read;
+	else return rx_len;
 }
-
-static int spi_stm32_select_slave(struct spi_device *dev, bool slave_state){
-	if(dev == NULL){
-		return ERRNO_MISC_INVALID_ARG;
-	}
-
-	uint32_t port_addr = port_to_base_address(dev->controller->port);
-
-	dev->cs_active_level = slave_state;
-	spi_set_nss_low(port_addr);
-
-	return ERRNO_SUCCESS;
-}
-
 
 static struct spi_driver_api stm32_spi_api = {
 	.init = spi_stm32_init,
