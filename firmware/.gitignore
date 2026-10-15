@@ -21,3 +21,5 @@ cppcheck-addon-ctu-file-list
 *.bin
 *.elf
 *.map
+
+compiler_commands.json
