@@ -23,140 +23,146 @@
 /**
  * \brief I2C driver implementation.
  * 
- * \author Pedro Ferrari Barbosa <pedro.ferraribarbosa2007@gmail.com>
  * \author Gabriel Mariano Marcelino <gabriel.mm8@gmail.com>
+ * \author Pedro Ferrari Barbosa <pedro.ferraribarbosa2007@gmail.com>
  * 
- * \version 1.0.0
+ * \version 0.2.10
  * 
- * \date 2026/08/27
+ * \date 2024/02/13
  * 
  * \addtogroup i2c
  * \{
  */
 
+#include "errno.h"
+#include <errno.h>
+#include <stdint.h>
+#include <utils/mutex/mutex.h>
+#include <drivers/gpio/gpio.h>
 
-#include <libopencm3/stm32/rcc.h>
-#include <libopencm3/stm32/gpio.h>
-
-#include <config/config.h>
-#include <system/sys_log/sys_log.h>
 #include "i2c.h"
 
-int i2c_init(i2c_port_t port, i2c_config_t config){
-    int err = 0;
+error_t i2c_init_controller(struct i2c_controller **controller, const enum i2c_port port,
+			    const struct i2c_config *config)
+{
+	struct i2c_driver_api *api;
+	struct i2c_controller *ctrl;
+	int err;
 
-    switch(config.speed_hz)
-    {
-        case i2c_speed_sm_100k:      break;
-        case i2c_speed_fm_400k:      break;
-        case i2c_speed_fmp_1m:       break;
-        case i2c_speed_unknown:
-        default:
-        #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
-            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid transfer rate!");
-            sys_log_new_line();
-        #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            err = -1;   /* Invalid transfer rate */
-            break;
-    }
+	if (!controller)
+		return -ERRNO_MISC_INVALID_ARG;
 
-    if (err == 0)
-    {
-        uint32_t base_address = UINT32_MAX;
+	ctrl = i2c_hw_get_controller_handle(port);
 
-        /*in both port cases, SDA and SCL will be on port B*/
-        rcc_periph_clock_enable(RCC_GPIOB);
+	if (ctrl == NULL)
+		return -ERRNO_DRIVER_NO_PORT;
 
+	*controller = ctrl;
 
-        switch(port)
-        {
-            case I2C_PORT_0:
-                base_address = I2C1_BASE;
-                gpio_set_mode(GPIOB, 
-                    GPIO_MODE_OUTPUT_50_MHZ, 
-                    GPIO_CNF_OUTPUT_ALTFN_OPENDRAIN, 
-                    GPIO6 | GPIO7);
-                break;
-            case I2C_PORT_1:
-                base_address = I2C2_BASE;
-                gpio_set_mode(GPIOB, 
-                    GPIO_MODE_OUTPUT_50_MHZ, 
-                    GPIO_CNF_OUTPUT_ALTFN_OPENDRAIN, 
-                    GPIO10 | GPIO11);
-                break;
-            default:
-            #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
-                sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid port!");
-                sys_log_new_line();
-            #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-                err = -1;   /* Invalid I2C port */
-                break;
-        }
+	if (ctrl->initialized == 1)
+		return ERRNO_SUCCESS;
 
-        if(err == 0){
-            /*initially disable the peripheral so it can be configured*/
-            i2c_peripheral_disable(base_address);
+	/* This check is in here to enable config to be NULL, if the controller 
+     * is already be initialized. */
+	if (!config)
+		return -ERRNO_MISC_INVALID_ARG;
 
-            i2c_set_clock_frequency(base_address, config.clock_freq_mhz);
-            i2c_set_speed(base_address, config.speed_hz, config.clock_freq_mhz);
-            i2c_set_own_7bit_slave_address(base_address, I2C_SLAVE_OWN_7BIT_ADDR);
-            i2c_enable_ack(base_address);
+	api = i2c_hw_get_driver();
 
-            i2c_peripheral_enable(base_address);
-        }
-    }
-    
-    return err;
+	if (!api)
+		return -ERRNO_MISC_UNSUPPORTED_OP;
+
+	// err = mutex_init(&ctrl->lock);
+
+	if (err < 0)
+		return err;
+
+	err = api->init(ctrl, config, port);
+
+	if (err < 0)
+		return err;
+
+	(*controller)->port = port;
+	(*controller)->api = *api;
+	(*controller)->config = *config;
+	(*controller)->initialized = 1U;
+
+	return 0;
 }
 
-int i2c_write(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len){
-    int err = 0;
+error_t i2c_configure_controller(struct i2c_controller *controller, struct i2c_config *config)
+{
+	error_t err = ERRNO_SUCCESS;
 
-    uint32_t base_address = UINT32_MAX;
+	if (!config || !controller)
+		return -ERRNO_MISC_INVALID_ARG;
 
-    switch(port)
-    {
-        case I2C_PORT_0:
-            base_address = I2C1_BASE;
-            break;
-        case I2C_PORT_1:
-            base_address = I2C2_BASE;
-            break;
-        default:
-        #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
-            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid port!");
-            sys_log_new_line();
-        #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            err = -1;   /* Invalid I2C port */
-            return err;
-    }
+	if (controller->initialized != 1U)
+		return -ERRNO_DRIVER_UNINITIALIZED;
 
-    i2c_transfer7(base_address, adr, data, len, NULL, 0);
-    return err;
+	err = controller->api.configure(controller, config);
+
+	if (err < 0)
+		return err;
+
+	controller->config = *config;
+
+	return 0;
 }
 
-int i2c_read(i2c_port_t port, i2c_slave_adr_t adr, uint8_t *data, uint16_t len){
-    int err = 0;
+error_t i2c_init_device(struct i2c_device *dev, enum i2c_port port, const struct i2c_config *config)
+{
+	error_t err = ERRNO_SUCCESS;
 
-    uint32_t base_address = UINT32_MAX;
+	if (!dev)
+		return -ERRNO_MISC_INVALID_ARG;
 
-    switch(port)
-    {
-        case I2C_PORT_0:
-            base_address = I2C1_BASE;
-            break;
-        case I2C_PORT_1:
-            base_address = I2C2_BASE;
-            break;
-        default:
-        #if defined(CONFIG_DRIVERS_DEBUG_ENABLED) && (CONFIG_DRIVERS_DEBUG_ENABLED == 1)
-            sys_log_print_event_from_module(SYS_LOG_ERROR, I2C_MODULE_NAME, "Invalid port!");
-            sys_log_new_line();
-        #endif /* CONFIG_DRIVERS_DEBUG_ENABLED */
-            err = -1;   /* Invalid I2C port */
-            return err;
-    }
+	err = i2c_init_controller(&dev->controller, port, config);
 
-    i2c_transfer7(base_address, adr, NULL, 0, data, len);
-    return err;
+	if (err < 0)
+		return err;
+
+	return 0;
 }
+
+error_t i2c_device_write(struct i2c_device *dev, i2c_slave_adr_t addr, uint8_t *buf, size_t len)
+{
+	struct i2c_controller *controller = dev->controller;
+	error_t err = ERRNO_SUCCESS;
+
+	if (!dev || !dev->controller)
+		return -ERRNO_MISC_INVALID_ARG;
+
+	err = mutex_lock(&controller->lock);
+
+	if (err < 0)
+		return err;
+
+	err = controller->api.write(dev, addr, buf, len);
+
+	mutex_unlock(&controller->lock);
+
+	return err;
+}
+
+error_t i2c_device_read(struct i2c_device *dev, i2c_slave_adr_t addr, uint8_t *buf, size_t len)
+{
+	struct i2c_controller *controller = dev->controller;
+	error_t err = ERRNO_SUCCESS;
+
+	if (!dev || !dev->controller)
+		return -ERRNO_MISC_INVALID_ARG;
+
+	err = mutex_lock(&controller->lock);
+
+	if (err < 0)
+		return err;
+
+	err = controller->api.read(dev, addr, buf, len);
+
+	mutex_unlock(&controller->lock);
+
+	return err;
+}
+
+/** \} End of spi group */

@@ -25,6 +25,7 @@ CFLAGS=-c -mcpu=cortex-m3 -mthumb -Os $(LIBS) -D$(OPENCM3_FAMILY)
 .PHONY: all
 all:
 	$(CC) $(CFLAGS) $(TARGET).c -o $(BUILD_DIR)/$(TARGET).o
+	$(CC) $(CFLAGS) i2c_stm32f103.c -o $(BUILD_DIR)/i2c_stm32f103.o
 
 .PHONY: clean
 clean:
