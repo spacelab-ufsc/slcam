@@ -40,15 +40,20 @@
 #include <utils/macros/macros.h>
 
 /*
+ * \brief error_t type
+ */
+typedef int error_t;
+
+/*
  * \brief error enum type
  */
-typedef enum error_t{
-#define ERROR(errno) errno, 
-  #include "error.inc"
+typedef enum errs {
+#define ERROR(errno) errno,
+#include "error.inc"
 #undef ERROR /*avoid global namespace pollution*/
 
-  ERRNO_LIST_LENGTH
-}error_t;
+	ERRNO_LIST_LENGTH
+} errs;
 
 /**
  * \brief converts errno value to its string representation.
@@ -57,16 +62,19 @@ typedef enum error_t{
  *
  * \return the string representation of the parameter.
  */
-static const char *errno_to_string(error_t error)
+static const char *error_as_string(error_t error)
 {
-    switch (error) {
-#define ERROR(errno) case errno: return #errno;
-  #include "error.inc"
+	switch (error) {
+#define ERROR(errno) \
+	case errno:  \
+		return #errno;
+#include "error.inc"
 #undef ERROR
-      case ERRNO_LIST_LENGTH: return "ERROR_LIST_LENGTH";
-    }
+	case ERRNO_LIST_LENGTH:
+		return "ERROR_LIST_LENGTH";
+	}
 
-    return "ERROR_FAILED_STRING_CONVERSION";
+	return "ERROR_FAILED_STRING_CONVERSION";
 }
 
 #endif /*ERRNO_H */
