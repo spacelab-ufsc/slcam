@@ -38,7 +38,6 @@
 #ifndef I2C_H_
 #define I2C_H_
 
-#include <errno.h>
 #include <stdint.h>
 #include <libopencm3/cm3/memorymap.h>
 #include <libopencm3/stm32/i2c.h>

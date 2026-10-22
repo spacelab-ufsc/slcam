@@ -34,8 +34,7 @@
  * \{
  */
 
-#include "errno.h"
-#include <errno.h>
+#include <config/errno.h>
 #include <stdint.h>
 #include <utils/mutex/mutex.h>
 #include <drivers/gpio/gpio.h>

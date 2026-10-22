@@ -21,7 +21,7 @@
  */
 
 /**
- * \brief STM32F103 SPI driver implementation.
+ * \brief STM32F103 I2C driver implementation.
  *
  * \author Carlos Augusto Porto Freitas <carlos.portof@hotmail.com>
  *
